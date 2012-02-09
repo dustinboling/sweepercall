@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Address:</b>
+  <%= @person.address %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @person.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @person.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%= @person.zip %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @person.phone %>
+</p>
+
+<p>
+  <b>Mobile phone:</b>
+  <%= @person.mobile_phone %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @person.name %>
+</p>
+
+<p>
+  <b>Agent:</b>
+  <%= @person.agent_id %>
+</p>
+
+<p>
+	<b>Notifications:</b>
+	<%= @person.notifications %>
+	<%= link_to('Add Notification', {:controller => 'notifications', :action => 'new', :person_id => @person.id}) %>
+</p>
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>

@@ -1,0 +1,8 @@
+<tr class="fields">
+  <%= f.hidden_field :person_id, :value => @person.id %>
+		<td><%= f.number_field :notification_type %></td>
+		<!-- <td><%= f.select(:notification_type, options_for_select([["Email", 1], ["Voice", 2], ["Text Message", 3]])) %></td> -->
+	  <td><%= f.number_field :day %></td>
+	  <td><%= f.number_field :week %></td>
+		<td><%= link_to_remove_fields "remove", f %></td>
+</tr>

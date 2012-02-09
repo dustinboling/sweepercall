@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type:</b>
+  <%= @notification.type %>
+</p>
+
+<p>
+  <b>Day:</b>
+  <%= @notification.day %>
+</p>
+
+<p>
+  <b>Week:</b>
+  <%= @notification.week %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%= @notification.person_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_notification_path(@notification) %> |
+<%= link_to 'Back', notifications_path %>

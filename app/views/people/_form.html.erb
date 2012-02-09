@@ -1,0 +1,42 @@
+<%= form_for(@person, :html => {:class => 'form-stacked'}) do |f| %>
+  <% if @person.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <% @person.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= f.label :agent_id %>
+    <%= f.number_field :agent_id %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+
+    <%= f.label :zip %>
+    <%= f.number_field :zip %>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+
+    <%= f.label :mobile_phone %>
+    <%= f.text_field :mobile_phone %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
