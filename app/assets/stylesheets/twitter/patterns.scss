@@ -16,6 +16,9 @@
   z-index: 10000;
   overflow: visible;
 
+	p {
+		color: #FFF;
+	}
   // Links get text shadow
   a {
     color: $grayLight;

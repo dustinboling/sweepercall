@@ -1,15 +1,5 @@
 <%= form_for(@agent) do |f| %>
-  <% if @agent.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@agent.errors.count, "error") %> prohibited this agent from being saved:</h2>
-
-      <ul>
-      <% @agent.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<%= error_messages_for(@agent) %>
 
   <div class="field">
     <%= f.label :first_name %><br />

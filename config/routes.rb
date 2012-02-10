@@ -1,4 +1,16 @@
 Sweeper::Application.routes.draw do
+  
+  get "static_pages/landing"
+
+  # authentication routes
+  resources :sessions
+  resources :users
+  get "login" => "sessions#new", :as => 'login'
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "signup" => "users#new", :as => "signup"
+
+  get "users/new"
+
   get "reminders/email"
 
   get "reminders/sms"
@@ -11,7 +23,7 @@ Sweeper::Application.routes.draw do
 
   resources :agents
   
-  root :to => "people#index"
+  root :to => "static_pages#landing"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

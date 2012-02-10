@@ -12,6 +12,7 @@ body {
   margin: 0;
   @include sans-serif-font(normal,$basefont,$baseline);
   color: $grayDark;
+	padding-top: 45px;
 }
 
 // Container (centered, fixed-width layouts)

@@ -1,4 +1,7 @@
 class AgentsController < ApplicationController
+  
+  load_and_authorize_resource
+  
   # GET /agents
   # GET /agents.json
   def index
