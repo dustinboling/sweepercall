@@ -8,13 +8,12 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-    @agent = Agent.new
   end
   
   def create
     @user = User.new(params[:user])
     if @user.save
-      redirect_to root_url, :notice => "Sign up has been successful!"
+      redirect_to root_url, :notice => "Signed up! Check your email for account details."
     else
       render :new
     end

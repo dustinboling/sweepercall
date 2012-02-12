@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if user.role? :agent
         redirect_to agent_path(:id => user.agent.user_id), :notice => "Logged in!"
       elsif user.role? :person
-        redirect_to person_path(:id => user.id), :notice => "Logged in!"
+        redirect_to person_path(:id => user.person.user_id), :notice => "Logged in!"
       elsif user.role? :admin
         redirect_to users_path, :notice => "Hello admin."
       end

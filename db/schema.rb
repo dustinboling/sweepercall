@@ -11,12 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210203214) do
+ActiveRecord::Schema.define(:version => 20120212221947) do
 
   create_table "agents", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email"
     t.integer  "phone"
     t.text     "website_url"
     t.datetime "created_at"
@@ -24,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20120210203214) do
     t.integer  "user_id"
   end
 
-  add_index "agents", ["email"], :name => "index_agents_on_email", :unique => true
   add_index "agents", ["user_id"], :name => "index_agents_on_user_id"
 
   create_table "email_reminders", :force => true do |t|
