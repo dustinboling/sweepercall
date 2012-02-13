@@ -6,6 +6,7 @@ class PeopleController < ApplicationController
   # GET /people.json
   def index
     @people = Person.all
+    authorize! :read, @people
 
     respond_to do |format|
       format.html # index.html.erb

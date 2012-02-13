@@ -13,6 +13,7 @@ class Ability
       end
       if user.role? :subscriber
         can :manage, Person, :user_id => user.id
+        can :manage, Notification, :person_id => user.person.id
         can :read, @static_page
       end
     end

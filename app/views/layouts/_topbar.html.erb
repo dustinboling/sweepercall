@@ -4,7 +4,15 @@
       <a class="brand" href="/">SweeperCall</a>
       <ul class="nav" data-dropdown="dropdown">
         <li class="active">
-          <%= link_to 'Home', root_url %>
+					<% if current_user %>
+						<% if can? :manage, Person, :user_id => current_user.id  %>
+							<%= link_to 'Home', person_path(:id => Person.find_by_user_id(current_user.person.user_id)) %>
+						<% elsif can? :manage, Agent, :user_id => current_user.id %>
+							<%= link_to 'Home', agent_path(Agent.find_by_user_id(current_user.person.user.id)) %>
+						<% end %>
+						<% else %>
+	          	<%= link_to 'Home', root_url %>
+					<% end %>
         </li>
 			</ul>
 			<p class="user-nav pull-right">
