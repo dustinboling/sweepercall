@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120212221947) do
+ActiveRecord::Schema.define(:version => 20120213195451) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "address"
+    t.integer  "zip_code"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "phone_number"
+    t.string   "contact_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "agents", :force => true do |t|
     t.string   "first_name"
@@ -55,11 +66,11 @@ ActiveRecord::Schema.define(:version => 20120212221947) do
     t.integer  "agent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
+    t.integer  "user_id"
   end
 
   add_index "people", ["agent_id"], :name => "index_people_on_agent_id"
-  add_index "people", ["email"], :name => "index_people_on_email", :unique => true
+  add_index "people", ["user_id"], :name => "index_people_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "username",                        :null => false

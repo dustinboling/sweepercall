@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
     user = login(params[:username], params[:password], params[:remember_me])
     if user
       if user.role? :agent
-        redirect_to agent_path(:id => user.agent.user_id), :notice => "Logged in!"
-      elsif user.role? :person
-        redirect_to person_path(:id => user.person.user_id), :notice => "Logged in!"
+        redirect_to agent_path(:id => Agent.find_by_user_id(user.agent.user_id)), :notice => "Logged in!"
+      elsif user.role? :subscriber
+        redirect_to person_path(:id => Person.find_by_user_id(user.person.user_id)), :notice => "Logged in!"
       elsif user.role? :admin
         redirect_to users_path, :notice => "Hello admin."
       end

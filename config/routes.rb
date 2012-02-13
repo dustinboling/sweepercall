@@ -2,9 +2,11 @@ Sweeper::Application.routes.draw do
   
   get "static_pages/landing"
 
+  get "users/new_person"
+
   # authentication routes
-  resources :sessions
-  resources :users
+
+  
   get "login" => "sessions#new", :as => 'login'
   get "logout" => "sessions#destroy", :as => "logout"
   get "signup" => "users#new", :as => "signup"
@@ -16,6 +18,10 @@ Sweeper::Application.routes.draw do
   get "reminders/sms"
 
   get "reminders/voice"
+  
+  resources :users
+  
+  resources :sessions
 
   resources :people
 

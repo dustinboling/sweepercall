@@ -1,0 +1,42 @@
+<h1>Sign Up Person</h1>
+
+<%= form_for @user, :html => { :class => 'form-stacked' } do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+	<% f.object.build_person %>
+	<%= f.fields_for :person do |person| %>
+		<%= render 'person_fields', :f => person %>
+	<% end %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+	<div>
+		<%= f.label :roles %>
+    <% for role in User::ROLES %>
+      <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
+      <%=h role.humanize %><br />
+    <% end %>
+    <%= hidden_field_tag "user[roles][]", "" %>
+	</div>
+
+	<div class="actions"><%= f.submit %></div>
+<% end %>

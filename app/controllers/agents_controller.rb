@@ -6,6 +6,7 @@ class AgentsController < ApplicationController
   # GET /agents.json
   def index
     @agents = Agent.all
+    authorize! :read, @agents
 
     respond_to do |format|
       format.html # index.html.erb

@@ -2,9 +2,7 @@ class User < ActiveRecord::Base
   
   authenticates_with_sorcery!
   
-  has_one :person
-  
-  attr_accessible :username, :password, :password_confirmation, :email, :roles_mask, :roles
+  attr_accessible :username, :password, :password_confirmation, :email, :roles_mask, :roles, :person_attributes, :agent_attributes
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_presence_of :username
@@ -13,6 +11,9 @@ class User < ActiveRecord::Base
   
   has_one :agent
   accepts_nested_attributes_for :agent, :allow_destroy => true
+  
+  has_one :person
+  accepts_nested_attributes_for :person, :allow_destroy => true
   
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0 "} }
 

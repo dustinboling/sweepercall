@@ -1,26 +1,18 @@
-<%= form_for(@agent) do |f| %>
+<%= form_for(@agent, :html => {:class => 'form-stacked'}) do |f| %>
 	<%= error_messages_for(@agent) %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.number_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :website_url %><br />
-    <%= f.text_area :website_url %>
-  </div>
+   <%= f.label :first_name %>
+   <%= f.text_field :first_name %>
+
+   <%= f.label :last_name %>
+   <%= f.text_field :last_name %>
+
+   <%= f.label :phone %>
+   <%= f.number_field :phone %>
+
+   <%= f.label :website_url %>
+   <%= f.text_field :website_url %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

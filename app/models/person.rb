@@ -1,4 +1,5 @@
 class Person < ActiveRecord::Base
+  belongs_to :user
   belongs_to :agent
   
   has_many :notifications
