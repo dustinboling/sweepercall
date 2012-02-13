@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   
   has_one :person
   
-  attr_accessible :username, :password, :password_confirmation, :email, :roles_mask, :roles, :agent_attributes, :first_name, :last_name
+  attr_accessible :username, :password, :password_confirmation, :email, :roles_mask, :roles
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_presence_of :username
