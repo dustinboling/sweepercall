@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   
-
+  load_and_authorize_resource
+  skip_authorize_resource :only => [:new, :new_person]
   
   def index
     @users = User.order('id ASC')

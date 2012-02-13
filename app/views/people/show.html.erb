@@ -1,5 +1,13 @@
 <%= render 'layouts/messages' %>
 
+<% if @person.notifications.empty? %>
+	<p class="alert-message info">
+		You do not have any notifications set up.
+		<%= link_to 'Set one up now!', edit_person_path(:id => current_user.person.id) %>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+	</p>
+<% end %>
+
 <p>
   <b>Address:</b>
   <%= @person.address %>
