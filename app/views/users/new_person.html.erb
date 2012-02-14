@@ -20,14 +20,7 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
 
-	<div>
-		<%= f.label :roles %>
-    <% for role in User::ROLES %>
-      <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
-      <%=h role.humanize %><br />
-    <% end %>
-    <%= hidden_field_tag "user[roles][]", "" %>
-	</div>
+	<%= f.hidden_field :roles_mask, :value => '2', :readonly => true %>
 
 	<div class="actions"><%= f.submit %></div>
 <% end %>
