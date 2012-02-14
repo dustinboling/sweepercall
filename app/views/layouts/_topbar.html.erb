@@ -5,12 +5,10 @@
       <ul class="nav" data-dropdown="dropdown">
         <li class="active">
 					<% if current_user %>
-						<% if current_user.role? :subscriber || :agent %>
-							<% if can? :manage, Person, :user_id => current_user.id  %>
+						<% if current_user.role? :subscriber %>
 								<%= link_to 'Home', person_path(:id => Person.find_by_user_id(current_user.person.user_id)) %>
-							<% elsif can? :manage, Agent, :user_id => current_user.id %>
+							<% elsif current_user.role? :agent %>
 								<%= link_to 'Home', agent_path(:id => Agent.find_by_user_id(current_user.agent.user_id)) %>
-							<% end %>
 						<% end %>
 					<% else %>
 	          <%= link_to 'Home', root_url %>
