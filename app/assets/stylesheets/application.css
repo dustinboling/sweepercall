@@ -9,3 +9,8 @@
 .user-nav {
 	color: #DDD;
 }
+
+.bignum {
+	color: red;
+	font-size: 90px;
+}

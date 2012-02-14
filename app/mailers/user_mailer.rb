@@ -12,4 +12,10 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email,
          :subject => "Your password has been reset")
   end
+  
+  def registration_confirmation(user)
+    @user = user
+    mail(:to => user.email, 
+         :subject => "New Account Registered at SweeperCall")
+  end
 end

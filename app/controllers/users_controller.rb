@@ -17,7 +17,9 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    
     if @user.save
+      UserMailer.registration_confirmation(@user).deliver
       redirect_to root_url, :notice => "Signed up! Check your email for account details."
     else
       # this only works on the first refresh.

@@ -1,6 +1,7 @@
-<h1>Sign Up Agent</h1>
+<%= form_for @user, :html => { :class => 'well span8' } do |f| %>
 
-<%= error_messages_for(@user) %>
+	<h1>Sign Up Agent</h1>
+	<%= error_messages_for(@user) %>
   
 	<!-- This builds an agent (singular) so we can nest it's fields -->
 	<% f.object.build_agent %>
@@ -22,5 +23,5 @@
 
 	<%= f.hidden_field :roles_mask, :value => '1', :readonly => true %>
 
-	<div class="actions"><%= f.submit %></div>
+	<%= f.submit 'Sign up!', :class => 'btn btn-success' %>
 <% end %>
