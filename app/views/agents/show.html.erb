@@ -1,56 +1,44 @@
 <%= render 'layouts/messages' %>
 
-<div class="actions">
+<div class="alert">
 	<h4>Signup URL</h4>
 		<p><span class="notification">Link to this to get people signed up for your notifications, or download one of our <%= link_to 'plugins' %> to integrate with your platform of choice.</p>
 		<b>http://localhost:3000/users/new_person?uuid=<%= @agent.uuid %></b>
 </div>
 
-<p>
-  <b>First name:</b>
-  <%= @agent.first_name %>
-</p>
 
-<p>
-  <b>Last name:</b>
-  <%= @agent.last_name %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @agent.phone %>
-</p>
-
-<p>
-  <b>Website url:</b>
-  <%= @agent.website_url %>
-</p>
 
 <b>People</b><br />
-	<table class="zebra-striped">
-		<tr>
-			<th></th>
-			<th>Name</th>
-			<th>Address</th>
-			<th>City</th>
-			<th>State</th>
-			<th>Phone</th>
-			<th>Mobile Phone</th>
-			<th>Added on</th>
-		</tr>
-		<% @agent.people.each_with_index do | person, i | %>
-		<tr>
-			<td><%= "#{i + 1}" %></td>
-			<td><%= person.name %></td>
-			<td><%= person.address %></td>
-			<td><%= person.city %></td>
-			<td><%= person.state %></td>
-			<td><%= person.phone %></td>
-			<td><%= person.mobile_phone %></td>
-			<td><%= person.created_at %></td>
-		</tr>
-		<% end %>
+	<table class="table-striped span12">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Phone</th>
+				<th>Mobile Phone</th>
+				<th>Added on</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @agent.people.each_with_index do | person, i | %>
+			<tr>
+				<td><%= "#{i + 1}" %></td>
+				<td><%= person.name %></td>
+				<td><%= person.address %></td>
+				<td><%= person.city %></td>
+				<td><%= person.state %></td>
+				<td><%= person.phone %></td>
+				<td><%= person.mobile_phone %></td>
+				<td><%= person.created_at %></td>
+			</tr>
+			<% end %>
+		</tbody>
 	</table>
+	
+	
 
 <%= link_to 'Edit', edit_agent_path(@agent) %> |
 <%= link_to 'Back', agents_path %>

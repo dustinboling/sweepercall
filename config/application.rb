@@ -44,5 +44,8 @@ module Sweeper
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # Complain if mail fails
+    config.action_mailer.raise_delivery_errors = true
   end
 end

@@ -5,3 +5,7 @@
  *= require_self
  *= require twitter/bootstrap
 */
+
+.user-nav {
+	color: #DDD;
+}

@@ -1,5 +1,11 @@
 Sweeper::Application.routes.draw do
   
+  get "password_resets/create"
+
+  get "password_resets/edit"
+
+  get "password_resets/update"
+
   get "static_pages/landing"
 
   get "users/new_person"
@@ -18,6 +24,8 @@ Sweeper::Application.routes.draw do
   get "reminders/sms"
 
   get "reminders/voice"
+  
+  resources :password_resets
   
   resources :users
   

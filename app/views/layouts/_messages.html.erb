@@ -1,12 +1,12 @@
 <div id="notice">
 	<% if flash[:error] %>
-		<p class="alert-message danger">
+		<p class="alert danger">
 			<%= flash[:error] %>
 			<a class="close" data-dismiss="alert" href="#">&times;</a>
 		</p>
 	<% end %>
 	<% if notice %>	
-		<p class="alert-message success">
+		<p class="alert success">
 			<%= notice %>
 			<a class="close" data-dismiss="alert" href="#">&times;</a>
 		</p>

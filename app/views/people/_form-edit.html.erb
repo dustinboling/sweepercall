@@ -1,4 +1,4 @@
-<%= form_for(@person, :html => {:class => 'form-stacked'}) do |f| %>
+<%= form_for(@person, :html => {:class => 'well span8'}) do |f| %>
 	<%= error_messages_for(@person) %>
 
     <%= f.label :agent_id %>
@@ -26,19 +26,23 @@
     <%= f.text_field :mobile_phone %>
 		
 	<h3>Notifications</h3>
-		<table class="zebra-striped">
-			<tr>
-				<th>Type</th>
-				<th>Day</th>
-				<th>Week</th>
-				<th></th>
-			</tr>
-				<%= f.fields_for(:notifications, @person.notifications) do |notification| %>
-					<%= render 'notification_fields', :f => notification %>
-				<% end %>
-			<tr>
-				<td><%= link_to_add_fields "add notification", f, :notifications %></td>
-			</tr>
+		<table class="table-striped">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Day</th>
+					<th>Week</th>
+					<th></th>
+				</tr>
+			</thead>
+					<%= f.fields_for(:notifications, @person.notifications) do |notification| %>
+						<%= render 'notification_fields', :f => notification %>
+					<% end %>
+			<tbody>
+				<tr>
+					<td><%= link_to_add_fields "add notification", f, :notifications %></td>
+				</tr>
+			</tbody>
 		</table>
 		
   <div class="actions">
