@@ -2,12 +2,13 @@ class User < ActiveRecord::Base
   
   authenticates_with_sorcery!
   
-  attr_accessible :username, :password, :password_confirmation, :email, :roles_mask, :roles, :person_attributes, :agent_attributes
+  attr_accessible :username, :password, :password_confirmation, :email, :roles_mask, :roles, :person_attributes, :agent_attributes, :agent_id
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_uniqueness_of :email
+
   
   has_one :agent
   accepts_nested_attributes_for :agent, :allow_destroy => true

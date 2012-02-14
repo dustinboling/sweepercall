@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   load_and_authorize_resource
-  skip_authorize_resource :only => [:new, :new_person]
+  skip_authorize_resource :only => [:new, :new_person, :create]
   
   def index
     @users = User.order('id ASC')
@@ -20,7 +20,14 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_url, :notice => "Signed up! Check your email for account details."
     else
-      render :new
+      # this only works on the first refresh.
+      # need to render full path somehow on render :new_person
+      # or use referring method instead of URI
+      if URI(request.referer).path == '/users/new_person'
+        render :new_person
+      else
+        render :new
+      end
     end
   end
   
