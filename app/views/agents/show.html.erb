@@ -24,7 +24,7 @@
 
 <div class="alert">
 	<h4>Signup URL</h4>
-		<p><span class="notification">Link to this to get people signed up for your notifications, or download one of our <%= link_to 'plugins' %> to integrate with your platform of choice.</p>
+		<p>Link to this to get people signed up for your notifications, or download one of our <%= link_to 'plugins' %> to integrate with your platform of choice.</p>
 		<b>http://localhost:3000/users/new_person?uuid=<%= @agent.uuid %></b>
 </div>
 
@@ -51,6 +51,7 @@
 				<td><%= person.phone %></td>
 				<td><%= person.mobile_phone %></td>
 				<td><%= person.created_at %></td>
+				<td><%= link_to 'remove', person, confirm: 'Are you sure?', method: :delete %></td>
 			</tr>
 			<% end %>
 		</table>

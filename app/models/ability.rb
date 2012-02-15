@@ -5,6 +5,7 @@ class Ability
     user ||= User.new # Guest user
     if user.role? :agent
       can :manage, Agent, :user_id => user.id
+      can :manage, Person, :agent_id => Agent.find_by_user_id(user.id).id
       can :read, @static_page
     else 
       can :read, @static_page

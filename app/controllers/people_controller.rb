@@ -76,11 +76,12 @@ class PeopleController < ApplicationController
   # DELETE /people/1
   # DELETE /people/1.json
   def destroy
+    authorize! :delete, @person
     @person = Person.find(params[:id])
     @person.destroy
 
     respond_to do |format|
-      format.html { redirect_to people_url }
+      format.html { redirect_to :back }
       format.json { head :ok }
     end
   end

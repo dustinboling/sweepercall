@@ -11,7 +11,6 @@ Sweeper::Application.routes.draw do
   get "users/new_person"
 
   # authentication routes
-
   
   get "login" => "sessions#new", :as => 'login'
   get "logout" => "sessions#destroy", :as => "logout"

@@ -78,7 +78,7 @@ class AgentsController < ApplicationController
   def destroy
     @agent = Agent.find(params[:id])
     @agent.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to agents_url }
       format.json { head :ok }
