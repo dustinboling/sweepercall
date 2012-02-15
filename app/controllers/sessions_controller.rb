@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    user = login(params[:username], params[:password], params[:remember_me])
+    user = login(params[:email], params[:password], params[:remember_me])
     if user
       if user.role? :agent
         redirect_to agent_path(:id => Agent.find_by_user_id(user.agent.user_id)), :notice => "Logged in!"
