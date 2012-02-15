@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :password, :password_confirmation, :email, :roles_mask, :roles, :person_attributes, :agent_attributes, :agent_id
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
-  validates_presence_of :username
-  validates_uniqueness_of :username
+  validates_presence_of :email
   validates_uniqueness_of :email
 
   
