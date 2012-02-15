@@ -1,6 +1,13 @@
 <tr class="fields">
   <%= f.hidden_field :person_id, :value => @person.id %>
-		<td><%= f.select :week, Notification::NOTIFICATION_WEEKS %></td>
+		<td>
+			<%= f.select :week, Notification::NOTIFICATION_WEEKS %>
+			<!-- <% for week in Notification::NOTIFICATION_WEEKS %>
+				<%= check_box_tag "notification[week][]", week %>
+				<%= week.humanize %>
+			<% end %>
+			<%= hidden_field_tag "notification[week][]", "" %> -->
+		</td>
 	  <td><%= f.select :day, Notification::NOTIFICATION_DAYS %></td>
 	  <td><%= f.select :notification_type, Notification::NOTIFICATION_TYPES %></td>
 		<td><%= link_to_remove_fields "remove", f %></td>

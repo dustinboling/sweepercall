@@ -7,4 +7,5 @@ class Notification < ActiveRecord::Base
   NOTIFICATION_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   NOTIFICATION_WEEKS = ["1st", "2nd", "3rd", "4th"]
   
+  
 end

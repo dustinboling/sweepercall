@@ -4,7 +4,11 @@
     <%= f.hidden_field :person_id, :value => params[:person_id] %>
 		
 		<%= f.label :week %>
-    <%= f.select :week, Notification::NOTIFICATION_WEEKS %>
+    <% for week in Notification::NOTIFICATION_WEEKS %>
+			<%= check_box_tag "notification[week][]", week %>
+			<%= week.humanize %>
+		<% end %>
+		<%= hidden_field_tag "notification[week][]" %>
 		
 		<%= f.label :day %>
     <%= f.select :day, Notification::NOTIFICATION_DAYS %>
