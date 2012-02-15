@@ -2,15 +2,15 @@
 	<%= error_messages_for(@notification) %>
 
     <%= f.hidden_field :person_id, :value => params[:person_id] %>
-
+		
+		<%= f.label :week %>
+    <%= f.select :week, Notification::NOTIFICATION_WEEKS %>
+		
+		<%= f.label :day %>
+    <%= f.select :day, Notification::NOTIFICATION_DAYS %>
+		
     <%= f.label :notification_type %>
-    <%= f.number_field :notification_type %>
-
-    <%= f.label :day %>
-    <%= f.number_field :day %>
-
-    <%= f.label :week %>
-    <%= f.number_field :week %>
+    <%= f.select :notification_type, Notification::NOTIFICATION_TYPES %>
 
 	<div>
     <%= f.submit :class => 'btn btn-success' %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215004027) do
+ActiveRecord::Schema.define(:version => 20120215183203) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(:version => 20120215004027) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.integer  "day"
-    t.integer  "week"
+    t.string   "day"
+    t.string   "week"
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"

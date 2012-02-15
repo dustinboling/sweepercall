@@ -16,4 +16,8 @@ class Agent < ActiveRecord::Base
     self.people.collect { |a| a.address }.count
   end
   
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end

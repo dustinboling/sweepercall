@@ -31,7 +31,7 @@ Sweeper::Application.routes.draw do
   resources :sessions
 
   resources :people
-
+  
   resources :notifications
 
   resources :agents

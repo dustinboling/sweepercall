@@ -1,5 +1,7 @@
 <%= render 'layouts/messages' %>
 
+<h1>Hello <%= @person.name %>!</h1>
+
 <% if @person.notifications.empty? %>
 	<p class="alert info">
 		You do not have any notifications set up.
@@ -9,50 +11,41 @@
 <% end %>
 
 <p>
-  <b>Address:</b>
-  <%= @person.address %>
+	<address class="well span11">
+		<b>Your Info:</b><br />
+		<%= @person.address %><br />
+		<%= @person.city %>, <%= @person.state %> <%= @person.zip %><br />
+		P:<%= @person.phone %><br />
+		M:<%= @person.mobile_phone %>
+	</address>
+</p>
+<p>
+  <b>Your local Real-estate Agent:</b>
+  <%= Agent.find_by_id(@person.agent_id).full_name %>
 </p>
 
-<p>
-  <b>City:</b>
-  <%= @person.city %>
-</p>
+<h3>Your Notifications</h3>
+<table class ="table table-striped span12">
+	<thead>
+		<tr>
+			<td>Notification Day</th>
+			<th>Notification Week</th>
+			<th>Notification Type</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%= @person.notifications.collect { |n| 
+			"<tr>
+					<td>#{n.week}</td> 
+					<td>#{n.day}</td>
+					<td>#{type_display(n.notification_type)}</td>
+				</tr>" }.to_sentence(no_separator).html_safe %>
+	</tbody>
+</table>
 
-<p>
-  <b>State:</b>
-  <%= @person.state %>
-</p>
-
-<p>
-  <b>Zip:</b>
-  <%= @person.zip %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @person.phone %>
-</p>
-
-<p>
-  <b>Mobile phone:</b>
-  <%= @person.mobile_phone %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @person.name %>
-</p>
-
-<p>
-  <b>Agent:</b>
-  <%= @person.agent_id %>
-</p>
-
-<p>
-	<b>Notifications:</b>
-	<%= @person.notifications %>
-	<%= link_to('Add Notification', {:controller => 'notifications', :action => 'new', :person_id => @person.id}) %>
-</p>
+<div>
+	<%= link_to('Add Notification', {:controller => 'notifications', :action => 'new', :person_id => @person.id}, :class => 'btn btn-warning') %>
+</div>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+<%= link_to 'Back', person_path(@person) %>
