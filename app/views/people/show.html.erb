@@ -28,8 +28,8 @@
 <table class ="table table-striped span12">
 	<thead>
 		<tr>
-			<td>Notification Day</th>
 			<th>Notification Week</th>
+			<th>Notification Day</th>
 			<th>Notification Type</th>
 		</tr>
 	</thead>
@@ -37,7 +37,7 @@
 	<%= @person.notifications.collect { |n| 
 			"<tr>
 					<td>#{n.week}</td> 
-					<td>#{n.day}</td>
+					<td>#{n.day.capitalize}</td>
 					<td>#{type_display(n.notification_type)}</td>
 				</tr>" }.to_sentence(no_separator).html_safe %>
 	</tbody>

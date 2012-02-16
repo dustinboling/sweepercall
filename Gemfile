@@ -9,6 +9,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'sorcery'
 gem 'cancan'
+gem 'chronic'
 
 
 # Gems used only for assets and not required

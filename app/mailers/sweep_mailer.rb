@@ -6,4 +6,5 @@ class SweepMailer < ActionMailer::Base
     @person = person
     mail(:to => person.email, :subject => "Street sweeping tomorrow, move your car!")
   end
+  
 end
