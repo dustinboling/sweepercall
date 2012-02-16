@@ -12,11 +12,11 @@ def current_week(current_day, current_month)
   elsif Chronic.parse("2st #{current_day} in #{current_month}").strftime('%Y-%m-%d') == Time.now.strftime('%Y-%m-%d')
     current_week = "2nd"
   elsif Chronic.parse("3rd #{current_day} in #{current_month}").strftime('%Y-%m-%d') == Time.now.strftime('%Y-%m-%d')
-    week = "3rd"
+    current_week = "3rd"
   elsif Chronic.parse("4th #{current_day} in #{current_month}").strftime('%Y-%m-%d') == Time.now.strftime('%Y-%m-%d')
-    week = "4th"
+    current_week = "4th"
   else
-    week = "nil"
+    current_week = "nil"
   end
 end
 
@@ -32,6 +32,8 @@ def mail_me
   else
     # Run task
 end
+
+
 
 
 # Get a list of all notifications happening today.
