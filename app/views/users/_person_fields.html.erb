@@ -1,4 +1,4 @@
-<%= f.hidden_field :agent_id, :value => Agent.find_by_uuid(params[:uuid]).id %>
+<%= f.hidden_field :agent_id, :value => @agent_id %>
 
 	<%= f.label :first_name %>
 	<%= f.text_field :first_name %>

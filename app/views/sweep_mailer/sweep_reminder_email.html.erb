@@ -4,7 +4,7 @@
 		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 	</head>
 	<body>
-		<h1>Hello <%= @person.email %>,</h1>
+		<h1>Hello <%= @person.first_name %>,</h1>
 		<p>
 			Time to move your car, street sweeping tomorrow!
 		</p>
@@ -12,7 +12,7 @@
 			If you need to change this notification, please <a href="http://localhost:3000/login">log in</a> to your account.
 		</p>
 		<p>
-			MESSAGE FROM AGENT GOES HERE
+			This message has been brought to you by <%= @agent.first_name %> <%= @agent.last_name %>.
 		</p>
 	</body>
 </html>

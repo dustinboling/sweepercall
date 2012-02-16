@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   
   def new_person
     @user = User.new
+    @agent_id = Agent.find_by_uuid(params[:uuid]).id
   end
   
   def create

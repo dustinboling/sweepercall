@@ -8,10 +8,10 @@ namespace :cron do
     puts "Figuring what week of the month it is..."
   end
   
-  desc "Find notifications for today"
+  desc "Find notifications and send"
   task :check_notifications => :environment do
     puts "Querying database for today's notifications..."
-    @notifications = Notification.where("week = '#{current_week(current_day, current_month)}' AND day = '#{current_day}'").collect { |n| n.person_id } 
+    
   end
   
   desc "Send notifications for today"
@@ -44,12 +44,14 @@ namespace :cron do
   def mail_me
     current_day = Time.now.strftime('%A').downcase
     current_month = Time.now.strftime('%B').downcase
-    today = Chronic.parse("#{nil} #{current_day} in #{current_month}")
+    today = Chronic.parse("#{current_week(current_day, current_month)} #{current_day} in #{current_month}")
     
     if today.nil?
       puts "No notifications for today!"
     else
-      # @notifications.each do |notification|
+      @notifications = Notification.where("week = '#{current_week(current_day, current_month)}' AND day = '#{current_day}' AND notification_type = 1").collect { |n| User.find_by_id(Person.find_by_id(n.person_id).user_id).email }
+      @notifications.each do 
+        
     end
   end
   

@@ -2,7 +2,7 @@ class Person < ActiveRecord::Base
   belongs_to :user
   belongs_to :agent
   
-  validates_presence_of :name
+  validates_presence_of :first_name
   validates_presence_of :address
   validates_presence_of :city
   validates_presence_of :state

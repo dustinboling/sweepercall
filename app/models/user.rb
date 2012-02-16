@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_presence_of :email
   validates_uniqueness_of :email
-
   
   has_one :agent
   accepts_nested_attributes_for :agent, :allow_destroy => true
@@ -29,15 +28,6 @@ class User < ActiveRecord::Base
 
   def role?(role)
     roles.include? role.to_s
-  end
-  
-  # make an agent on create user
-  def make_agent!
-    @agent = Agent.new(:first_name => params[:first_name], 
-              :last_name => params[:last_name], 
-              :email => params[:email], 
-              :agent_id => params[:id])
-    @agent.save
   end
   
 end
