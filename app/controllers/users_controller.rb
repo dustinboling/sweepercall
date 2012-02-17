@@ -13,7 +13,13 @@ class UsersController < ApplicationController
   
   def new_person
     @user = User.new
-    @agent_id = Agent.find_by_uuid(params[:uuid]).id
+    
+    if params[:uuid].nil?
+      params[:uuid] = 'DBA001'
+      # @agent_id = masterid
+    else
+      @agent_id = Agent.find_by_uuid(params[:uuid]).id
+    end
   end
   
   def create
