@@ -45,7 +45,7 @@
 			<% @agent.people.each_with_index do | person, i | %>
 			<tr>
 				<td><%= "#{i + 1}" %></td>
-				<td><%= person.name %></td>
+				<td><%= person.first_name %> <%= person.last_name %></td>
 				<td><%= person.address %></td>
 				<td><%= person.city %></td>
 				<td><%= person.state %></td>
