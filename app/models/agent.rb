@@ -5,6 +5,12 @@ class Agent < ActiveRecord::Base
   belongs_to :user
   has_many :people
   
+  has_many :email_notifications
+  accepts_nested_attributes_for :email_notifications, :allow_destroy => true
+  
+  has_many :sms_notifications
+  accepts_nested_attributes_for :sms_notifications, :allow_destroy => true
+  
   # Not really a UUID! (but it will always be unique within this particular
   # ecosystem)
   def set_uuid

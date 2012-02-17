@@ -1,0 +1,64 @@
+<%= form_for(@agent, :html => {:class => 'well span8'}) do |f| %>
+	<%= error_messages_for(@agent) %>
+	
+	<h3>Basic Info:</h3>
+	<%= f.label :first_name %>
+	<%= f.text_field :first_name %>
+
+	<%= f.label :last_name %>
+	<%= f.text_field :last_name %>
+
+	<%= f.label :phone %>
+	<%= f.number_field :phone %>
+
+	<%= f.label :website_url %>
+	<%= f.text_field :website_url %>
+	
+	<h3>Your Notifications:</h3>
+	<div class="well">
+		<h4>Email Notifications</h4>
+			<table class="form-striped">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Message</th>
+						<th>Active?</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<%= f.fields_for(:email_notifications, @agent.email_notifications) do |email_notification| %>
+					<%= render 'email_notification_fields', :f => email_notification %>
+				<% end %>
+					<tr>
+						<td><%= link_to_add_fields "add email notification", f, :email_notifications %></td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+	
+	<div class="well">
+		<h4>SMS Notifications</h4>
+			<table class="form-striped">
+				<thead>
+					<tr>
+						<th>Message</th>
+						<th>Active?</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<%= f.fields_for(:sms_notifications, @agent.sms_notifications) do |sms_notification| %>
+					<%= render 'sms_notification_fields', :f => sms_notification %>
+				<% end %>
+					<tr>
+						<td><%= link_to_add_fields "add sms notification", f, :sms_notifications %></td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+	
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

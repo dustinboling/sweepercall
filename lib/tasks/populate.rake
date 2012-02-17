@@ -1,16 +1,16 @@
 namespace :db do
   desc "Erase and fill database"
   task :populate => :environment do
-    require 'populator'
     require 'faker'
     
     # uncomment to delete these guys
     # [Person, Notifications].each(&:delete_all)
   
-    User.populate 20 do |user|
-      User.email = 
+    User.populate 100 do |user|
+      User.email = Faker::Internet.email
+      User.password = 123
     
-      Person.populate 20 do |person|
+      Person.populate 100 do |person|
         person.first_name
         person.last_name
       end

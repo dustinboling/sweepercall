@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215212314) do
+ActiveRecord::Schema.define(:version => 20120217223351) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(:version => 20120215212314) do
 
   add_index "agents", ["user_id"], :name => "index_agents_on_user_id"
   add_index "agents", ["uuid"], :name => "index_agents_on_uuid", :unique => true
+
+  create_table "email_notifications", :force => true do |t|
+    t.integer  "agent_id"
+    t.string   "title"
+    t.text     "message"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "email_notifications", ["agent_id"], :name => "index_email_notifications_on_agent_id"
 
   create_table "email_reminders", :force => true do |t|
     t.integer  "agent_id"
@@ -75,6 +86,16 @@ ActiveRecord::Schema.define(:version => 20120215212314) do
 
   add_index "people", ["agent_id"], :name => "index_people_on_agent_id"
   add_index "people", ["user_id"], :name => "index_people_on_user_id"
+
+  create_table "sms_notifications", :force => true do |t|
+    t.integer  "agent_id"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "active"
+  end
+
+  add_index "sms_notifications", ["agent_id"], :name => "index_sms_notifications_on_agent_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

@@ -25,3 +25,5 @@ Factory.define :user do |f|
   f.sequence(:email) { |n| "test#{n}@test.com" }
   f.salt "asdasdastr4325234324sdfds"
   f.crypted_password Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt)
+  
+end

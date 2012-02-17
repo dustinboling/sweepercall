@@ -1,0 +1,6 @@
+<tr class="fields">
+	<%= f.hidden_field :agent_id, :value => @agent.id %>
+	<td><%= f.text_field :message %></td>
+	<td><%= f.check_box :active %>
+	<td><%= link_to_remove_fields "remove", f %></td>
+</tr>
