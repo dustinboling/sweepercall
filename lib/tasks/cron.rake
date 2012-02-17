@@ -8,16 +8,23 @@ namespace :cron do
     puts "Figuring what week of the month it is..."
   end
   
-  desc "Find notifications and send"
-  task :check_notifications => :environment do
-    puts "Querying database for today's notifications..."
+  desc "Scale up dynos"
+  task :scale_up => :environment do
+    puts "Scaling up dynos..."
     
   end
   
   desc "Send notifications for today"
   task :send_notifications => :environment do
+    puts "Querying database for today's notifications..."
     puts "Sending today's notifications..."
     mail_me
+  end
+  
+  desc "Scale down dynos"
+  task :scale_down => :environment do 
+    puts "Scaling down dynos..."
+    
   end
   
   desc "All the notifications stuff!"
