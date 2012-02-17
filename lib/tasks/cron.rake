@@ -21,7 +21,7 @@ namespace :cron do
   end
   
   desc "All the notifications stuff!"
-  task :notifications => [:check_time, :check_notifications, :send_notifications] do
+  task :notifications => [:check_time, :send_notifications] do
     puts "Success!"
   end
   
@@ -49,9 +49,12 @@ namespace :cron do
     if today.nil?
       puts "No notifications for today!"
     else
-      @notifications = Notification.where("week = '#{current_week(current_day, current_month)}' AND day = '#{current_day}' AND notification_type = 1").collect { |n| User.find_by_id(Person.find_by_id(n.person_id).user_id).email }
-      @notifications.each do 
-        
+      @people = Notification.where("week = '#{current_week(current_day, current_month)}' AND day = '#{current_day}' AND notification_type = 1").collect { |person| Person.find_by_id(person.person_id) } 
+      @people.each do |p|
+        agent = Agent.find_by_id(p.agent_id)
+        person = Person.find_by_id(p.id)
+        SweepMailer.sweep_notification(person, agent).deliver
+      end
     end
   end
   
