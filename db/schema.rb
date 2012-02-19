@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217223351) do
+ActiveRecord::Schema.define(:version => 20120219052624) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -27,12 +27,13 @@ ActiveRecord::Schema.define(:version => 20120217223351) do
   create_table "agents", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "phone"
+    t.integer  "phone",       :limit => 8
     t.text     "website_url"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "uuid"
+    t.boolean  "verified"
   end
 
   add_index "agents", ["user_id"], :name => "index_agents_on_user_id"

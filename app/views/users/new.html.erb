@@ -1,9 +1,8 @@
 <%= form_for @user, :html => { :class => 'well span8' } do |f| %>
 
-	<h1>Sign Up Agent</h1>
+	<h1>Agent Sign Up</h1>
 	<%= error_messages_for(@user) %>
   
-	<!-- This builds an agent (singular) so we can nest it's fields -->
 	<% f.object.build_agent %>
 	<%= f.fields_for :agent do |agent| %>
 		<%= render 'agent_fields', :f => agent %>

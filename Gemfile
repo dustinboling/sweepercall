@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'sorcery'
 gem 'cancan'
 gem 'chronic'
+gem 'twilio-ruby'
 
 
 # Gems used only for assets and not required

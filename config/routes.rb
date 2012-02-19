@@ -1,5 +1,7 @@
 Sweeper::Application.routes.draw do
   
+  get "agents/verify"
+  
   get "password_resets/create"
 
   get "password_resets/edit"
