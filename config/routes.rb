@@ -27,6 +27,8 @@ Sweeper::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "signup" => "users#new", :as => "signup"
   
+  resources :recordings
+  
   resources :password_resets
   
   resources :users

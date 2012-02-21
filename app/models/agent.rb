@@ -4,11 +4,14 @@ class Agent < ActiveRecord::Base
   
   belongs_to :user
   has_many :people
-  has_many :recordings
+  
   
   validates_presence_of :phone
   validates_presence_of :first_name
   validates_presence_of :last_name
+  
+  has_many :recordings
+  accepts_nested_attributes_for :recordings, :allow_destroy => true
   
   has_many :email_notifications
   accepts_nested_attributes_for :email_notifications, :allow_destroy => true
