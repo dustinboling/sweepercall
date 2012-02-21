@@ -11,6 +11,7 @@ Sweeper::Application.routes.draw do
   get "recordings/create"
   get "recordings/new"
   post "recordings/new"
+  post "recordings/create"
   
   get "password_resets/create"
   get "password_resets/edit"
