@@ -13,15 +13,12 @@ class RecordingsController < ApplicationController
     )
     
     respond_to do |format|
-      format.html # new.xml
+      format.html # record.xml
     end
   end
   
   def new
-    
-    respond_to do |format|
-      format.xml
-    end
+    redirect_to 'http://sweepercall.heroku.com/recordings/new.xml'
   end
   
   def create
