@@ -23,8 +23,9 @@ class RecordingsController < ApplicationController
   
   def create
     @agent = Agent.find_by_uuid(params[:uuid])
-    @recording = Recording.new(:agent_id => @agent.id, :recording_url => params[:RecordingUrl])
+    @recording = Recording.new(:agent_id => @agent.id, :recording_url => "test")
     @recording.save
+    
   end
   
 end
