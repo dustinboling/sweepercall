@@ -9,7 +9,7 @@ class AgentsController < ApplicationController
     
     @agent = Agent.find_by_uuid(params[:uuid])
     @agent_phone = params[:phn]
-    @client = Twilio::REST::Client.new @account_sid, @auth_token
+    @client = Twilio::REST::Client.new(@account_sid, @auth_token)
 
     @account = @client.account
     @new_id = @account.outgoing_caller_ids.create({:phone_number => params[:phn]})

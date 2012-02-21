@@ -18,11 +18,14 @@ class RecordingsController < ApplicationController
   end
   
   def new
-   # render :template => 'recordings/new.xml.builder'
+   
   end
   
   def create
-    
+   
+   respond_to do |format|
+     format.html
+    end
   end
 
 end
