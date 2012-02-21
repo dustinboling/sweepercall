@@ -58,6 +58,11 @@
 			</table>
 	</div>
 	
+	<div class="well">
+		<h4>Voice Recordings</h4>
+		<%= link_to 'Add A Voice Recording', :controller => 'recordings', :action => 'record', :uuid => @agent.uuid %>
+	</div>
+	
   <div class="actions">
     <%= f.submit %>
   </div>

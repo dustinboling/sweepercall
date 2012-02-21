@@ -1,5 +1,6 @@
 Sweeper::Application.routes.draw do
   
+  get "recordings/record"
   get "recordings/create"
   get "recordings/new"
 

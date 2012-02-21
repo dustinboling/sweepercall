@@ -3,6 +3,6 @@ xml.response do
   xml.record(
     :action => "http://sweepercall.com/recordings/create.html.erb",
     :method => "POST",
-    :maxLength => "20",
+    :maxLength => "30",
     :finishOnKey => "#")
 end
