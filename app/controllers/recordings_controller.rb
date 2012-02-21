@@ -18,7 +18,7 @@ class RecordingsController < ApplicationController
   end
   
   def new
-    redirect_to 'http://sweepercall.heroku.com/recordings/new.xml'
+   render :template => 'recordings/new.xml.builder'
   end
   
   def create
