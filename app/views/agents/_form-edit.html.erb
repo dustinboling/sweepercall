@@ -60,6 +60,7 @@
 	
 	<div class="well">
 		<h4>Voice Recordings</h4>
+		<%= @agent.recordings %>
 		<%= link_to 'Add A Voice Recording', :controller => 'recordings', :action => 'record', :uuid => @agent.uuid %>
 	</div>
 	
