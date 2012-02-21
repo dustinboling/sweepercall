@@ -4,13 +4,13 @@ Sweeper::Application.routes.draw do
   
   get "users/new_person"
   get "users/new"
-  post "users/new"
   
   get "agents/verify"
   
   get "recordings/record"
   get "recordings/create"
   get "recordings/new"
+  post "recordings/new"
   
   get "password_resets/create"
   get "password_resets/edit"
