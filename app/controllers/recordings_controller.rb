@@ -9,7 +9,7 @@ class RecordingsController < ApplicationController
     @call = @client.account.calls.create(
       :from => '14155992671',
       :to => @agent.phone,
-      :url => 'http://sweepercall.heroku.com/recordings/new.xml'
+      :url => 'http://sweepercall.heroku.com/recordings/new.xml?uuid="<%= @agent.uuid %>"'
     )
     
     respond_to do |format|
@@ -19,6 +19,9 @@ class RecordingsController < ApplicationController
   
   def new
     
+    respond_to do |format|
+      format.xml
+    end
   end
   
   def create
