@@ -25,8 +25,6 @@ class RecordingsController < ApplicationController
     @agent = Agent.find_by_uuid(params[:uuid])
     @recording = Recording.new(:agent_id => @agent.id, :recording_url => params[:RecordingUrl], :active => true)
     @recording.save
-    
-    redirect_to 'success'
   end
   
 end
