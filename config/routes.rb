@@ -4,6 +4,7 @@ Sweeper::Application.routes.draw do
   
   get "users/new_person"
   get "users/new"
+  post "users/new"
   
   get "agents/verify"
   
