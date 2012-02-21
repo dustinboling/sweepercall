@@ -10,6 +10,7 @@ Sweeper::Application.routes.draw do
   get "recordings/record"
   get "recordings/create"
   get "recordings/new"
+  get "recordings/success"
   post "recordings/new"
   post "recordings/create"
   
