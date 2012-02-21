@@ -1,5 +1,8 @@
 Sweeper::Application.routes.draw do
   
+  get "recordings/create"
+  get "recordings/new"
+
   get "agents/verify"
   
   get "password_resets/create"
