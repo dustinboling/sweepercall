@@ -9,10 +9,10 @@
 			Time to move your car, street sweeping tomorrow!
 		</p>
 		<p>
-			If you need to change this notification, please <a href="http://localhost:3000/login">log in</a> to your account.
+			If you need to change this notification, please <a href="http://sweepercall.heroku.com/login">log in</a> to your account.
 		</p>
 		<p>
-			This message has been brought to you by <%= @agent.first_name %> <%= @agent.last_name %>.
+			<%= @agent.email_notifications.active.collect { |n| n.message }.to_sentence %>
 		</p>
 	</body>
 </html>
