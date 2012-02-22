@@ -2,6 +2,6 @@ Hello <%= @person.name %>,
 
 Time to move your car, street sweeping tomorrow!
 
-If you need to change this notification, please log in to your account: LINK GOES HERE
+If you need to change this notification, please log in to your account: <%= link_to root_url %>
 
-MESSAGE FROM AGENT GOES HERE
+<%= @agent.email_notifications.active.collect { |n| n.message }.to_sentence %>

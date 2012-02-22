@@ -19,6 +19,7 @@ class Agent < ActiveRecord::Base
   has_many :sms_notifications
   accepts_nested_attributes_for :sms_notifications, :allow_destroy => true
   
+  
   # Not really a UUID! (but it will always be unique within this particular
   # ecosystem)
   def set_uuid
