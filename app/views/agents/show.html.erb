@@ -22,11 +22,13 @@
 	</div>
 </div>
 
-<div class="alert alert-info">
-	<h3>Your phone number is not validated!</h3>
-	If you do not validate it, your number will not show up on the caller id.
-	<b><%= link_to "Validate it now", :controller => 'agents', :action => 'verify', :phn => @agent.phone, :uuid => @agent.uuid %></b>
-</div>
+<% if phone_not_verified? %>
+	<div class="alert alert-info">
+		<h3>Your phone number is not validated!</h3>
+		If you do not validate it, your number will not show up on the caller id.
+		<b><%= link_to "Validate it now", :controller => 'agents', :action => 'verify', :phn => @agent.phone, :uuid => @agent.uuid %></b>
+	</div>
+<% end %>
 
 <div class="alert">
 	<h4>Signup URL</h4>

@@ -33,9 +33,5 @@ class Agent < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
-  
-  def check_verified?
-    Twilio::REST::Outgoing
-  end
 
 end
