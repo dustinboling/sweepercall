@@ -1,4 +1,6 @@
 class Agent < ActiveRecord::Base
+  include ActiveModel::Validations
+  validates_with NotificationSingularity
   
   before_create :set_uuid
   
