@@ -1,4 +1,9 @@
 class Person < ActiveRecord::Base
+  
+  before_validation :strip_phone
+  before_create :strip_phone
+  before_update :strip_phone
+  
   belongs_to :user
   belongs_to :agent
   
@@ -8,8 +13,13 @@ class Person < ActiveRecord::Base
   validates_presence_of :state
   validates_presence_of :zip
   validates_presence_of :phone
+  validates_length_of :phone, :is => 10, :message => "Phone number must contain exactly 10 numbers: XXX-XXX-XXXX OR (XXX) XXX-XXXX "
   
   has_many :notifications
   accepts_nested_attributes_for :notifications, :reject_if => lambda { |n| n[:person_id].blank? }, :allow_destroy => true
+  
+  def strip_phone
+    self.phone = self.phone.gsub(/([-() ])/, '')
+  end
   
 end
