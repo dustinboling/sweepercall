@@ -6,6 +6,10 @@
  *= require twitter/bootstrap
 */
 
+body {
+	padding-top: 45px;
+}
+
 .user-nav {
 	color: #DDD;
 }
