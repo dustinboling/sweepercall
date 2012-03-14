@@ -79,7 +79,7 @@
 								</tr>".html_safe }.to_sentence(no_separator).html_safe %>
 				</tbody>
 		</table>
-		<%= link_to 'Add A Voice Recording', :controller => 'recordings', :action => 'record', :uuid => @agent.uuid %>
+		<%= link_to 'add voice notification', {:controller => 'recordings', :action => 'record', :uuid => @agent.uuid}, :class => 'btn btn-warning' %>
 	</div>
 	
   <div class="actions">
