@@ -1,5 +1,4 @@
-namespace :cron do
-  
+namespace :cron do  
   current_day = Time.now.strftime('%A').downcase
   current_month = Time.now.strftime('%B').downcase
   
@@ -28,7 +27,7 @@ namespace :cron do
   end
   
   desc "All the notifications stuff!"
-  task :notifications => [:check_time, :send_notifications] do
+  task :email_notifications => [:check_time, :send_notifications] do
     puts "Success!"
   end
   

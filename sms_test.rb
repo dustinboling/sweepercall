@@ -4,7 +4,7 @@ require 'twilio-ruby'
 @auth_token = '85bcc52edb352a11a19b8de47b4437fb'
 
 # sets up twilio client
-@client = Twilio::REST::Client.new account_sid, auth_token
+@client = Twilio::REST::Client.new @account_sid, @auth_token
 
 # example sms
 @client.account.sms.messages.create(

@@ -1,33 +1,33 @@
 Sweeper::Application.routes.draw do
   
-  get "recordings/create"
-  get "recordings/new"
-
+  get "static_pages/landing"
+  
+  get "users/new_person"
+  get "users/new"
+  
   get "agents/verify"
   
+  get "recordings/record"
+  get "recordings/create"
+  get "recordings/new"
+  get "recordings/success"
+  post "recordings/new"
+  post "recordings/create"
+  
   get "password_resets/create"
-
   get "password_resets/edit"
-
   get "password_resets/update"
-
-  get "static_pages/landing"
-
-  get "users/new_person"
+  
+  get "reminders/email"
+  get "reminders/sms"
+  get "reminders/voice"
 
   # authentication routes
-  
   get "login" => "sessions#new", :as => 'login'
   get "logout" => "sessions#destroy", :as => "logout"
   get "signup" => "users#new", :as => "signup"
-
-  get "users/new"
-
-  get "reminders/email"
-
-  get "reminders/sms"
-
-  get "reminders/voice"
+  
+  resources :recordings
   
   resources :password_resets
   

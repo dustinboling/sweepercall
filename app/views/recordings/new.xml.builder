@@ -1,8 +1,9 @@
-xml.response do
-  xml.say "Hello, please record your outgoing message. Press # when finished."
-  xml.record(
-    :action => "http://sweepercall.com/recordings/create.html.erb",
+xml.Response do
+  xml.Say "Hello, please record your outgoing message. Press # when finished."
+  xml.Record(
+    :action => "http://sweepercall.heroku.com/recordings/create.xml?uuid=#{params[:uuid]}",
     :method => "POST",
-    :maxLength => "20",
+    :maxLength => "30",
     :finishOnKey => "#")
+  xml.Say "I did not recieve a recording."
 end

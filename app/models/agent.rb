@@ -1,4 +1,6 @@
 class Agent < ActiveRecord::Base
+  include ActiveModel::Validations
+  validates_with NotificationSingularity
   
   require 'digest/md5'
   
@@ -9,7 +11,14 @@ class Agent < ActiveRecord::Base
   
   belongs_to :user
   has_many :people
+  
+  
+  validates_presence_of :phone
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  
   has_many :recordings
+  accepts_nested_attributes_for :recordings, :allow_destroy => true
   
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -22,7 +31,6 @@ class Agent < ActiveRecord::Base
   has_many :sms_notifications
   accepts_nested_attributes_for :sms_notifications, :allow_destroy => true
   
-
   def set_uuid
     self.uuid = Digest::MD5.hexdigest("#{self.user_id}" + "#{self.first_name}" + "#{self.last_name}")
   end

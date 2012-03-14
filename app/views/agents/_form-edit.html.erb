@@ -17,7 +17,7 @@
 	<h3>Your Notifications:</h3>
 	<div class="well">
 		<h4>Email Notifications</h4>
-			<table class="form-striped">
+			<table class="table-striped">
 				<thead>
 					<tr>
 						<th>Title</th>
@@ -39,7 +39,7 @@
 	
 	<div class="well">
 		<h4>SMS Notifications</h4>
-			<table class="form-striped">
+			<table class="table-striped">
 				<thead>
 					<tr>
 						<th>Message</th>
@@ -56,6 +56,30 @@
 					</tr>
 				</tbody>
 			</table>
+	</div>
+	
+	<div class="well">
+		<h4>Voice Recordings</h4>
+			<table class="table-striped span9">
+				<thead>
+					<tr>
+						<th>Recording URL</th>
+						<th>Active</th>
+						<th>Created</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%= @agent.recordings.collect { |recording|
+					 		"<tr class='fields'>
+									<td>#{recording.recording_url}</td>
+									<td>#{check_box_tag(recording.active)}</td>
+									<td>#{recording.created_at}</td>
+									<td>#{link_to 'delete', recording, confirm: 'Are you sure?', :method => :delete, :class => 'btn btn-danger'}</td>
+								</tr>".html_safe }.to_sentence(no_separator).html_safe %>
+				</tbody>
+		</table>
+		<%= link_to 'Add A Voice Recording', :controller => 'recordings', :action => 'record', :uuid => @agent.uuid %>
 	</div>
 	
   <div class="actions">

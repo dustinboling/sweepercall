@@ -3,17 +3,18 @@ class AgentsController < ApplicationController
   load_and_authorize_resource
   
   def verify
+    require 'twilio-ruby'
     @account_sid = 'ACe079c3003a2c4a1d949806c681648262'
     @auth_token = '85bcc52edb352a11a19b8de47b4437fb'
     
     @agent = Agent.find_by_uuid(params[:uuid])
     @agent_phone = params[:phn]
-    @client = Twilio::REST::Client.new(@account_sid, @auth_token)    
+    @client = Twilio::REST::Client.new(@account_sid, @auth_token)
 
     @account = @client.account
-    @outgoing_caller_id = @account.outgoing_caller_ids.create({:phone_number => params[:phn]})
+    @new_id = @account.outgoing_caller_ids.create({:phone_number => params[:phn]})
     
-    flash[:notice] = "#{@outgoing_caller_id.validation_code}"
+    flash[:notice] = "#{@new_id.validation_code}"
   end
   
   # GET /agents

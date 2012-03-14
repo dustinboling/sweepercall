@@ -1,4 +1,3 @@
-xml.response do 
-  xml.say "You recorded the following message"
-  xml.play params[:RecordingUrl]
+xml.Response do
+  xml.Say "Thank you, your call has been recorded. You can hang up at any time."
 end
