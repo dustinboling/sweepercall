@@ -1,4 +1,4 @@
 <h1>Make A Recording</h1>
-<p>You are receiving a call right now at <%= @agent.phone %>. Make your outgoing message to your subscribers and press # when finished!</p>
+<p>You are receiving a call right now at <%= @agent.outgoing_phone %>. Make your outgoing message to your subscribers and press # when finished!</p>
 
 <p>If you have still not received a call click to <%= link_to 'Retry', :controller => 'recordings', :action => 'record', :uuid => params[:uuid] %></p>

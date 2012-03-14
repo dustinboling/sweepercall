@@ -6,7 +6,8 @@
     <th>First name</th>
     <th>Last name</th>
     <th>Email</th>
-    <th>Phone</th>
+		<th>Phone</th>
+    <th>Outgoing Phone</th>
     <th>Website url</th>
     <th></th>
     <th></th>
@@ -17,7 +18,8 @@
   <tr>
     <td><%= agent.first_name %></td>
     <td><%= agent.last_name %></td>
-    <td><%= agent.phone %></td>
+		<td><%= agent.phone %></td>
+    <td><%= agent.outgoing_phone %></td>
     <td><%= agent.website_url %></td>
     <td><%= link_to 'Show', agent %></td>
     <td><%= link_to 'Edit', edit_agent_path(agent) %></td>
