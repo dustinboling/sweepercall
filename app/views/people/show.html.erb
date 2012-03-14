@@ -1,6 +1,6 @@
-<%= render 'layouts/messages' %>
+<h1>Hello <%= @person.first_name %>!</h1>
 
-<h1>Hello <%= @person.name %>!</h1>
+<%= render 'layouts/messages' %>
 
 <% if @person.notifications.empty? %>
 	<p class="alert info">
@@ -13,19 +13,23 @@
 <p>
 	<address class="well span11">
 		<b>Your Info:</b><br />
+		<%= @person.email %><br />
 		<%= @person.address %><br />
 		<%= @person.city %>, <%= @person.state %> <%= @person.zip %><br />
-		P:<%= @person.phone %><br />
-		M:<%= @person.mobile_phone %>
+		<b>P: </b><%= @person.phone %><br />
+		<b>M: </b><%= @person.mobile_phone %>
 	</address>
 </p>
 <p>
-  <b>Your local Real-estate Agent:</b>
-  <%= Agent.find_by_id(@person.agent_id).full_name %>
+	<% if @person.agent_id.nil? %>
+	<% else %>
+	  <b>Your local Real-estate Agent:</b>
+	  <%= Agent.find_by_id(@person.agent_id).first_name %> <%= Agent.find_by_id(@person.agent_id).last_name %>
+	<% end %>
 </p>
 
 <h3>Your Notifications</h3>
-<table class ="table table-striped span12">
+<table class="table table-striped span12">
 	<thead>
 		<tr>
 			<th>Notification Week</th>
@@ -34,18 +38,15 @@
 		</tr>
 	</thead>
 	<tbody>
-	<%= @person.notifications.collect { |n| 
-			"<tr>
-					<td>#{n.week}</td> 
-					<td>#{n.day.capitalize}</td>
-					<td>#{type_display(n.notification_type)}</td>
-				</tr>" }.to_sentence(no_separator).html_safe %>
+	<% @person.notifications.collect do |n| %>
+	<tr>
+		<td><%= n.week %></td> 
+		<td><%= n.day.capitalize %></td>
+		<td><%= type_display(n.notification_type) %></td>			
+	</tr>
+	<% end %>
 	</tbody>
 </table>
 
-<div>
-	<%= link_to('Add Notification', {:controller => 'notifications', :action => 'new', :person_id => @person.id}, :class => 'btn btn-warning') %>
-</div>
-
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', person_path(@person) %>
+<%= link_to 'Edit Profile / Add Notifications', edit_person_path(@person), :class => 'btn btn-mini btn-warning' %> |
+<%= link_to 'Back', person_path(@person), :class => 'btn btn-mini btn-danger' %>
