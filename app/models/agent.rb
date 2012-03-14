@@ -4,6 +4,8 @@ class Agent < ActiveRecord::Base
   
   before_validation :strip_phone
   before_create :set_uuid
+  before_create :set_outgoing_phone
+  before_create :set_outgoing_email
   before_create :strip_phone
   before_update :strip_phone
   
@@ -19,13 +21,13 @@ class Agent < ActiveRecord::Base
   has_many :sms_notifications
   accepts_nested_attributes_for :sms_notifications, :allow_destroy => true
   
-  validate :can_only_have_one_active_sms_notification, :can_only_have_one_active_email_notification, :can_only_have_one_active_voice_notification
+  validate :maximum_one_active_sms_notification, :maximum_one_active_email_notification, :maximum_one_active_voice_notification
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_presence_of :phone
   validates_length_of :phone, :is => 10, :message => "Phone number must contain exactly 10 numbers: XXX-XXX-XXXX"
   
-  def can_only_have_one_active_sms_notification
+  def maximum_one_active_sms_notification
     active_sms = self.sms_notifications.collect { |s| s.active }
     
     if active_sms.count(true) > 1
@@ -33,7 +35,7 @@ class Agent < ActiveRecord::Base
     end
   end
   
-  def can_only_have_one_active_email_notification
+  def maximum_one_active_email_notification
     active_email = self.email_notifications.collect { |e| e.active }
     
     if active_email.count(true) > 1
@@ -41,7 +43,7 @@ class Agent < ActiveRecord::Base
     end
   end
   
-  def can_only_have_one_active_voice_notification
+  def maximum_one_active_voice_notification
     active_recordings = self.recordings.collect { |r| r.active }
     
     if active_recordings.count(true) > 1
@@ -51,6 +53,14 @@ class Agent < ActiveRecord::Base
   
   def set_uuid
     self.uuid = Digest::MD5.hexdigest("#{self.user_id}" + "#{self.first_name}" + "#{self.last_name}")
+  end
+  
+  def set_outgoing_phone
+    self.outgoing_phone = self.phone
+  end
+  
+  def set_outgoing_email
+    self.outgoing_email = self.email
   end
   
   def strip_phone

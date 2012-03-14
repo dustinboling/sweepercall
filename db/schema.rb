@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313214922) do
+ActiveRecord::Schema.define(:version => 20120314184607) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(:version => 20120313214922) do
     t.integer  "user_id"
     t.string   "uuid"
     t.boolean  "verified"
+    t.string   "outgoing_phone"
+    t.string   "outgoing_email"
   end
 
   add_index "agents", ["user_id"], :name => "index_agents_on_user_id"
