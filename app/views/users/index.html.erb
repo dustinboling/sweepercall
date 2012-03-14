@@ -1,7 +1,11 @@
 <h1>Listing users</h1>
+<div class="well">
+	<h3 style="color: red">Notice: Destroy has been disabled on the users model. If you want to remove an account, do so through the <%= link_to 'People#index', people_path %> or <%= link_to 'Agent#index', agents_path %>. This will also remove the appropriate user account.</h3>
+</div>
 
-<table>
+<table class="form-striped span12">
   <tr>
+		<th>ID</th>
     <th>Email</th>
     <th>Role</th>
     <th></th>
@@ -10,10 +14,12 @@
 
 <% @users.each do |user| %>
   <tr>
+		<td><%= user.id %></td>
     <td><%= user.email %></td>
     <td><%= user.roles_mask %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini btn-danger' %></td>
+		<!-- <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete, :class => "btn disabled" %></td> -->
+    <td><a href="#" class="btn btn-mini disabled">Destroy</a></td>
   </tr>
 <% end %>
 </table>

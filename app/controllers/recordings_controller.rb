@@ -1,7 +1,10 @@
 class RecordingsController < ApplicationController
+  
+  def new
+  end
+  
   def record
-    @agent = Agent.find_by_uuid(params[:uuid])
-    
+    @agent = Agent.find_by_uuid(params[:uuid])    
     @account_sid = 'ACe079c3003a2c4a1d949806c681648262'
     @auth_token = '85bcc52edb352a11a19b8de47b4437fb'
     @client = Twilio::REST::Client.new(@account_sid, @auth_token)
@@ -15,10 +18,6 @@ class RecordingsController < ApplicationController
     respond_to do |format|
       format.html # record.xml
     end
-  end
-  
-  def new
-   
   end
   
   def create

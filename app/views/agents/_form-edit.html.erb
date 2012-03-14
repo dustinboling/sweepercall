@@ -1,6 +1,7 @@
 <%= form_for(@agent, :html => {:class => 'well span16'}) do |f| %>
 	<%= error_messages_for(@agent) %>
 
+<fieldset>
 <div class="row">
 	<div class="well span5">
 		<h3>Basic Info:</h3>
@@ -30,7 +31,7 @@
 		<% end %>
 	</div>
 </div>
-
+</fieldset>
 	<h3>Your Notifications:</h3>
 	<div class="well">
 		<h4>Email Notifications</h4>
@@ -76,13 +77,13 @@
 	</div>
 	
 	<div class="well">
-		<h4>Voice Recordings</h4>
+		<h4>Voice Notifications</h4>
 			<table class="table-striped span9">
 				<thead>
 					<tr>
 						<th>Recording URL</th>
 						<th>Active</th>
-						<th>Created</th>
+						<th>Created</th
 						<th></th>
 					</tr>
 				</thead>

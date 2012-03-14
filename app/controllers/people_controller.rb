@@ -77,8 +77,14 @@ class PeopleController < ApplicationController
   # DELETE /people/1.json
   def destroy
     authorize! :delete, @person
+    
+    # find person and their associated User record
     @person = Person.find(params[:id])
+    @user = User.find_by_id(@person.user_id)
+    
+    # destroy them
     @person.destroy
+    @user.destroy
 
     respond_to do |format|
       format.html { redirect_to :back }

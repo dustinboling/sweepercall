@@ -26,7 +26,7 @@ namespace :sms do
   end
   
   desc "All the notifications stuff!"
-  task :email_notifications => [:check_time, :send_notifications] do
+  task :send => [:check_time, :send_notifications] do
     puts "Success!"
   end
   

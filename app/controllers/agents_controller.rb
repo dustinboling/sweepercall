@@ -91,8 +91,13 @@ class AgentsController < ApplicationController
   # DELETE /agents/1
   # DELETE /agents/1.json
   def destroy
+    # find the agent and associated user
     @agent = Agent.find(params[:id])
+    @user = User.find(@agent.user_id)
+    
+    # destroy them
     @agent.destroy
+    @user.destroy
     
     respond_to do |format|
       format.html { redirect_to agents_url }

@@ -1,15 +1,14 @@
 <%= render 'layouts/messages' %>
 <h1>Listing agents</h1>
 
-<table>
+<table class="table-striped span12">
   <tr>
     <th>First name</th>
     <th>Last name</th>
-    <th>Email</th>
 		<th>Phone</th>
     <th>Outgoing Phone</th>
+		<th>Outgoing Email</th>
     <th>Website url</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -20,10 +19,10 @@
     <td><%= agent.last_name %></td>
 		<td><%= agent.phone %></td>
     <td><%= agent.outgoing_phone %></td>
+		<td><%= agent.outgoing_email %></td>
     <td><%= agent.website_url %></td>
-    <td><%= link_to 'Show', agent %></td>
-    <td><%= link_to 'Edit', edit_agent_path(agent) %></td>
-    <td><%= link_to 'Destroy', agent, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Edit', edit_agent_path(agent), :class => 'btn btn-mini btn-warning' %></td>
+    <td><%= link_to 'Destroy', agent, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %></td>
   </tr>
 <% end %>
 </table>
