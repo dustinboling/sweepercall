@@ -26,7 +26,7 @@
 	<div class="alert alert-info">
 		<h3>Your phone number is not validated!</h3>
 		If you do not validate it, your number will not show up on the caller id.
-		<b><%= link_to "Validate it now", :controller => 'agents', :action => 'verify', :phn => @agent.phone, :uuid => @agent.uuid %></b>
+		<b><%= link_to "Validate it now", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %></b>
 	</div>
 <% end %>
 

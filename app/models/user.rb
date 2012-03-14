@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_presence_of :email
   validates_uniqueness_of :email
+  validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
   
   has_one :agent
   accepts_nested_attributes_for :agent, :allow_destroy => true

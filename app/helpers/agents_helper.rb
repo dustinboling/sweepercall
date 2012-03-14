@@ -6,7 +6,7 @@ module AgentsHelper
     @account = @client.account
     @caller_id_list = @account.outgoing_caller_ids.list.collect { |id| id.phone_number }
     
-    if @caller_id_list.include?("+#{@agent.phone}") || @caller_id_list.include?("+1#{@agent.phone}")
+    if @caller_id_list.include?("+#{@agent.outgoing_phone}") || @caller_id_list.include?("+1#{@agent.outgoing_phone}")
       false
     else
       true
