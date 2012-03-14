@@ -22,9 +22,13 @@ group :assets do
   gem 'therubyracer'
 end
 
-gem 'rspec-rails', :group => [:test, :development]
+group :development, :test do 
+  gem 'rspec-rails'
+  gem 'faker'
+end
 
 group :test do
+  gem 'turn', '~> 0.8.3', :require => false
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'guard-rspec'
@@ -42,8 +46,3 @@ end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
-
-group :test do
-  # Pretty printed test output
-  gem 'turn', '~> 0.8.3', :require => false
-end

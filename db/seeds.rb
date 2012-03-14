@@ -7,8 +7,15 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # create some users for agent # 12
-n = 1
+# change agent_id to whatever your development agent is.
+# NOTE: this does not create user accounts along with the people
 100.times do 
-  User.create(:roles_mask => 2, :email => "example#{n}@dustinbling.com")
-  Person.create(:first_name => Faker::first_name, :last_name => Faker::last_name, :agent_id => 12, :phone => "7145122526")
+  Person.create(:first_name => Faker::Name::first_name, 
+    :last_name => Faker::Name::last_name, 
+    :address => Faker::Address::street_address(include_secondary = false),
+    :city => Faker::Address::city,
+    :state => Faker::Address::state,
+    :zip => Faker::Address::zip_code, 
+    :agent_id => 12, 
+    :phone => "7145122526")
 end
