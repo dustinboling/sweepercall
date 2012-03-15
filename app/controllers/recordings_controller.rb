@@ -24,8 +24,8 @@ class RecordingsController < ApplicationController
     @agent = Agent.find_by_uuid(params[:uuid])
     
     # store file on amazon
-    AWS::S3::S3Object.store("#{params[:RecordingUrl].gsub(':', '').gsub('/')}", open("#{params[:RecordingUrl]}.mp3"), 'SweeperCallAgentRecordings')
-    @file = AWS::S3::S3Object.find("#{params[:RecordingUrl]}", 'SweeperCallAgentRecordings')
+    AWS::S3::S3Object.store("#{params[:RecordingUrl].gsub(':', '').gsub('/', '')}", open("#{params[:RecordingUrl]}.mp3"), 'SweeperCallAgentRecordings')
+    @file = AWS::S3::S3Object.find("#{params[:RecordingUrl].gsub(':', '').gsub('/', '')}", 'SweeperCallAgentRecordings')
     @url = @file.url
      
     # save url to postgres
