@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "NewPeople" do
   describe "GET /new_person_path" do
     it "Creates a new person." do
-      person = Person.create(:address => "123 Street Rd", :city => "Newport Beach", :state => "CA", :zip => "92660", :phone => "(714) 512-2526", :mobile_phone => "7145122526", :first_name => "Test", :last_name => "Person" :agent => "32")
+      person = Person.create(:address => "123 Street Rd", :city => "Newport Beach", :state => "CA", :zip => "92660", :phone => "(714) 512-2526", :mobile_phone => "7145122526", :first_name => "Test", :last_name => "Person", :agent => "32")
       visit new_person_path
       fill_in "Address", :with => person.address
       fill_in "City", :with => person.city

@@ -9,11 +9,24 @@
 								<%= link_to 'Account', person_path(:id => Person.find_by_user_id(current_user.person.user_id)) %>
 							<% elsif current_user.role? :agent %>
 								<%= link_to 'Account', agent_path(:id => Agent.find_by_user_id(current_user.agent.user_id)) %>
+							<% elsif current_user.role? :admin %>
+								<%= link_to 'Home', root_url %>
 						<% end %>
 					<% else %>
 	          <%= link_to 'Home', root_url %>
 					<% end %>
         </li>
+				<li class="dropdown" id="accounts-menu">
+					<a href="#accounts-menu" class="dropdown-toggle" data-toggle="dropdown">
+						Manage Accounts
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li><%= link_to 'Manage Subscribers', people_path %></li>
+						<li><%= link_to 'Manage Agents', agents_path %></li>
+						<li><%= link_to 'Manage Users', users_path %></li>
+					</ul>
+				</li>
 			</ul>
 			<p class="user-nav pull-right">
         <% if current_user %> 
