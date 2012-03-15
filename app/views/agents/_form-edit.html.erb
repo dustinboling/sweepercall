@@ -81,20 +81,16 @@
 			<table class="table-striped span9">
 				<thead>
 					<tr>
-						<th>Recording URL</th>
 						<th>Active</th>
+						<th>Recording URL</th>
 						<th>Created</th
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<%= @agent.recordings.collect { |recording|
-					 		"<tr class='fields'>
-									<td>#{recording.recording_url}</td>
-									<td>#{check_box_tag(recording.active)}</td>
-									<td>#{recording.created_at}</td>
-									<td>#{link_to 'delete', recording, confirm: 'Are you sure?', :method => :delete, :class => 'btn btn-danger'}</td>
-								</tr>".html_safe }.to_sentence(no_separator).html_safe %>
+					<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
+						<%= render 'recording_fields', :f => recording %>
+					<% end %>
 				</tbody>
 		</table>
 		<%= link_to 'add voice notification', {:controller => 'recordings', :action => 'record', :uuid => @agent.uuid}, :class => 'btn btn-warning' %>
