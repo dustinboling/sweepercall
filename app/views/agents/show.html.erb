@@ -37,33 +37,33 @@
 </div>
 
 <div>
-	<b>People</b><br />
-		<table class="table table-striped span12">
-			<tr>
-				<th></th>
-				<th>Name</th>
-				<th>Address</th>
-				<th>City</th>
-				<th>State</th>
-				<th>Phone</th>
-				<th>Mobile Phone</th>
-				<th>Added on</th>
-				<th></th>
-			</tr>
-			<% @agent.people.each_with_index do | person, i | %>
-			<tr>
-				<td><%= "#{i + 1}" %></td>
-				<td><%= person.first_name %> <%= person.last_name %></td>
-				<td><%= person.address %></td>
-				<td><%= person.city %></td>
-				<td><%= person.state %></td>
-				<td><%= person.phone %></td>
-				<td><%= person.mobile_phone %></td>
-				<td><%= person.created_at %></td>
-				<td><%= link_to 'remove', person, confirm: 'Are you sure?', method: :delete %></td>
-			</tr>
-			<% end %>
-		</table>
+	<b>People</b>
+	<table class="table table-striped span12">
+		<tr>
+			<th></th>
+			<th>Name</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Phone</th>
+			<th>Mobile Phone</th>
+			<th>Added on</th>
+			<th></th>
+		</tr>
+		<% @agent.people.each_with_index do | person, i | %>
+		<tr>
+			<td><%= "#{i + 1}" %></td>
+			<td><%= person.first_name %> <%= person.last_name %></td>
+			<td><%= person.address %></td>
+			<td><%= person.city %></td>
+			<td><%= person.state %></td>
+			<td><%= person.phone %></td>
+			<td><%= person.mobile_phone %></td>
+			<td><%= person.created_at %></td>
+			<td><%= link_to 'remove', person, confirm: 'Are you sure?', method: :delete %></td>
+		</tr>
+		<% end %>
+	</table>
 </div>
 
 
