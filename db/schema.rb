@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314234525) do
+ActiveRecord::Schema.define(:version => 20120315190120) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(:version => 20120314234525) do
     t.integer  "zip"
     t.string   "phone"
     t.string   "mobile_phone"
-    t.string   "name"
     t.integer  "agent_id"
     t.datetime "created_at"
     t.datetime "updated_at"

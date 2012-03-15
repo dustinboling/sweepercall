@@ -63,7 +63,7 @@ class AgentsController < ApplicationController
 
     respond_to do |format|
       if @agent.save
-        format.html { redirect_to @agent, notice: 'Agent was successfully created.' }
+        format.html { redirect_to @agent, notice: 'Your account has been created!' }
         format.json { render json: @agent, status: :created, location: @agent }
       else
         format.html { render action: "new" }
@@ -79,7 +79,7 @@ class AgentsController < ApplicationController
 
     respond_to do |format|
       if @agent.update_attributes(params[:agent])
-        format.html { redirect_to @agent, notice: 'Agent was successfully updated.' }
+        format.html { redirect_to @agent, notice: 'Your profile has been updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

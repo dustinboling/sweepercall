@@ -1,0 +1,1 @@
+$aws_client = AWS::S3::Base.establish_connection!(:access_key_id => 'AKIAIM3ERMFQV5XL5KMQ', :secret_access_key => '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')

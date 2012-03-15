@@ -1,26 +1,6 @@
-<%= render 'layouts/messages' %>
-
 <h1>Hello <%= @agent.first_name %> <%= @agent.last_name %>!</h1>
 
-<div class="well">
-	<div class="row">
-		<h3 class="span3">Your Stats:</h3>
-	</div>
-	<div class="row">
-		<div class="span3 well">
-			<h1 class="bignum"><%= @agent.count_addresses %></h1><br />
-			<h4 class="pull-right">Total Addresses</h4>
-		</div>
-		<div class="span3 well">
-			<h1 class="bignum">0</h1><br />
-			<h4 class="pull-right">Total Neighborhoods</h4>
-		</div>
-		<div class="span3 well">
-			<h1 class="bignum">0</h1><br />
-			<h4 class="pull-right">People Notified Today</h4>
-		</div>
-	</div>
-</div>
+<%= render 'layouts/messages' %>
 
 <% if phone_not_verified? %>
 	<div class="alert alert-info">
@@ -34,6 +14,27 @@
 	<h4>Signup URL</h4>
 		<p>Link to this to get people signed up for your notifications, or download one of our <%= link_to 'plugins' %> to integrate with your platform of choice.</p>
 		<b>http://localhost:3000/users/new_person?uuid=<%= @agent.uuid %></b>
+</div>
+
+<div class="well">
+	<div class="row">
+		<h3 class="span3">Your Stats:</h3>
+	</div>
+	<br />
+	<div class="row">
+		<div class="span3 well" style="margin-left: 50px; margin-right: 20px">
+			<h1 class="bignum"><%= @agent.count_addresses %></h1><br />
+			<h4 class="pull-right">Total Addresses</h4>
+		</div>
+		<div class="span3 well" style="margin-right: 20px">
+			<h1 class="bignum">0</h1><br />
+			<h4 class="pull-right">Total Neighborhoods</h4>
+		</div>
+		<div class="span3 well" style="margin-right: 20px">
+			<h1 class="bignum">0</h1><br />
+			<h4 class="pull-right">People Notified Today</h4>
+		</div>
+	</div>
 </div>
 
 <div>
@@ -60,7 +61,7 @@
 			<td><%= person.phone %></td>
 			<td><%= person.mobile_phone %></td>
 			<td><%= person.created_at %></td>
-			<td><%= link_to 'remove', person, confirm: 'Are you sure?', method: :delete %></td>
+			<td><%= link_to 'remove', person, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %></td>
 		</tr>
 		<% end %>
 	</table>

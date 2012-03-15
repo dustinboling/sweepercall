@@ -2,7 +2,7 @@ class Agent < ActiveRecord::Base
   
   require 'digest/md5'
   
-  before_validation :strip_phone
+  before_validation :strip_phone  
   before_create :set_uuid
   before_create :set_outgoing_phone
   before_create :set_outgoing_email
