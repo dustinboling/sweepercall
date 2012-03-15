@@ -16,17 +16,21 @@
 	          <%= link_to 'Home', root_url %>
 					<% end %>
         </li>
-				<li class="dropdown" id="accounts-menu">
-					<a href="#accounts-menu" class="dropdown-toggle" data-toggle="dropdown">
-						Manage Accounts
-						<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li><%= link_to 'Manage Subscribers', people_path %></li>
-						<li><%= link_to 'Manage Agents', agents_path %></li>
-						<li><%= link_to 'Manage Users', users_path %></li>
-					</ul>
-				</li>
+				<% if current_user %>
+					<% if current_user.role? :admin %>
+						<li class="dropdown" id="accounts-menu">
+							<a href="#accounts-menu" class="dropdown-toggle" data-toggle="dropdown">
+								Manage Accounts
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li><%= link_to 'Manage Subscribers', people_path %></li>
+								<li><%= link_to 'Manage Agents', agents_path %></li>
+								<li><%= link_to 'Manage Users', users_path %></li>
+							</ul>
+						</li>
+				<% end %>
+			<% end %>
 			</ul>
 			<p class="user-nav pull-right">
         <% if current_user %> 
