@@ -25,7 +25,7 @@ class RecordingsController < ApplicationController
     
     # store file on amazon
     AWS::S3::S3Object.store("#{params[:RecordingUrl]}", open("#{params[:RecordingUrl]}.mp3"), 'SweeperCallAgentRecordings')
-    @file = AWS::S3::S3Object.find("#{params[:RecordingUrl]}")
+    @file = AWS::S3::S3Object.find("#{params[:RecordingUrl]}", 'SweeperCallAgentRecordings')
     @url = @file.url
      
     # save url to postgres
