@@ -25,7 +25,7 @@
 		
 		<p>Phone verified?</p>
 		<% if phone_not_verified? %>
-			<b>No</b>
+			<b>No</b> <%= link_to "(verify now!)", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %>
 		<% else %>
 			<b>Yes</b>
 		<% end %>
@@ -94,7 +94,11 @@
 					<% end %>
 				</tbody>
 		</table>
-		<%= link_to 'add voice notification', {:controller => 'recordings', :action => 'record', :uuid => @agent.uuid}, :class => 'btn btn-warning' %>
+		<% if phone_not_verified? %>
+			<%= link_to 'verify your phone to add phone notifications!', {:controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid}, :class => 'btn btn-success' %>
+		<% else %>
+			<%= link_to 'add voice notification', {:controller => 'recordings', :action => 'record', :uuid => @agent.uuid}, :class => 'btn btn-warning' %>
+		<% end %>
 	</div>
 	
   <div class="actions">

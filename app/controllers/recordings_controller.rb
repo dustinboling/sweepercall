@@ -22,7 +22,14 @@ class RecordingsController < ApplicationController
   
   def create
     @agent = Agent.find_by_uuid(params[:uuid])
-    @recording = Recording.new(:agent_id => @agent.id, :recording_url => params[:RecordingUrl])
+    
+    # store file on amazon
+    AWS::S3::S3Object.store("#{params[:RecordingUrl]}", open("#{params[:RecordingUrl]}.mp3"), 'SweeperCallAgentRecordings')
+    @file = AWS::S3::S3Object.find("#{params[:RecordingUrl]}")
+    @url = @file.url
+     
+    # save url to postgres
+    @recording = Recording.new(:agent_id => @agent.id, :recording_url => @file.url)
     @recording.save
     
   end
