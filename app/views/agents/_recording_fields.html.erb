@@ -1,7 +1,8 @@
 <tr class='fields'>
+	<%= f %>
 	<%= f.hidden_field :agent_id, :value => @agent.id %>
 	<td><%= f.check_box :active %></td>
 	<td><%= f.text_field :recording_url, :readonly => true, :style => 'width: 300px' %></td>
 	<td><%= f.text_field :created_at, :readonly => true %></td>
-	<td><td><%= link_to_remove_fields "remove", f %></td>
+	<td><%= link_to_remove_fields "remove", f %></td>
 </tr>
