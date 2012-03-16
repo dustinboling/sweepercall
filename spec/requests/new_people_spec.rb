@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "NewPeople" do
-  describe "GET /new_person_path" do
+  describe "POST users/new_person_path" do
     it "Creates a new person." do
       person = Person.create(:address => "123 Street Rd", 
         :city => "Newport Beach", 
