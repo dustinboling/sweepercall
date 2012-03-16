@@ -1,7 +1,6 @@
 class Person < ActiveRecord::Base
   
   before_validation :strip_phone
-  before_create :set_email
   before_create :strip_phone
   before_update :strip_phone
   
@@ -21,13 +20,6 @@ class Person < ActiveRecord::Base
   
   def strip_phone
     self.phone = self.phone.gsub(/([-() ])/, '')
-  end
-  
-  def set_email
-    begin
-      self.email = User.find(self.user_id).email
-    rescue
-    end
   end
   
 end

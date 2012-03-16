@@ -33,6 +33,12 @@ class AgentsController < ApplicationController
   # GET /agents/1.json
   def show
     @agent = Agent.find(params[:id])
+    
+    # set outgoing email
+    if @agent.outgoing_email.nil?
+      @agent.outgoing_email = User.find(@agent.user_id).email
+      @agent.save
+    end
 
     respond_to do |format|
       format.html # show.html.erb

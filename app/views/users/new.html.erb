@@ -7,10 +7,7 @@
 	<%= f.fields_for :agent do |agent| %>
 		<%= render 'agent_fields', :f => agent %>
 	<% end %>
-
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-
+	
   <%= f.label :password %>
   <%= f.password_field :password %>
 

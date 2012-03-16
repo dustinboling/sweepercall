@@ -1,37 +1,39 @@
-<%= form_for(@agent, :html => {:class => 'well span16'}) do |f| %>
+<%= form_for(@agent, :html => {:class => 'span16'}) do |f| %>
 	<%= error_messages_for(@agent) %>
 
-<fieldset>
-<div class="row">
-	<div class="well span5" style="margin: 20px">
-		<h3>Basic Info:</h3>
-		<%= f.label :first_name %>
-		<%= f.text_field :first_name %>
+<fieldset class="well">
+	<div class="row">
+		<div class="well span5" style="margin: 15px">
+			<h3>Basic Info:</h3>
+			<%= f.label :first_name %>
+			<%= f.text_field :first_name %>
 
-		<%= f.label :last_name %>
-		<%= f.text_field :last_name %>
+			<%= f.label :last_name %>
+			<%= f.text_field :last_name %>
 	
-		<%= f.label :website_url %>
-		<%= f.text_field :website_url %>
-	</div>
+			<%= f.label :website_url %>
+			<%= f.text_field :website_url %>
+		</div>
 	
-	<div class="well span5" style="margin: 20px">
-		<h3>Outgoing Message Info:</h3>
-		<%= f.label :outgoing_phone %>
-		<%= f.text_field :outgoing_phone %>
+		<div class="well span5" style="margin: 15px">
+			<h3>Outgoing Message Info:</h3>
+			<%= f.label :outgoing_phone %>
+			<%= f.text_field :outgoing_phone %>
 	
-		<%= f.label :outgoing_email %>
-		<%= f.text_field :outgoing_email %>
+			<%= f.label :outgoing_email %>
+			<%= f.text_field :outgoing_email %>
 		
-		<p>Phone verified?</p>
-		<% if phone_not_verified? %>
-			<b>No</b> <%= link_to "(verify now!)", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %>
-		<% else %>
-			<b>Yes</b>
-		<% end %>
+			<p>Phone verified?</p>
+			<% if phone_not_verified? %>
+				<b>No</b> <%= link_to "(verify now!)", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %>
+			<% else %>
+				<b>Yes</b>
+			<% end %>
+		</div>
 	</div>
-</div>
 </fieldset>
+
+<div class="well">
 	<h3>Your Notifications:</h3>
 	<div class="well">
 		<h4>Email Notifications</h4>
@@ -81,7 +83,7 @@
 			<table class="table-striped span9">
 				<thead>
 					<tr>
-						<th>Active</th>
+						<th>Active?</th>
 						<th>Recording URL</th>
 						<th>Created</th>
 						<th></th>
@@ -100,8 +102,8 @@
 			<%= link_to 'add voice notification', {:controller => 'recordings', :action => 'record', :uuid => @agent.uuid}, :class => 'btn btn-warning' %>
 		<% end %>
 	</div>
-	
+</div>	
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Update Profile', :class => 'btn btn-success' %>
   </div>
 <% end %>

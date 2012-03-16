@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     
     if params[:uuid].nil?
       params[:uuid] = 'DBA001'
-      # @agent_id = masterid
     else
       @agent_id = Agent.find_by_uuid(params[:uuid]).id
     end
@@ -33,9 +32,10 @@ class UsersController < ApplicationController
       # need to render full path somehow on render :new_person
       # or use referring method instead of URI
       if URI(request.referer).path == '/users/new_person'
-        render :new_person
+        render :action => 'new_person'
+        # redirect_to users_new_person_path
       else
-        render :new
+        # render :new
       end
     end
   end

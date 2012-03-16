@@ -26,7 +26,6 @@ class RecordingsController < ApplicationController
     # store file on amazon
     AWS::S3::S3Object.store("#{params[:RecordingUrl].split('/').pop}.mp3", open("#{params[:RecordingUrl]}.mp3"), 'SweeperCallAgentRecordings', :access => :public_read)
     @file = AWS::S3::S3Object.find("#{params[:RecordingUrl].split('/').pop}.mp3", 'SweeperCallAgentRecordings')
-    @url = @file.url
      
     # save url to postgres
     @recording = Recording.new(:agent_id => @agent.id, :recording_url => @file.url)
