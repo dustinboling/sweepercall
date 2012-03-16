@@ -35,7 +35,7 @@ class UsersController < ApplicationController
         render :action => 'new_person'
         # redirect_to users_new_person_path
       else
-        # render :new
+        render :new
       end
     end
   end

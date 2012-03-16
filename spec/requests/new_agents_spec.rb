@@ -11,7 +11,7 @@ describe "NewAgents" do
     fill_in "Password", :with => "123"
     fill_in "Password confirmation", :with => "123"
     click_button "Sign up!"
-    page.should have_content("Agent was successfully created.")
+    page.should have_content("Signed up!")
   end
   
 end
