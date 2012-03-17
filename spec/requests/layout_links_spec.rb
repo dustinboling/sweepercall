@@ -79,4 +79,30 @@ describe "LayoutLinks" do
     end
   end
   
+  describe "GET account layout :as => agent" do
+    before :each do
+      @user = Factory(:user, :roles_mask => 1)
+      @agent = Factory(:agent, :user_id => @user.id)
+      @person = Factory(:person, :agent_id => @agent.id)
+      @notification = Factory(:notification, :person_id => @person.id)
+      visit login_path
+      fill_in "Email", :with => @user.email
+      fill_in "Password", :with => '123'
+      click_button "Log in"
+    end
+    
+    it "should say the agent has logged in" do
+      page.should have_content("Logged in!")
+    end
+    
+    it "has a notification of the agent's signup url" do
+      page.should have_content("http://localhost:3000/users/new_person?uuid=#{@agent.uuid}")
+    end
+    
+    it "should count the number of addresses an agent is notifying" do
+      page.should have_content("1Total Addresses")
+    end
+    
+  end
+  
 end
