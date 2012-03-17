@@ -63,8 +63,8 @@ describe Agent do
     @agent = Factory.build(:agent)
     @agent.save
     
-    @agent.recordings.create(:recording_url => "http://www.test.com/reciuan9384i", :active => true)
-    @agent.recordings.create(:recording_url => "http://www.test.com/reciuan9384i", :active => true)
+    @agent.recordings.create(:active => true)
+    @agent.recordings.create(:active => true)
     @agent.should_not be_valid
   end
   
@@ -72,8 +72,8 @@ describe Agent do
     @agent = Factory.build(:agent)
     @agent.save
     
-    @agent.sms_notifications.create(:message => "This is your last warning: move your car.", :active => true)
-    @agent.sms_notifications.create(:message => "Friendly message: move your car. Thanks.", :active => true)
+    @agent.sms_notifications.create(:active => true)
+    @agent.sms_notifications.create(:active => true)
     @agent.should_not be_valid
   end
   
