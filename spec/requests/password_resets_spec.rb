@@ -14,7 +14,9 @@ describe "PasswordResets" do
   
   it "should not email a user if they are not in the database" do
     visit forgot_password_path
-    fill_in "Email", :with => "email_not_in_database@gmail.com"
+    fill_in "Email", :with => "email_not_in_database@dustinboling.com"
+    click_button "Reset my password!"
+    page.should have_content("Email address not found!")
   end
   
 end

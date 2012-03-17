@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @url = "http://0.0.0.0:3000/password_resets/#{user.reset_password_token}/edit"
     mail(:to => user.email,
-         :subject => "Your password has been reset")
+         :subject => "Reset your password")
   end
   
   def registration_confirmation(user)
@@ -18,4 +18,5 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, 
          :subject => "New Account Registered at SweeperCall")
   end
+  
 end
