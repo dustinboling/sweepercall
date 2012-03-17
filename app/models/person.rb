@@ -19,7 +19,11 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :notifications, :reject_if => lambda { |n| n[:person_id].blank? }, :allow_destroy => true
   
   def strip_phone
-    self.phone = self.phone.gsub(/([-() ])/, '')
+    if self.phone.match(/^1/)
+      self.phone = self.phone.sub('1', '').gsub(/([-() ])/, '')
+    else
+      self.phone = self.phone.gsub(/([-() ])/, '')
+    end
   end
   
 end

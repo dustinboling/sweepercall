@@ -5,7 +5,7 @@ Factory.define :person do |f|
   f.zip "92660"
   f.phone "714-512-2526"
   f.mobile_phone "7145122526"
-  f.name "Alan Sebastian"
+  f.first_name "Alan"
   f.agent_id "1"
 end
 
@@ -19,4 +19,10 @@ Factory.define :notification do |f|
   f.notification_type "1"
   f.day "1"
   f.week "1"
+end
+
+Factory.define :user do |f|
+  f.sequence(:email) { |n| "test-n8791-#{n}@dustinboling.com" }
+  f.password "123"
+  f.password_confirmation "123"
 end

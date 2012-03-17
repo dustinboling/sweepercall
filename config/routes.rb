@@ -5,9 +5,6 @@ Sweeper::Application.routes.draw do
   match "users/new_person", :to => 'users#create', :via => :post, :as => :post_new_person
   
   get "users/new_person"
-  post "users/new_person"
-  
-  
   get "users/new"
   
   get "agents/verify"
