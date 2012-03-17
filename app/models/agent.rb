@@ -2,7 +2,8 @@ class Agent < ActiveRecord::Base
   
   require 'digest/md5'
   
-  before_validation :strip_phone  
+  before_validation :strip_phone
+  before_validation :strip_outgoing_phone  
   before_create :set_uuid
   before_create :set_outgoing_phone
   before_create :strip_phone
@@ -25,6 +26,7 @@ class Agent < ActiveRecord::Base
   validates_presence_of :last_name
   validates_presence_of :phone
   validates_length_of :phone, :is => 10, :message => "Phone number must contain exactly 10 numbers: XXX-XXX-XXXX"
+  validates_length_of :outgoing_phone, :is => 10, :message => "Phone number must contain exactly 10 numbers: XXX-XXX-XXXX"
   validates_format_of :outgoing_email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
   
   def maximum_one_active_sms_notification
@@ -64,8 +66,20 @@ class Agent < ActiveRecord::Base
     self.outgoing_email = User.find(@user_id).email
   end
   
+  def strip_outgoing_phone
+    if self.outgoing_phone.match(/^1/)
+      self.outgoing_phone = self.outgoing_phone.sub('1', '').gsub(/([-() ])/, '')
+    else
+      self.outgoing_phone = self.outgoing_phone.gsub(/([-() ])/, '')
+    end
+  end
+  
   def strip_phone
-    self.phone = "#{self.phone.gsub(/([-() ])/, '')}"
+    if self.phone.match(/^1/)
+      self.phone = self.phone.sub('1', '').gsub(/([-() ])/, '')
+    else
+      self.phone = self.phone.gsub(/([-() ])/, '')
+    end
   end
   
   # Count the total number of addresses an agent is doing reminders for.

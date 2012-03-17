@@ -12,17 +12,25 @@ end
 Factory.define :agent do |f|
   f.first_name "Test"
   f.last_name "Agent"
-  f.sequence(:email) { |n| "test#{n}@example.com" }
+  f.sequence(:outgoing_email) { |n| "test-456-987-#{n}@example.com" }
+  f.phone "7145122526"
+  f.outgoing_phone "7145122526"
 end
 
 Factory.define :notification do |f|
   f.notification_type "1"
-  f.day "1"
-  f.week "1"
+  f.day "monday"
+  f.week "1st"
+  f.person
 end
 
 Factory.define :user do |f|
   f.sequence(:email) { |n| "test-n8791-#{n}@dustinboling.com" }
   f.password "123"
   f.password_confirmation "123"
+end
+
+Factory.define :recording do |f|
+  f.recording_url "http://www.thisistest.com/recording/?45678903vhjdbfiucwbifwe874ub"
+  f.active false
 end
