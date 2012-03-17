@@ -33,16 +33,16 @@ describe "LayoutLinks" do
   
   describe "GET navbar links :as => agent" do
     it "successfuly links to the right pages when logged in as agent" do
-      @user = User.create(:email => "user-test123456@dustinboling.com", :password => '123', :roles_mask => 1)
+      user = User.create(:email => "user-test123456@dustinboling.com", :password => '123', :roles_mask => 1)
       @agent = Agent.create(:first_name => 'TEST', 
-        :last_name => 'Subscriber',
-        :phone => "(714) 512-2526",
-        :user_id => @user.id
+        :last_name => 'Agent',
+        :outgoing_phone => '(714) 512-2526',
+        :user_id => user.id
         )
         
       # log in as agent
       visit login_path
-      fill_in "Email", :with => @user.email
+      fill_in "Email", :with => user.email
       fill_in "Password", :with => '123'
       click_button "Log in"
       
