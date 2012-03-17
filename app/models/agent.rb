@@ -5,7 +5,6 @@ class Agent < ActiveRecord::Base
   before_validation :strip_phone  
   before_create :set_uuid
   before_create :set_outgoing_phone
-  # before_create :set_outgoing_email
   before_create :strip_phone
   before_update :strip_phone
   
@@ -26,7 +25,7 @@ class Agent < ActiveRecord::Base
   validates_presence_of :last_name
   validates_presence_of :phone
   validates_length_of :phone, :is => 10, :message => "Phone number must contain exactly 10 numbers: XXX-XXX-XXXX"
-  # validates_format_of :outgoing_email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
+  validates_format_of :outgoing_email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
   
   def maximum_one_active_sms_notification
     active_sms = self.sms_notifications.collect { |s| s.active }
