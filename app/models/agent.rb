@@ -4,7 +4,6 @@ class Agent < ActiveRecord::Base
   
   before_validation :strip_outgoing_phone  
   before_create :set_uuid
-  before_create :set_outgoing_email
   
   belongs_to :user
   has_many :people
@@ -53,15 +52,6 @@ class Agent < ActiveRecord::Base
     self.uuid = Digest::MD5.hexdigest("#{self.user_id}" + "#{self.first_name}" + "#{self.last_name}")
   end
   
-  def set_outgoing_phone
-    self.outgoing_phone = self.phone
-  end
-  
-  def set_outgoing_email
-    @user_id = self.user_id
-    self.outgoing_email = User.find(@user_id).email
-  end
-  
   def strip_outgoing_phone
     if self.outgoing_phone.match(/^1/)
       self.outgoing_phone = self.outgoing_phone.sub('1', '').gsub(/([-() ])/, '')
@@ -75,8 +65,18 @@ class Agent < ActiveRecord::Base
     self.people.collect { |a| a.address }.count
   end
   
+  def count_neighborhoods
+    @zip_codes = []
+    self.people.collect do |n|
+      unless @zip_codes.include?(n.zip)
+        @zip_codes << n.zip
+      end
+    end
+    @zip_codes.count
+  end
+  
   def full_name
-    "#{first_name} #{last_name}"
+    "#{self.first_name} #{self.last_name}"
   end
   
 end

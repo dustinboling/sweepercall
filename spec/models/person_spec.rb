@@ -48,4 +48,6 @@ describe Person do
     Factory.build(:person, :phone => "1 714 512 2526").should be_valid
   end
   
+  # strip phone ommitted as it is already in agent spec
+  
 end

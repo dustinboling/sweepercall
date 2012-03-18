@@ -79,7 +79,7 @@ describe "LayoutLinks" do
     end
   end
   
-  describe "GET account layout :as => agent" do
+  describe "GET agent profile :as => agent" do
     before :each do
       @user = Factory(:user, :roles_mask => 1)
       @agent = Factory(:agent, :user_id => @user.id)
@@ -91,6 +91,7 @@ describe "LayoutLinks" do
       click_button "Log in"
     end
     
+    # agent#show
     it "should say the agent has logged in" do
       page.should have_content("Logged in!")
     end
@@ -103,6 +104,19 @@ describe "LayoutLinks" do
       page.should have_content("1Total Addresses")
     end
     
+    # agent#edit
+    it "should say the phone number is not verified when it is not" do
+      @agent.outgoing_phone = "(000) 000-0000"
+      @agent.save
+      click_link "Edit"
+      page.should have_content("No")
+    end
+    
+    it "should display a list of agent's voice notifications" do
+      @agent.recordings.create(:agent_id => @agent.id)
+      click_link "Edit"
+      page.should have_content("#{Time.now.strftime('%d %b %Y')}")
+    end
+    
   end
-  
 end
