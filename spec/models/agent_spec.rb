@@ -103,6 +103,23 @@ describe Agent do
     @agent.count_neighborhoods.should eq(2)
   end
   
+  it "should count the number of people who were notified for the agent today" do
+    current_day = Time.now.strftime('%A').downcase
+    current_month = Time.now.strftime('%B').downcase  
+    @agent = Factory(:agent)
+    @agent.save
+    @person = Factory(:person, :agent_id => @agent.id)
+    @person.save
+    @notification = Factory(:notification, 
+      :person_id => @person.id, 
+      :day => "#{Time.now.strftime('%A').downcase}",
+      :week => "#{current_week(current_day, current_month)}"
+      )
+    @notification.save
+    
+    @agent.notifications_today.should eq(1)
+  end
+  
   it "should make a full name out of first and last" do
     @agent = Factory.build(:agent, :first_name => "concat", :last_name => "test")
     @agent.full_name.should eq("concat test")
