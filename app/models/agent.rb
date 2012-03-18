@@ -75,6 +75,8 @@ class Agent < ActiveRecord::Base
     @zip_codes.count
   end
   
+  # the following two methods could potentially make 1,000s of requests to the database.
+  # Probably should kill them or rewrite as a rake task to be run once daily.
   def current_week(current_day, current_month)
     @today = Time.now.strftime('%Y-%m-%d')
     if Chronic.parse("1st #{current_day} in #{current_month}").strftime('%Y-%m-%d') == @today
