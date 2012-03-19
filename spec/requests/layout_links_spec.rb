@@ -117,6 +117,23 @@ describe "LayoutLinks" do
       click_link "Edit"
       page.should have_content("#{Time.now.strftime('%d %b %Y')}")
     end
+  end
+  
+  describe "GET subscriber profile :as => agent" do
+    before :each do
+      @user = Factory(:user, :roles_mask => 2)
+      @agent = Factory(:agent)
+      @person = Factory(:person, :user_id => @user.id, :agent_id => @agent.id)
+      visit login_path
+      fill_in "Email", :with => @user.email
+      fill_in "Password", :with => '123'
+      click_button "Log in"
+    end
+    
+    it "should say the subscriber has logged in" do
+      page.should have_content("Logged in!")
+    end
     
   end
+  
 end

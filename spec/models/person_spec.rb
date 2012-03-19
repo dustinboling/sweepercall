@@ -6,6 +6,20 @@ describe Person do
     Factory.build(:person).should be_valid
   end
   
+  it "belongs to user" do
+    p = Person.reflect_on_association(:user)
+    p.macro.should eq(:belongs_to)
+  end
+  
+  it "belongs to agent" do
+    p = Person.reflect_on_association(:agent)
+    p.macro.should eq(:belongs_to)
+  end
+  
+  it "belongs to agent" do
+    
+  end
+  
   it "should require a first_name" do
     Factory.build(:person, :first_name => "").should_not be_valid
   end 

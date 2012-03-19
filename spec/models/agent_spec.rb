@@ -5,6 +5,26 @@ describe Agent do
   it "has a valid factory" do
     Factory.build(:agent).should be_valid
   end
+
+  it "belongs to user" do
+    a = Agent.reflect_on_association(:user)
+    a.macro.should eq(:belongs_to)
+  end
+  
+  it "has many recordings" do
+    a = Agent.reflect_on_association(:recordings)
+    a.macro.should eq(:has_many)
+  end
+  
+  it "has many email notifications" do
+    a = Agent.reflect_on_association(:email_notifications)
+    a.macro.should eq(:has_many)
+  end
+  
+  it "has many sms notifications" do 
+    a = Agent.reflect_on_association(:sms_notifications)
+    a.macro.should eq(:has_many)
+  end
   
   it "should require a first name" do
     Factory.build(:agent, :first_name => "").should_not be_valid
@@ -104,8 +124,6 @@ describe Agent do
   end
   
   it "should count the number of people who were notified for the agent today" do
-    current_day = Time.now.strftime('%A').downcase
-    current_month = Time.now.strftime('%B').downcase  
     @agent = Factory(:agent)
     @agent.save
     @person = Factory(:person, :agent_id => @agent.id)
@@ -113,7 +131,7 @@ describe Agent do
     @notification = Factory(:notification, 
       :person_id => @person.id, 
       :day => "#{Time.now.strftime('%A').downcase}",
-      :week => "#{current_week(current_day, current_month)}"
+      :week => "#{current_week}"
       )
     @notification.save
     

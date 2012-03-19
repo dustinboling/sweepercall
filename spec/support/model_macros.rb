@@ -1,8 +1,8 @@
 module ModelMacros
-  current_day = Time.now.strftime('%A').downcase
-  current_month = Time.now.strftime('%B').downcase
   
-  def current_week(current_day, current_month)
+  def current_week
+    current_day = Time.now.strftime('%A').downcase
+    current_month = Time.now.strftime('%B').downcase
     @today = Time.now.strftime('%Y-%m-%d')
 
     if Chronic.parse("1st #{current_day} in #{current_month}").strftime('%Y-%m-%d') == @today
@@ -15,6 +15,25 @@ module ModelMacros
       current_week = "4th"
     else
       current_week = "nil"
+    end
+  end
+  
+  def day_iter(day)
+    case day
+    when 1
+      @day = "monday"
+    when 2
+      @day = "tuesday"
+    when 3
+      @day = "wednesday"
+    when 4
+      @day = "thursday"
+    when 5
+      @day = "friday"
+    when 6
+      @day = "saturday"
+    when 7
+      @day = "sunday"
     end
   end
   

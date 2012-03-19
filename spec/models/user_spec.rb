@@ -1,13 +1,19 @@
 require 'spec_helper'
 
 describe User do
-  # before :each do
-  #   @user = Factory.build(:user)
-  #   @user.save
-  # end
   
   it "should have a valid factory" do
     Factory.build(:user).should be_valid
+  end
+  
+  it "has one agent" do
+    u = User.reflect_on_association(:agent)
+    u.macro.should eq(:has_one)
+  end
+  
+  it "has one person" do 
+    u = User.reflect_on_association(:person)
+    u.macro.should eq(:has_one)
   end
   
   it "should require an email" do
