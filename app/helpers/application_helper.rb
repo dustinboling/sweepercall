@@ -21,8 +21,10 @@ module ApplicationHelper
   def twilio_client_setup
     account_sid = 'ACe079c3003a2c4a1d949806c681648262'
     auth_token = '85bcc52edb352a11a19b8de47b4437fb'
+    application_sid = 'AP652a6827c1f644d485d1176b8da8f176'
+    
     capability = Twilio::Util::Capability.new(account_sid, auth_token)
-    capability.allow_client_outgoing 'AP652a6827c1f644d485d1176b8da8f176'
+    capability.allow_client_outgoing(application_sid)
     @token = capability.generate
   end
   
