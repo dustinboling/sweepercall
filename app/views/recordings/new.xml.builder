@@ -1,7 +1,9 @@
 xml.Response do
-  xml.Say "Dialing Phone Number"
-  xml.Dial :callerId => "+7145122526" do |d|
-    phone_number = "#{params[:phone_number]}"
-    d.Number phone_number
-  end
+  xml.Say "Hello, please record your outgoing message. Press # when finished."
+  xml.Record(
+    :action => "http://sweepercall.heroku.com/recordings/create.xml?uuid=#{params[:uuid]}",
+    :method => "GET",
+    :maxLength => "30",
+    :finishOnKey => "#")
+  xml.Say "I did not recieve a recording"
 end
