@@ -11,6 +11,21 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :class => 'btn btn-warning')
   end
   
+  def link_to_twilio_client(name)
+    account_sid = 'ACe079c3003a2c4a1d949806c681648262'
+    auth_token = '85bcc52edb352a11a19b8de47b4437fb'
+    capability = Twilio::Util::Capability.new(account_sid, auth_token)
+    @token = capability.generate
+  end
+  
+  def twilio_client_setup
+    account_sid = 'ACe079c3003a2c4a1d949806c681648262'
+    auth_token = '85bcc52edb352a11a19b8de47b4437fb'
+    capability = Twilio::Util::Capability.new(account_sid, auth_token)
+    capability.allow_client_incoming 'ACe079c3003a2c4a1d949806c681648262'
+    @token = capability.generate
+  end
+  
   def error_messages_for(object)
     render(:partial => 'shared/error_messages', :locals => {:object => object})  
   end

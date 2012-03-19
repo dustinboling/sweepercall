@@ -67,6 +67,33 @@
 	</table>
 </div>
 
+<div class="well span12">
+	<%= form_for(@agent, :html => {:class => 'span12', :style => 'margin: 0;'}) do |f| %>
+		<%= error_messages_for(@agent) %>
+		<h4>Voice Notifications</h4>
+			<table class="table table-bordered table-striped span12">
+				<thead>
+					<tr>
+						<th>Active?</th>
+						<th>Recording</th>
+						<th>Created</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
+						<%= render 'recording_fields', :f => recording %>
+					<% end %>
+				</tbody>
+		</table>
+	<% end %>
+	<h3>Create a Recording</h3>
+	<input type="button" id="call" value="Begin Recording"/>
+	<input type="button" id="hangup" value="Stop Recording" style="display:none;"/>
+	<div id="status">
+	Offline
+	</div>
+</div>
 
 <%= link_to 'Edit', edit_agent_path(@agent) %> |
 <%= link_to 'Back', agents_path %>

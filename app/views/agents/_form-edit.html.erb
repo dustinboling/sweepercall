@@ -78,30 +78,6 @@
 			</table>
 	</div>
 	
-	<div class="well">
-		<h4>Voice Notifications</h4>
-			<table class="table-striped span9">
-				<thead>
-					<tr>
-						<th>Active?</th>
-						<th>Recording URL</th>
-						<th>Created</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
-						<%= render 'recording_fields', :f => recording %>
-					<% end %>
-				</tbody>
-		</table>
-		<% if phone_not_verified? %>
-			<%= link_to 'verify your phone to add phone notifications!', {:controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid}, :class => 'btn btn-success' %>
-		<% else %>
-			<%= link_to 'add voice notification', {:controller => 'recordings', :action => 'record', :uuid => @agent.uuid}, :class => 'btn btn-warning' %>
-		<% end %>
-	</div>
 </div>	
   <div class="actions">
     <%= f.submit 'Update Profile', :class => 'btn btn-success' %>

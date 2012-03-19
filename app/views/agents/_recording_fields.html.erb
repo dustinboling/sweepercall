@@ -1,8 +1,8 @@
 <tr class='fields'>
 	<%= f.hidden_field :agent_id, :value => @agent.id %>	
 	<td><%= f.check_box :active %></td>
-	<td>
-		<embed type="application/x-shockwave-flash" src="http://www.google.com/reader/ui/3523697345-audio-player.swf" quality="best" flashvars="audioUrl=<%= f.object.recording_url %>.mp3" width="300" height="27"></embed>
+	<td style="padding-left: 125px;">
+		<embed type="application/x-shockwave-flash" src="http://www.google.com/reader/ui/3523697345-audio-player.swf" quality="best" flashvars="audioUrl=<%= f.object.recording_url %>.mp3" width="400" height="27"></embed>
 	</td>
 	<td><%= f.object.created_at.strftime('%d %b %Y') %></td>
 	<td><%= link_to_remove_fields "remove", f %></td>
