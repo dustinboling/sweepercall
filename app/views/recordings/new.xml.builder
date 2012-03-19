@@ -4,4 +4,5 @@ xml.Response do
     phone_number = "#{params[:phone_number]}"
     d.Number phone_number
   end
+  xml.Say "Could not reach phone number"
 end
