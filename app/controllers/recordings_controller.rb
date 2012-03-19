@@ -3,6 +3,10 @@ class RecordingsController < ApplicationController
   def new
   end
   
+  def dial
+    
+  end
+  
   def record
     @agent = Agent.find_by_uuid(params[:uuid])    
     @account_sid = 'ACe079c3003a2c4a1d949806c681648262'
