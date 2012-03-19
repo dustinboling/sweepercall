@@ -5,6 +5,9 @@ class RecordingsController < ApplicationController
   
   def dial
     
+    # respond_to do |format|
+    #   format.xml # dial.xml
+    # end
   end
   
   def record
