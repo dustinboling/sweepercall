@@ -2,6 +2,8 @@ class AgentsController < ApplicationController
   
   load_and_authorize_resource
   
+  layout 'agent'
+  
   def verify
     require 'twilio-ruby'
     @account_sid = 'ACe079c3003a2c4a1d949806c681648262'

@@ -22,11 +22,12 @@ module ApplicationHelper
     account_sid = 'ACe079c3003a2c4a1d949806c681648262'
     auth_token = '85bcc52edb352a11a19b8de47b4437fb'
     capability = Twilio::Util::Capability.new(account_sid, auth_token)
-    capability.allow_client_incoming 'ACe079c3003a2c4a1d949806c681648262'
+    capability.allow_client_outgoing 'AP652a6827c1f644d485d1176b8da8f176'
     @token = capability.generate
   end
   
   def error_messages_for(object)
     render(:partial => 'shared/error_messages', :locals => {:object => object})  
   end
+  
 end

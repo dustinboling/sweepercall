@@ -4,53 +4,7 @@
   <title>SweeperCall</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
-	<%= javascript_include_tag "http://static.twilio.com/libs/twiliojs/1.0/twilio.js" %>
   <%= csrf_meta_tags %>
-<script>
-var connection=null;
-var sweeper_auth_token = "<%= twilio_client_setup %>";
-	$(document).ready(function(){
-		Twilio.Device.setup(sweeper_auth_token,{"debug":true});
-		$("#call").click(function() {  
-			Twilio.Device.connect({
-				phone_number: "<%= @agent.outgoing_phone %>"
-			});
-		});
-		$("#hangup").click(function() {  
- 				connection.sendDigits("#");
-		});
-
-		Twilio.Device.ready(function (device) {
-			$('#status').text('Ready to start recording');
-		});
-
-		Twilio.Device.offline(function (device) {
-			$('#status').text('Offline');
-		});
-
-		Twilio.Device.error(function (error) {
-			$('#status').text(error);
-		});
-
-		Twilio.Device.connect(function (conn) {
-			connection=conn;
-			$('#status').text("On Air");
-			$('#status').css('color', 'red');
-			toggleCallStatus();
-		});
-
-		Twilio.Device.disconnect(function (conn) {
-		$('#status').html('Recording ended<br/><a href="show_recordings.php">view recording list</a>');
-			$('#status').css('color', 'black');
-			toggleCallStatus();
-		});
-			
-		function toggleCallStatus(){
-			$('#call').toggle();
-			$('#hangup').toggle();
-		}
-	});
-</script>
 </head>
 <body>
 	<!-- TOPBAR  -->
