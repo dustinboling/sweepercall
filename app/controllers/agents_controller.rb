@@ -6,7 +6,7 @@ class AgentsController < ApplicationController
   
   def resolve_layout
     case action_name
-    when "show"
+    when "show", "edit"
       "agent"
     when "index", "new"
       "application"

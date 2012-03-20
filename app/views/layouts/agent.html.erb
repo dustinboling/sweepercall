@@ -8,23 +8,24 @@
   <%= csrf_meta_tags %>
 <script>
 var connection=null;
+
 var sweeper_auth_token = "<%= twilio_client_setup %>";
 	$(document).ready(function(){
 		Twilio.Device.setup(sweeper_auth_token,{"debug":true});
 		
 		$("#call").click(function() {  
-			Twilio.Device.sounds.outgoing(false);
 			Twilio.Device.connect({
 				phone_number: <%= @agent.outgoing_phone %>,
 				uuid: "<%= @agent.uuid %>"
 			});
 		});
+		
 		$("#hangup").click(function() {  
  				connection.sendDigits("#");
 		});
 
 		Twilio.Device.ready(function (device) {
-			$('#status').text('Click to call your verified phone number.');
+			$('#status').html('Click to call <b><%= number_to_phone(@agent.outgoing_phone) %></b> and record your message.');
 		});
 		
 		Twilio.Device.offline(function (device) {

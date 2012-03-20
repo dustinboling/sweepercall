@@ -34,6 +34,27 @@
 </fieldset>
 
 <div class="well">
+	<%= render :partial => 'begin_agent_recording' %>
+	<h4>Voice Notifications</h4>
+		<table class="table table-bordered table-striped span12">
+			<thead>
+				<tr>
+					<th>Active?</th>
+					<th>Recording</th>
+					<th>Created</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
+					<%= render 'recording_fields', :f => recording %>
+				<% end %>
+			</tbody>
+	</table>
+	<%= f.submit "Update Recordings", :class => 'btn btn-success' %>
+</div>
+
+<div class="well">
 	<h3>Your Notifications:</h3>
 	<div class="well">
 		<h4>Email Notifications</h4>
