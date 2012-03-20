@@ -19,4 +19,8 @@ function add_fields(link, association, content) {
   $(link).parent().parent().before(content.replace(regexp, new_id))
 }
 
+function reload_agent() {
+	window.location.reload(true);
+}
+
 $('.dropdown-toggle').dropdown()

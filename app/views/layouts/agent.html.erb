@@ -24,7 +24,7 @@ var sweeper_auth_token = "<%= twilio_client_setup %>";
 		});
 
 		Twilio.Device.ready(function (device) {
-			$('#status').text('Ready to start recording');
+			$('#status').text('Click to call your verified phone number.');
 		});
 		
 		Twilio.Device.offline(function (device) {
@@ -37,13 +37,13 @@ var sweeper_auth_token = "<%= twilio_client_setup %>";
 
 		Twilio.Device.connect(function (conn) {
 			connection=conn;
-			$('#status').text("On Air");
+			$('#status').text("Calling you now...");
 			$('#status').css('color', 'red');
 			toggleCallStatus();
 		});
 
 		Twilio.Device.disconnect(function (conn) {
-		$('#status').html('Recording ended<br/><a href="show_recordings.php">view recording list</a>');
+		$('#status').html('Successfully recorded message<br/><a href="" onclick="javascript:reload_agent">Click to see recording</a>');
 			$('#status').css('color', 'black');
 			toggleCallStatus();
 		});
