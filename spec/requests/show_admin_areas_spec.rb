@@ -34,6 +34,7 @@ describe "GET admin areas, show them" do
   it "should show a list of people" do
     @p1 = Factory(:person, :agent_id => "1001")
     @p2 = Factory(:person, :agent_id => "2002")
+    
     click_link "Manage Subscribers"
     page.should have_content("#{@p1.first_name}")
     page.should have_content("#{@p1.last_name}")
@@ -54,5 +55,11 @@ describe "GET admin areas, show them" do
   end
   
   # agents#index
-  
+  it "should show a list of agents" do
+    @a1 = Factory(:agent)
+    @a2 = Factory(:agent, :last_name => 'Agent2')
+    
+    click_link "Manage Agents"
+    
+  end
 end
