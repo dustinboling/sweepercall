@@ -31,28 +31,34 @@
 			<% end %>
 		</div>
 	</div>
-	<%= f.submit 'Update Profile', :class => 'btn btn-success' %>
 </fieldset>
 
 <div class="well">
 	<%= render :partial => 'begin_agent_recording' %>
-	<h4>Voice Notifications</h4>
-		<table class="table table-bordered table-striped span12">
-			<thead>
-				<tr>
-					<th>Active?</th>
-					<th>Recording</th>
-					<th>Created</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
-					<%= render 'recording_fields', :f => recording %>
-				<% end %>
-			</tbody>
-	</table>
-	<%= f.submit "Update Recordings", :class => 'btn btn-success' %>
+		<% if @agent.recordings.count == 0 %>
+		<% else %>
+		<div class="well">
+		<h4>Voice Notifications</h4>
+			<table class="table table-striped span12">
+				<thead>
+					<tr>
+						<th>Active?</th>
+						<th>Recording</th>
+						<th>Created</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
+						<%= render 'recording_fields', :f => recording %>
+					<% end %>
+					<tr>
+						<td></td>
+					</tr>
+				</tbody>
+		</table>
+	</div>
+	<% end %>
 </div>
 
 <div class="well">
@@ -99,8 +105,8 @@
 				</tbody>
 			</table>
 	</div>
-	<%= f.submit 'Update Notifications', :class => 'btn btn-success' %>
 		
-</div>	
+</div>
+<%= f.submit 'Update Profile', :class => 'btn btn-success' %>
 
 <% end %>
