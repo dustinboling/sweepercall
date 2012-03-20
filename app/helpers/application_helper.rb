@@ -11,13 +11,6 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :class => 'btn btn-warning')
   end
   
-  def link_to_twilio_client(name)
-    account_sid = 'ACbc18a2ac1712bd298d743d0f395defc4'
-    auth_token = 'cccf865524c94ab9dff4de6cc98d70c3'
-    capability = Twilio::Util::Capability.new(account_sid, auth_token)
-    @token = capability.generate
-  end
-  
   def twilio_client_setup
     account_sid = 'ACbc18a2ac1712bd298d743d0f395defc4'
     auth_token = 'cccf865524c94ab9dff4de6cc98d70c3'

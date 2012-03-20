@@ -8,6 +8,35 @@ describe "LayoutLinks" do
       click_link "Home"
       page.should have_content("Welcome to sweepercall.")
     end
+    
+    it "should show the 'log in' link button when not loggend" do
+      @user = Factory(:user)
+      
+      visit root_url
+      page.should have_link("log in")
+    end
+    
+    it "should not show the 'log in' button when logged in" do
+      @user = Factory(:user)
+      
+      visit login_path
+      fill_in "Email", :with => @user.email
+      fill_in "Password", :with => '123'
+      click_button "Log in"
+      page.should_not have_link("Log in")
+    end
+    
+    
+    it "should show the log out button when a user is logged in" do
+      @user = Factory(:user)
+      
+      visit login_path
+      fill_in "Email", :with => @user.email
+      fill_in "Password", :with => '123'
+      click_button "Log in"
+      page.should have_link("log out")
+    end
+    
   end
   
   describe "GET navbar links :as => admin" do

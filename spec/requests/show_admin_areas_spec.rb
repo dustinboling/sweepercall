@@ -14,6 +14,10 @@ describe "GET admin areas, show them" do
     page.should have_content("logged in as admin!")
   end
   
+  it "should say admin is logged in" do
+    page.should have_content("Logged in as #{@admin_user.email}")
+  end
+  
   # users#index
   it "should have the warning about destroy being disabled" do
     page.should have_content("Notice: Destroy has been disabled on the users model.")
@@ -60,6 +64,14 @@ describe "GET admin areas, show them" do
     @a2 = Factory(:agent, :last_name => 'Agent2')
     
     click_link "Manage Agents"
-    
+    page.should have_content(@a1.first_name)
+    page.should have_content(@a1.last_name)
+    page.should have_content(@a1.outgoing_phone)
+    page.should have_content(@a2.first_name)
+    page.should have_content(@a2.last_name)
+    page.should have_content(@a2.outgoing_phone)
+    page.should have_link("Edit")
+    page.should have_link("Destroy")
   end
+  
 end
