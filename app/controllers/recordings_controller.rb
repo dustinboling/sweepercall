@@ -4,10 +4,9 @@ class RecordingsController < ApplicationController
   end
   
   def dial
-    
-    # respond_to do |format|
-    #   format.xml # dial.xml
-    # end
+  end
+  
+  def record_prompt
   end
   
   def record

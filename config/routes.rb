@@ -10,6 +10,7 @@ Sweeper::Application.routes.draw do
   get "agents/verify"
   
   get "recordings/dial"
+  get "recordings/record_prompt"
   get "recordings/record"
   get "recordings/create"
   get "recordings/new"
