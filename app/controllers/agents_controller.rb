@@ -4,17 +4,6 @@ class AgentsController < ApplicationController
   
   layout :resolve_layout
   
-  def resolve_layout
-    case action_name
-    when "show"
-      "agent"
-    when "index", "new"
-      "application"
-    else
-      "application"
-    end
-  end
-  
   def verify
     require 'twilio-ruby'
     @account_sid = 'ACe079c3003a2c4a1d949806c681648262'

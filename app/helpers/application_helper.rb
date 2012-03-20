@@ -32,4 +32,15 @@ module ApplicationHelper
     render(:partial => 'shared/error_messages', :locals => {:object => object})  
   end
   
+  def resolve_layout
+    case action_name
+    when "show"
+      "agent"
+    when "index", "new"
+      "application"
+    else
+      "application"
+    end
+  end
+  
 end
