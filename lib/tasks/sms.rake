@@ -54,8 +54,8 @@ namespace :sms do
     if today.nil?
       puts "No notifications for today!"
     else
-      @account_sid = 'ACe079c3003a2c4a1d949806c681648262'
-      @auth_token = '85bcc52edb352a11a19b8de47b4437fb'
+      @account_sid = 'ACbc18a2ac1712bd298d743d0f395defc4'
+      @auth_token = 'cccf865524c94ab9dff4de6cc98d70c3'
       @client = Twilio::REST::Client.new @account_sid, @auth_token
       
       @people = Notification.where("week = '#{current_week(current_day, current_month)}' AND day = '#{current_day}' AND notification_type = 2").collect { |person| Person.find_by_id(person.person_id) } 
