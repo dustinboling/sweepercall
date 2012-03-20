@@ -11,7 +11,9 @@ var connection=null;
 var sweeper_auth_token = "<%= twilio_client_setup %>";
 	$(document).ready(function(){
 		Twilio.Device.setup(sweeper_auth_token,{"debug":true});
+		
 		$("#call").click(function() {  
+			Twilio.Device.sounds.outgoing(false);
 			Twilio.Device.connect({
 				phone_number: <%= @agent.outgoing_phone %>,
 				uuid: "<%= @agent.uuid %>"
@@ -24,7 +26,7 @@ var sweeper_auth_token = "<%= twilio_client_setup %>";
 		Twilio.Device.ready(function (device) {
 			$('#status').text('Ready to start recording');
 		});
-
+		
 		Twilio.Device.offline(function (device) {
 			$('#status').text('Offline');
 		});
