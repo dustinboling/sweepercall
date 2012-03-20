@@ -3,20 +3,20 @@
 <%= render 'layouts/messages' %>
 
 <% if phone_not_verified? %>
-	<div class="alert alert-info">
+	<div class="alert alert-info span11">
 		<h3>Your phone number is not validated!</h3>
 		If you do not validate it, your number will not show up on the caller id.
 		<b><%= link_to "Validate it now", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %></b>
 	</div>
 <% end %>
 
-<div class="alert">
+<div class="alert span11">
 	<h4>Signup URL</h4>
 		<p>Link to this to get people signed up for your notifications, or download one of our <%= link_to 'plugins' %> to integrate with your platform of choice.</p>
 		<b>http://localhost:3000/users/new_person?uuid=<%= @agent.uuid %></b>
 </div>
 
-<div class="well">
+<div class="well span12">
 	<div class="row">
 		<h3 class="span3">Your Stats:</h3>
 	</div>
@@ -35,6 +35,31 @@
 			<h4 class="pull-right">People Notified Today</h4>
 		</div>
 	</div>
+</div>
+
+<div class="well span12">
+	<%= render :partial => 'begin_agent_recording' %><br />
+	
+	<%= form_for(@agent, :html => {:class => 'span12', :style => 'margin: 0;'}) do |f| %>
+		<%= error_messages_for(@agent) %>
+		<h4>Voice Notifications</h4>
+			<table class="table table-bordered table-striped span12">
+				<thead>
+					<tr>
+						<th>Active?</th>
+						<th>Recording</th>
+						<th>Created</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
+						<%= render 'recording_fields', :f => recording %>
+					<% end %>
+				</tbody>
+		</table>
+		<%= f.submit "Update Recordings", :class => 'btn btn-success' %>
+	<% end %>
 </div>
 
 <div>
@@ -65,31 +90,6 @@
 		</tr>
 		<% end %>
 	</table>
-</div>
-
-<div class="well span12">
-	<%= form_for(@agent, :html => {:class => 'span12', :style => 'margin: 0;'}) do |f| %>
-		<%= error_messages_for(@agent) %>
-		<h4>Voice Notifications</h4>
-			<table class="table table-bordered table-striped span12">
-				<thead>
-					<tr>
-						<th>Active?</th>
-						<th>Recording</th>
-						<th>Created</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
-						<%= render 'recording_fields', :f => recording %>
-					<% end %>
-				</tbody>
-		</table>
-	<% end %>
-	
-	<%= render :partial => 'begin_agent_recording' %>
-
 </div>
 
 <%= link_to 'Edit your profile', edit_agent_path(@agent), :class => 'btn btn-warning' %>
