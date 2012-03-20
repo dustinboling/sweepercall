@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       elsif user.role? :subscriber
         redirect_to person_path(:id => Person.find_by_user_id(user.person.user_id)), :notice => "Logged in!"
       elsif user.role? :admin
-        redirect_to users_path, :notice => "Hello admin."
+        redirect_to users_path, :notice => "Hello #{user.email}, logged in as admin!"
       end
     else
       flash[:notice] = "Email or password incorrect."

@@ -25,7 +25,17 @@ describe "GET agent profile :as => agent" do
     page.should have_content("1Total Addresses")
   end
   
+  it "should show the edit button" do
+    page.should have_link("Edit your profile")
+  end
+  
   # agent#edit
+  it "should link back to agent#show from edit" do
+    click_link "Edit"
+    click_link "Back"
+    page.should have_content("Hello #{@agent.first_name} #{@agent.last_name}!")
+  end
+  
   it "should say the phone number is not verified when it is not" do
     @agent.outgoing_phone = "(000) 000-0000"
     @agent.save

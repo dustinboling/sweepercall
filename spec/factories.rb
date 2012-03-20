@@ -1,11 +1,12 @@
 Factory.define :person do |f|
-  f.address "1800 Quail St."
-  f.city "Newport Beach"
-  f.state "CA"
-  f.zip "92660"
+  f.address Faker::Address.street_address(include_secondary = false)
+  f.city Faker::Address.city
+  f.state Faker::Address.state
+  f.zip Faker::Address.zip
   f.phone "714-512-2526"
   f.mobile_phone "7145122526"
-  f.first_name "Alan"
+  f.first_name Faker::Name.first_name
+  f.last_name Faker::Name.last_name
   f.agent_id "1"
 end
 
