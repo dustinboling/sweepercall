@@ -1,5 +1,5 @@
 xml.Response do
-  xml.Say "Please record your outgoing message. Press # when finished.", :voice => "woman"
+  xml.Say "Please Record your outgoing message. Press # when finished.", :voice => "woman"
   xml.Record(
     :action => "http://sweepercall.heroku.com/recordings/create.xml?uuid=#{params[:uuid]}",
     :method => "GET",
