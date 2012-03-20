@@ -1,0 +1,13 @@
+<% if phone_not_verified? %>
+	<p style="color: red;">
+		You cannot make a recording without verifying your phone number.
+		<%= link_to "Click here to verify.", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %>
+	</p>
+<% else %>
+	<h3>Create a Recording</h3>
+	<input type="button" class="btn btn-warning" id="call" value="Begin Recording"/>
+	<input type="button" id="hangup" value="Stop Recording" style="display:none;"/>
+	<div id="status">
+	Offline
+	</div>
+<% end %>
