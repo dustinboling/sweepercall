@@ -2,7 +2,7 @@ class AgentsController < ApplicationController
   
   load_and_authorize_resource
   
-  layout 'agent'
+  layout 'agent', :except => :index
   
   def verify
     require 'twilio-ruby'

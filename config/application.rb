@@ -47,5 +47,8 @@ module Sweeper
     
     # Complain if mail fails
     config.action_mailer.raise_delivery_errors = true
+    
+    # Set correct time zone
+    config.time_zone = "Pacific Time (US & Canada)"
   end
 end
