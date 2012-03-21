@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "mailer@sweepercall.com"
+  default from: "mailer@sweepercall.heroku.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
