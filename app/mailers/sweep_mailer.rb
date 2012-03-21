@@ -9,12 +9,11 @@ class SweepMailer < ActionMailer::Base
     if @person.agent_id.blank?
       @from = "mailer@sweepercall.com"
     else
-      @agent_id = Agent.find_by_id(@person.agent_id).user_id
-      @from = User.find_by_id(@agent_id).email
+      @from = Agent.find(@person.agent_id).outgoing_email
     end
     
     # send the mail off  
-    mail(:to => User.find_by_id(@person.user_id).email,
+    mail(:to => Person.find(@person.id).email,
          :from => @from,
          :subject => "SweeperCall Notification")
   end

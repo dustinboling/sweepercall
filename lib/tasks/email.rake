@@ -1,4 +1,4 @@
-namespace :cron do  
+namespace :email do  
   current_day = Time.now.strftime('%A').downcase
   current_month = Time.now.strftime('%B').downcase
   
@@ -55,7 +55,8 @@ namespace :cron do
     if today.nil?
       puts "No notifications for today!"
     else
-      @people = Notification.where("week = '#{current_week(current_day, current_month)}' AND day = '#{current_day}' AND notification_type = 1").collect { |person| Person.find_by_id(person.person_id) } 
+      @notifications = Notification.where("week = '#{current_week(current_day, current_month)}' AND day = '#{current_day}' AND notification_type = 1")
+      @people = @notifications.collect { |person| Person.find_by_id(person.person_id) } 
       @people.each do |p|
         agent = Agent.find_by_id(p.agent_id)
         person = Person.find_by_id(p.id)
