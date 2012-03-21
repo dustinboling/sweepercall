@@ -6,5 +6,5 @@ ActionMailer::Base.smtp_settings = {
   :password       => ENV['chbgoj1m'],
   :domain         => 'heroku.com'
 }
-ActionMailer::Base.delivery_method = :smtp
+# ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.default_url_options[:host] = "sweepercall.heroku.com"
