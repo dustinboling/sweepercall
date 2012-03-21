@@ -29,9 +29,9 @@ Sweeper::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
   
-  # don't send out emails in test
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
+  # # don't send out emails in test
+  # config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
   
   # set action mailer host
   config.action_mailer.default_url_options = { :host => "sweepercall.com" }
