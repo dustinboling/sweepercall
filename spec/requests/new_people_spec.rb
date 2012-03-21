@@ -16,11 +16,11 @@ describe "NewPeople" do
         
       visit users_new_person_path
       fill_in "Address", :with => person.address
-      fill_in "City", :with => person.city
-      fill_in "State", :with => person.state
+      # fill_in "City", :with => person.city
+      # fill_in "State", :with => person.state
       fill_in "Zip", :with => person.zip
       fill_in "Phone", :with => person.phone
-      fill_in "Mobile phone", :with => person.mobile_phone
+      # fill_in "Mobile phone", :with => person.mobile_phone
       fill_in "First name", :with => person.first_name
       fill_in "Last name", :with => person.last_name
       fill_in "Password", :with => "123"

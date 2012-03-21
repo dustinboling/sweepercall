@@ -28,14 +28,6 @@ describe Person do
     Factory.build(:person, :address => "").should_not be_valid
   end
   
-  it "should require a city" do
-    Factory.build(:person, :city => "").should_not be_valid
-  end
-  
-  it "should require a state" do
-    Factory.build(:person, :state => "").should_not be_valid
-  end
-  
   it "should require a zip code" do
     Factory.build(:person, :zip => "").should_not be_valid
   end

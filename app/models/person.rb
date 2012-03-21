@@ -9,8 +9,6 @@ class Person < ActiveRecord::Base
   
   validates_presence_of :first_name
   validates_presence_of :address
-  validates_presence_of :city
-  validates_presence_of :state
   validates_presence_of :zip
   validates_presence_of :phone
   validates_length_of :phone, :is => 10, :message => "Phone number must contain exactly 10 numbers: XXX-XXX-XXXX OR (XXX) XXX-XXXX "

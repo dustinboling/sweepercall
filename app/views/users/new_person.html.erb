@@ -1,22 +1,24 @@
-<%= form_for @user, :url => users_new_person_path, :html => { :class => 'well span8' } do |f| %>
+<%= form_for @user, :url => users_new_person_path, :html => { :class => 'well span11' } do |f| %>
  <%= error_messages_for(@user) %>
 	<h1>Sign Up Person</h1>
-  
+
+<div class="span5">
 	<% f.object.build_person %>
 	<%= f.fields_for :person do |person| %>
 		<%= render 'person_fields', :f => person %>
 	<% end %>
+	
+	  <%= f.label :email %>
+	  <%= f.text_field :email %>
 
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+	  <%= f.label :password %>
+	  <%= f.password_field :password %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+	  <%= f.label :password_confirmation %>
+	  <%= f.password_field :password_confirmation %>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-
-	<%= f.hidden_field :roles_mask, :value => '2', :readonly => true %>
-
-	<%= f.submit 'Sign up!', :class => 'btn btn-success' %>
+		<%= f.hidden_field :roles_mask, :value => '2', :readonly => true %><br / >
+		
+		<%= f.submit 'Sign up!', :class => 'btn btn-large btn-success' %>
+</div>
 <% end %>

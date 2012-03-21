@@ -13,11 +13,11 @@ var sweeper_auth_token = "<%= twilio_client_setup %>";
 	$(document).ready(function(){
 		Twilio.Device.setup(sweeper_auth_token,{"debug":true});
 		
-		
 		$("#call").click(function() {  
 			Twilio.Device.sounds.outgoing(false);
 			Twilio.Device.sounds.incoming(false);
 			Twilio.Device.sounds.disconnect(false);
+
 			Twilio.Device.connect({
 				phone_number: <%= @agent.outgoing_phone %>,
 				uuid: "<%= @agent.uuid %>"
