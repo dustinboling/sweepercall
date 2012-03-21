@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "mailer@sweepercall.heroku.com"
+  default from: "mailer@sweepercall.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
   #
   def reset_password_email(user)
     @user = user
-    @url = "http://0.0.0.0:3000/password_resets/#{user.reset_password_token}/edit"
+    @url = "http://sweepercall.heroku.com/password_resets/#{user.reset_password_token}/edit"
     mail(:to => user.email,
          :subject => "Reset your password")
   end

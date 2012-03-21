@@ -19,7 +19,7 @@ describe "GET agent profile :as => agent" do
   end
   
   it "has a notification of the agent's signup url" do
-    page.should have_content("http://localhost:3000/users/new_person?uuid=#{@agent.uuid}")
+    page.should have_content("http://sweepercall.heroku.com/users/new_person?uuid=#{@agent.uuid}")
   end
   
   it "should count the number of addresses an agent is notifying" do
