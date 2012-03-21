@@ -64,10 +64,9 @@ namespace :sms do
         person = Person.find_by_id(p.id)
         
         @client.account.sms.messages.create(
-          :from => '14155992671', 
-          :to => "#{@person.phone}", 
+          :from => '19496129779', 
+          :to => "#{person.phone}", 
           :body => 'testing sms functionality for website')
-
       end
     end
   end

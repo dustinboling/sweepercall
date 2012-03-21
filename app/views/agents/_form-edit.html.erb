@@ -33,31 +33,28 @@
 	</div>
 </fieldset>
 
-<div class="well">
+<div class="well" style="min-height: 300px;">
 	<%= render :partial => 'begin_agent_recording' %>
 		<% if @agent.recordings.count == 0 %>
 		<% else %>
-		<div class="well">
-		<h4>Voice Notifications</h4>
-			<table class="table table-striped span12">
-				<thead>
-					<tr>
-						<th>Active?</th>
-						<th>Recording</th>
-						<th>Created</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
-						<%= render 'recording_fields', :f => recording %>
-					<% end %>
-					<tr>
-						<td></td>
-					</tr>
-				</tbody>
-		</table>
-	</div>
+		<div class="well" style="min-height: 150px;">
+			<h4>Voice Notifications</h4>
+				<table class="table table-striped span12">
+					<thead>
+						<tr>
+							<th>Active?</th>
+							<th>Recording</th>
+							<th>Created</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
+							<%= render 'recording_fields', :f => recording %>
+						<% end %>
+					</tbody>
+				</table>
+		</div>
 	<% end %>
 </div>
 
