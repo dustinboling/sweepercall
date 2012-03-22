@@ -38,8 +38,6 @@
 </div>
 
 <div class="well span12">
-	<%= render :partial => 'begin_agent_recording' %><br />
-	
 	<%= form_for(@agent, :html => {:class => 'span12', :style => 'margin: 0;'}) do |f| %>
 		<%= error_messages_for(@agent) %>
 		<h4>Voice Notifications</h4>
@@ -59,6 +57,11 @@
 				</tbody>
 		</table>
 		<%= f.submit "Update Recordings", :class => 'btn btn-success' %>
+	<% end %>
+	<% if phone_not_verified? %>
+		<p style="color: red;">You are using the default message right now, please <%= link_to "verify", agents_verify_path, :phn => @agent.outgoing_phone, :uuid => @agent.uuid  %> to add your own.</p>
+	<% else %>
+		<%= link_to "Create a Recording", {:controller => 'recordings', :action => 'record_landing', :uuid => @agent.uuid}, :class => 'btn btn-warning' %>
 	<% end %>
 </div>
 

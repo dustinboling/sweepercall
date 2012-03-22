@@ -34,7 +34,6 @@
 </fieldset>
 
 <div class="well" style="min-height: 300px;">
-	<%= render :partial => 'begin_agent_recording' %>
 		<% if @agent.recordings.count == 0 %>
 			<div class="well" style="min-height: 150px;">
 				<h1>You don't have any recordings, make one!</h1>
@@ -58,6 +57,11 @@
 						</tbody>
 					</table>
 			</div>
+	<% end %>
+	<% if phone_not_verified? %>
+		<p style="color: red;">You are using the default message right now, please <%= link_to "verify", agents_verify_path, :phn => @agent.outgoing_phone, :uuid => @agent.uuid  %> to add your own.</p>
+	<% else %>
+		<%= link_to "Create a Recording", {:controller => 'recordings', :action => 'record_landing', :uuid => @agent.uuid}, :class => 'btn btn-warning' %>
 	<% end %>
 </div>
 

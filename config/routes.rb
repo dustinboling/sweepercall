@@ -10,13 +10,12 @@ Sweeper::Application.routes.draw do
   get "agents/verify"
   
   get "recordings/dial"
+  get "recordings/record_landing"
   get "recordings/record_prompt"
   get "recordings/record"
   get "recordings/create"
   get "recordings/new"
   get "recordings/success"
-  post "recordings/new"
-  post "recordings/create"
   
   get "password_resets/create"
   get "password_resets/edit"

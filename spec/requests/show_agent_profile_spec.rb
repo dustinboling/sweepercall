@@ -1,4 +1,5 @@
 require 'spec_helper'
+include ActionView::Helpers::NumberHelper
 
 describe "GET agent profile :as => agent" do
   before :each do
@@ -35,7 +36,19 @@ describe "GET agent profile :as => agent" do
     @agent.save
     
     click_link "Account"
-    page.should have_content("You cannot make a recording without verifying your phone number.")
+    page.should have_content("You are using the default message right now")
+  end
+  
+  it "should allow an agent to connect to the record LANDING page" do
+    click_link "Create a Recording"
+    page.should have_content("Click the button below and we will call you at #{number_to_phone(@agent.outgoing_phone)} so you can make your recording.")
+    page.should have_link("Call me now!")
+  end
+  
+  it "should allow an agent to connect to the ACTUAL recording page" do
+    click_link "Create a Recording"
+    click_link "Call me now!"
+    page.should have_content("You are receiving a call right now at #{number_to_phone(@agent.outgoing_phone)}")
   end
   
   # agent#edit
@@ -59,4 +72,5 @@ describe "GET agent profile :as => agent" do
     click_link "Account"
     page.should have_content("#{Time.now.strftime('%d %b %Y')}")
   end
+  
 end

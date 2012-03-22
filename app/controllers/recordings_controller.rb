@@ -9,6 +9,10 @@ class RecordingsController < ApplicationController
   def record_prompt
   end
   
+  def record_landing
+    @agent = Agent.find_by_uuid(params[:uuid])    
+  end
+  
   def record
     @agent = Agent.find_by_uuid(params[:uuid])    
     @account_sid = 'ACbc18a2ac1712bd298d743d0f395defc4'
