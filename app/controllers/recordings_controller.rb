@@ -9,6 +9,9 @@ class RecordingsController < ApplicationController
   def record_prompt
   end
   
+  def notification
+  end
+  
   def record_landing
     @agent = Agent.find_by_uuid(params[:uuid])    
   end

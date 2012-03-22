@@ -66,7 +66,8 @@ namespace :sms do
         @client.account.sms.messages.create(
           :from => '19496129779', 
           :to => "#{person.phone}", 
-          :body => 'testing sms functionality for website')
+          :body => 'testing sms functionality for website'
+          )
       end
     end
   end

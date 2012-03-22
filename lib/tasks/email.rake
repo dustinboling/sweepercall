@@ -1,6 +1,4 @@
 namespace :email do  
-  current_day = Time.now.strftime('%A').downcase
-  current_month = Time.now.strftime('%B').downcase
   
   desc "Find week of the month"
   task :check_time => :environment do
@@ -31,6 +29,8 @@ namespace :email do
     puts "Success!"
   end
   
+  current_day = Time.now.strftime('%A').downcase
+  current_month = Time.now.strftime('%B').downcase
   def current_week(current_day, current_month)
     @today = Time.now.strftime('%Y-%m-%d')
   

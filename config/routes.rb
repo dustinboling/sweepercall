@@ -12,6 +12,7 @@ Sweeper::Application.routes.draw do
   get "recordings/dial"
   get "recordings/record_landing"
   get "recordings/record_prompt"
+  get "recordings/notification"
   get "recordings/record"
   get "recordings/create"
   get "recordings/new"
