@@ -1,5 +1,5 @@
 <h1>Make A Recording</h1>
 
-<p>Click the button below and we will call you at <b><%= number_to_phone(@agent.outgoing_phone) %></b> so you can make your recording.</p>
+<h3>Click the button below and we will call you at <b><%= number_to_phone(@agent.outgoing_phone) %></b> so you can make your recording.</h3><br />
 
 <%= link_to "Call me now!", {:controller => 'recordings', :action => 'record', :uuid => params[:uuid]}, :class => "btn btn-large btn-success" %>
