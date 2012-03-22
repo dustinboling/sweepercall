@@ -60,7 +60,11 @@ namespace :sms do
       
       @people = Notification.where("week = '#{current_week(current_day, current_month)}' AND day = '#{current_day}' AND notification_type = 2").collect { |person| Person.find_by_id(person.person_id) } 
       @people.each do |p|
-        agent = Agent.find_by_id(p.agent_id)
+        if p.agent_id.nil?
+          agent = Agent.find_by_id(12)
+        else
+          agent = Agent.find_by_id(p.agent_id)
+        end
         person = Person.find_by_id(p.id)
         
         @client.account.sms.messages.create(

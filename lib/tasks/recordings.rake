@@ -59,7 +59,9 @@ namespace :recordings do
       @notifications = Notification.where("week = '#{current_week(current_day, current_month)}' AND day = '#{current_day}' AND notification_type = 3")
       @people = @notifications.collect { |person| Person.find_by_id(person.person_id) }
       @people.each do |p|
-        unless p.agent_id.nil?
+        if p.agent_id.nil?
+          agent = Agent.find(12)
+        else
           agent = Agent.find(p.agent_id)
         end
         person = Person.find(p.id)
