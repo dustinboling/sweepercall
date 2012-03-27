@@ -16,10 +16,6 @@ describe Person do
     p.macro.should eq(:belongs_to)
   end
   
-  it "belongs to agent" do
-    
-  end
-  
   it "should require a first_name" do
     Factory.build(:person, :first_name => "").should_not be_valid
   end 
