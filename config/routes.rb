@@ -1,10 +1,6 @@
 Sweeper::Application.routes.draw do
   
-  get "email_confirmations/create"
-
-  get "email_confirmations/edit"
-
-  get "email_confirmations/update"
+  get "email_confirmations/confirm"
 
   get "static_pages/landing"
   
