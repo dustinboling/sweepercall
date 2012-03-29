@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     
     if user
       if @user.account_confirmed_at.nil?
-        flash[:notice] = "Please confirm your account before continuing (check your email)"
+        flash[:notice] = "You must confirm your account before logging in. Check your email!"
         render :new
       elsif user.role? :agent
         redirect_to agent_path(:id => Agent.find_by_user_id(user.agent.user_id)), :notice => "Logged in!"
