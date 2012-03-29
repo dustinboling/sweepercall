@@ -10,13 +10,15 @@ class UserMailer < ActionMailer::Base
     @user = user
     @url = "http://sweepercall.heroku.com/password_resets/#{user.reset_password_token}/edit"
     mail(:to => user.email,
-         :subject => "Reset your password")
+         :subject => "Reset your password! - SweeperCall")
   end
   
   def registration_confirmation(user)
     @user = user
+    @url = "http://sweepercall.heroku.com/email_confirmations/#{user.account_confirmation}/confirm"
     mail(:to => user.email, 
-         :subject => "New Account Registered at SweeperCall")
+         :from => "accounts@sweepercall.com",
+         :subject => "Confirm your account! - SweeperCall")
   end
   
 end

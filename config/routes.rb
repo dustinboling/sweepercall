@@ -1,5 +1,11 @@
 Sweeper::Application.routes.draw do
   
+  get "email_confirmations/create"
+
+  get "email_confirmations/edit"
+
+  get "email_confirmations/update"
+
   get "static_pages/landing"
   
   match "users/new_person", :to => 'users#create', :via => :post, :as => :post_new_person

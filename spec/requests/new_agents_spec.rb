@@ -11,7 +11,11 @@ describe "NewAgents" do
     fill_in "Password", :with => "123"
     fill_in "Password confirmation", :with => "123"
     click_button "Sign up!"
-    page.should have_content("Signed up!")
+    page.should have_content("Signed up! Check your email to confirm your account")
+  end
+  
+  it "should email a user when they set up an account" do
+    
   end
   
 end

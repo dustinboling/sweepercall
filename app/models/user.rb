@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   
+  require 'digest/md5'
+  
   authenticates_with_sorcery!
+  
+  before_create :set_account_confirmation
   
   attr_accessible :username, :password, :password_confirmation, :email, :roles_mask, :roles, :person_attributes, :agent_attributes, :agent_id
   
@@ -30,6 +34,12 @@ class User < ActiveRecord::Base
 
   def role?(role)
     roles.include? role.to_s
+  end
+  
+  def set_account_confirmation
+    r = rand(1000)
+    md5 = Digest::MD5.new
+    self.account_confirmation =  md5.hexdigest("#{r.to_s + 'self.email'}")
   end
   
 end

@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     
     if @user.save
       UserMailer.registration_confirmation(@user).deliver
-      redirect_to root_url, :notice => "Signed up! Check your email for account details."
+      redirect_to root_url, :notice => "Signed up! Check your email to confirm your account."
     else
       # this only works on the first refresh.
       # need to render full path somehow on render :new_person
