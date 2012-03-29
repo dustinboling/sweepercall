@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   
   authenticates_with_sorcery!
   
-  before_create :set_account_confirmation
+  before_save :set_account_confirmation
   
   attr_accessible :username, :password, :password_confirmation, :email, :roles_mask, :roles, :person_attributes, :agent_attributes, :agent_id
   
