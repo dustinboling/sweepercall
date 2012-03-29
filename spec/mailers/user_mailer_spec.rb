@@ -27,7 +27,7 @@ describe UserMailer do
     end
     
     it "has the confirmation token & url in the body" do
-      mail.body.encoded.should match("http://sweepercall.heroku.com/email_confirmations/#{user.account_confirmation}/confirm")
+      mail.body.encoded.should include("http://sweepercall.heroku.com/email_confirmations/confirm?token=#{user.account_confirmation}")
     end
   end
   
