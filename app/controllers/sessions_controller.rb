@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   
   def create
     user = login(params[:email], params[:password], params[:remember_me])
-    unless @user = User.find_by_email(params[:email]).nil?
+    unless User.find_by_email(params[:email]).nil?
       @user = User.find_by_email(params[:email])
     end
     
