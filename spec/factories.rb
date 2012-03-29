@@ -28,6 +28,7 @@ Factory.define :user do |f|
   f.sequence(:email) { |n| "test-account-#{n}@dustinboling.com" }
   f.password "123"
   f.password_confirmation "123"
+  f.account_confirmed_at Time.now
 end
 
 Factory.define :recording do |f|
