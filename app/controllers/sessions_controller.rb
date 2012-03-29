@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:email], params[:password], params[:remember_me])
     if user
-      if user.account_confirmation.nil?
+      if User.account_confirmation.nil?
         flash[:notice] = "Please confirm your account before continuing (check your email)"
         render :new
       elsif user.role? :agent
