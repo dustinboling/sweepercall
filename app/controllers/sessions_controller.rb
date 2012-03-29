@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = login(params[:email], params[:password], params[:remember_me])
     @user = User.find_by_email(params[:email])
     if user
-      if @user.account_confirmation.nil?
+      if @user.account_confirmed_at.nil?
         flash[:notice] = "Please confirm your account before continuing (check your email)"
         render :new
       elsif user.role? :agent
