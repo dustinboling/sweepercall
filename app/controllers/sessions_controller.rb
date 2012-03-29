@@ -5,7 +5,10 @@ class SessionsController < ApplicationController
   
   def create
     user = login(params[:email], params[:password], params[:remember_me])
-    @user = User.find_by_email(params[:email])
+    unless @user = User.find_by_email(params[:email]).nil?
+      @user = User.find_by_email(params[:email])
+    end
+    
     if user
       if @user.account_confirmed_at.nil?
         flash[:notice] = "Please confirm your account before continuing (check your email)"
