@@ -1,6 +1,4 @@
-<% if flash[:notice] %>
-	<p id="flash_notice"><%= flash[:notice] %></p>
-<% end %>
+<%= render 'layouts/messages' %>
 
 <div class="row">
 <%= form_tag sessions_path, :class => 'well span5' do %>
