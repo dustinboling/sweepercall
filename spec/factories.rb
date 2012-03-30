@@ -35,3 +35,4 @@ Factory.define :recording do |f|
   f.recording_url "http://www.thisistest.com/recording/?45678903vhjdbfiucwbifwe874ub"
   f.active false
 end
+

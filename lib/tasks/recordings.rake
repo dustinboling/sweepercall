@@ -71,7 +71,7 @@ namespace :recordings do
           :to => "#{person.phone}",
           :url => 'http://sweepercall.heroku.com/recordings/notification.xml',
           :method => "GET"
-        )        
+        )
       end
     end  
   end

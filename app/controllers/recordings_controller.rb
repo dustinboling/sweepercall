@@ -38,13 +38,13 @@ class RecordingsController < ApplicationController
     @agent = Agent.find_by_uuid(params[:uuid])
     
     # store file on amazon
+    AWS::S3::Base.establish_connection!(:access_key_id => 'AKIAIM3ERMFQV5XL5KMQ', :secret_access_key => '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')
     AWS::S3::S3Object.store("#{params[:RecordingUrl].split('/').pop}.mp3", open("#{params[:RecordingUrl]}.mp3"), 'SweeperCallAgentRecordings', :access => :public_read)
     @file = AWS::S3::S3Object.find("#{params[:RecordingUrl].split('/').pop}.mp3", 'SweeperCallAgentRecordings')
      
     # save url to postgres
     @recording = Recording.new(:agent_id => @agent.id, :recording_url => @file.url)
-    @recording.save
-    
+    @recording.save    
   end
   
   def destroy
