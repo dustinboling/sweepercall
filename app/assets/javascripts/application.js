@@ -24,3 +24,5 @@ function reload_agent() {
 }
 
 $('.dropdown-toggle').dropdown()
+
+$('#recordings').tab('show')

@@ -30,87 +30,9 @@
 				<b>Yes</b>
 			<% end %>
 		</div>
+    <%= f.submit 'Update Profile', :class => 'btn btn-success' %>
 	</div>
 </fieldset>
 
-<div class="well" style="min-height: 300px;">
-		<% if @agent.recordings.count == 0 %>
-			<div class="well" style="min-height: 150px;">
-				<h1>You don't have any recordings, make one!</h1>
-			</div>
-		<% else %>
-			<div class="well" style="min-height: 150px;">
-				<h4>Voice Notifications</h4>
-					<table class="table table-striped span12">
-						<thead>
-							<tr>
-								<th>Active?</th>
-								<th>Recording</th>
-								<th>Created</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
-								<%= render 'recording_fields', :f => recording %>
-							<% end %>
-						</tbody>
-					</table>
-			</div>
-	<% end %>
-	<% if phone_not_verified? %>
-		<p style="color: red;">You are using the default message right now, please <%= link_to "verify", agents_verify_path, :phn => @agent.outgoing_phone, :uuid => @agent.uuid  %> to add your own.</p>
-	<% else %>
-		<%= link_to "Create a Recording", {:controller => 'recordings', :action => 'record_landing', :uuid => @agent.uuid}, :class => 'btn btn-warning' %>
-	<% end %>
-</div>
-
-<div class="well">
-	<h3>Your Notifications:</h3>
-	<div class="well">
-		<h4>Email Notifications</h4>
-			<table class="table-striped">
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Message</th>
-						<th>Active?</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-				<%= f.fields_for(:email_notifications, @agent.email_notifications) do |email_notification| %>
-					<%= render 'email_notification_fields', :f => email_notification %>
-				<% end %>
-					<tr>
-						<td><%= link_to_add_fields "add email notification", f, :email_notifications %></td>
-					</tr>
-				</tbody>
-			</table>
-	</div>
-	
-	<div class="well">
-		<h4>SMS Notifications</h4>
-			<table class="table-striped">
-				<thead>
-					<tr>
-						<th>Message</th>
-						<th>Active?</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-				<%= f.fields_for(:sms_notifications, @agent.sms_notifications) do |sms_notification| %>
-					<%= render 'sms_notification_fields', :f => sms_notification %>
-				<% end %>
-					<tr>
-						<td><%= link_to_add_fields "add sms notification", f, :sms_notifications %></td>
-					</tr>
-				</tbody>
-			</table>
-	</div>
-		
-</div>
-<%= f.submit 'Update Profile', :class => 'btn btn-success' %>
 
 <% end %>
