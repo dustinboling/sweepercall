@@ -7,6 +7,7 @@
     <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
     <li><a href="#recordings" data-toggle="tab">Your Recordings</a></li>
     <li><a href="#subscribers" data-toggle="tab">Your Subscribers</a></li>
+    <li><a href="#profile" data-toggle="tab">Your Profile</a></li>
   </ul>
 
   <div class="tab-content">
@@ -108,6 +109,42 @@
 					</table>
 				</div>
 			</div>
-		</div>
 
-<%= link_to 'Edit your profile', edit_agent_path(@agent), :class => 'btn btn-warning' %>
+      <div class="tab-pane" id="profile"> 
+       <%= form_for(@agent, :html => {:class => 'span16'}) do |f| %>
+         <%= error_messages_for(@agent) %>
+          <fieldset class="well">
+          	<div class="row">                                                                                                                               
+          		<div class="well span5" style="margin: 15px">
+          			<h3>Basic Info:</h3>
+          			<%= f.label :first_name %>
+          			<%= f.text_field :first_name %>
+          
+          			<%= f.label :last_name %>
+          			<%= f.text_field :last_name %>
+          	
+          			<%= f.label :website_url %>
+          			<%= f.text_field :website_url %>
+          		</div>
+          	
+          		<div class="well span5" style="margin: 15px">
+          			<h3>Outgoing Message Info:</h3>
+          			<%= f.label :outgoing_phone %>
+          			<%= f.text_field :outgoing_phone %>
+          	
+          			<%= f.label :outgoing_email %>
+          			<%= f.text_field :outgoing_email %>
+          		
+          			<p>Phone verified?</p>
+          			<% if phone_not_verified? %>
+          				<b>No</b> <%= link_to "(verify now!)", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %>
+          			<% else %>
+          				<b>Yes</b>
+          			<% end %>
+          		</div>
+              <%= f.submit 'Update Profile', :class => 'btn btn-success' %>
+          	</div>
+            <% end %>
+          </fieldset>
+        </div>
+</div>
