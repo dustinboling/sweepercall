@@ -15,3 +15,6 @@
 /tmp
 config/database.yml
 *.dat
+
+# Ignore vim stuff
+*.swp
