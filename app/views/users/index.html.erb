@@ -6,7 +6,7 @@
 
 <table class="form-striped span12">
   <tr>
-		<th>ID</th>
+		<th>User ID</th>
     <th>Email</th>
     <th>Role</th>
     <th></th>
@@ -14,7 +14,6 @@
   </tr>
 
 <% @users.each do |user| %>
-  <tr>
 		<td><%= user.id %></td>
     <td><%= user.email %></td>
     <td><%= user.roles_mask %></td>

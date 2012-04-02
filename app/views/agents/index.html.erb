@@ -3,6 +3,7 @@
 
 <table class="table-striped span12">
   <tr>
+    <th>Agent ID</th>
     <th>First name</th>
     <th>Last name</th>
     <th>Outgoing Phone</th>
@@ -14,6 +15,7 @@
 
 <% @agents.each do |agent| %>
   <tr>
+    <td><%= agent.id %></td>
     <td><%= agent.first_name %></td>
     <td><%= agent.last_name %></td>
     <td><%= agent.outgoing_phone %></td>
