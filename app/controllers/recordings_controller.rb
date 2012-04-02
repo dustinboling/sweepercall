@@ -13,11 +13,11 @@ class RecordingsController < ApplicationController
   end
   
   def record_landing
-    @agent = Agent.find_by_uuid(params[:uuid])    
+    @agent = Agent.find_by_uuid(params[:uuid])
   end
   
   def record
-    @agent = Agent.find_by_uuid(params[:uuid])    
+    @agent = Agent.find_by_uuid(params[:uuid])
     @account_sid = 'ACbc18a2ac1712bd298d743d0f395defc4'
     @auth_token = 'cccf865524c94ab9dff4de6cc98d70c3'
     @client = Twilio::REST::Client.new(@account_sid, @auth_token)
@@ -48,8 +48,19 @@ class RecordingsController < ApplicationController
   end
   
   def destroy
+    # find recording in database
     @recording = Recording.find(params[:id])
+    
+    # delete file from amazon
+    long_url = @recording.recording_url.split('/').pop
+    url = long_url.split('?').first
+
+    AWS::S3::Base.establish_connection!(:access_key_id => 'AKIAIM3ERMFQV5XL5KMQ', :secret_access_key => '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')
+    AWS::S3::S3Object.delete("#{url}", 'SweeperCallAgentRecordings')
+    
+    # delete record from database
     @recording.destroy
+    
 
     respond_to do |format|
       format.html { redirect_to :back }
