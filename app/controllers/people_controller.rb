@@ -18,6 +18,10 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @person = Person.find(params[:id])
+    if @person.email.nil?  
+      @person.email = User.find(@person.user_id).email
+      @person.save
+    end 
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,52 +1,96 @@
 <h1>Hello <%= @person.first_name %>!</h1>
 
-<%= render 'layouts/messages' %>
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#notifications" data-toggle="tab">Home</a></li>
+    <li><a href="#profile" data-toggle="tab">Your Profile</a></li>
+  </ul>
 
-<% if @person.notifications.empty? %>
-	<p class="alert info">
-		You do not have any notifications set up.
-		<%= link_to 'Set one up now!', edit_person_path(:id => current_user.person.id) %>
-		<a class="close" data-dismiss="alert" href="#">&times;</a>
-	</p>
-<% end %>
+  <div class="tab-content">
+    <div class="tab-pane active" id="notifications">
+      <p>
+      <% if @person.agent_id = 12 %>
+      <% else %>
+        <b>Your local Real-estate Agent:</b>
+        <%= Agent.find_by_id(@person.agent_id).first_name %> <%= Agent.find_by_id(@person.agent_id).last_name %>
+      <% end %>
+      </p>
 
-<p>
-	<address class="well span12">
-		<b>Your Info:</b><br />
-		<%= @person.email %><br />
-		<%= @person.address %><br />
-		<%= @person.city %>, <%= @person.state %> <%= @person.zip %><br />
-		<b>P: </b><%= @person.phone %><br />
-		<b>M: </b><%= @person.mobile_phone %>
-	</address>
-</p>
-<p>
-	<% if @person.agent_id.nil? %>
-	<% else %>
-	  <b>Your local Real-estate Agent:</b>
-	  <%= Agent.find_by_id(@person.agent_id).first_name %> <%= Agent.find_by_id(@person.agent_id).last_name %>
-	<% end %>
-</p>
+      <%= render 'layouts/messages' %>
+      <% if @person.notifications.empty? %>
+        <p class="alert info">
+        You do not have any notifications set up.
+        <%= link_to 'Set one up now!', edit_person_path(:id => current_user.person.id) %>
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        </p>
+      <% end %> 
 
-<h3>Your Notifications</h3>
-<table class="table table-striped span12">
-	<thead>
-		<tr>
-			<th>Notification Week</th>
-			<th>Notification Day</th>
-			<th>Notification Type</th>
-		</tr>
-	</thead>
-	<tbody>
-	<% @person.notifications.collect do |n| %>
-	<tr>
-		<td><%= n.week %></td> 
-		<td><%= n.day.capitalize %></td>
-		<td><%= type_display(n.notification_type) %></td>			
-	</tr>
-	<% end %>
-	</tbody>
-</table>
+      <%= form_for(@person, :html => {:class => 'well span12'}) do |f| %>
+        <%= error_messages_for(@person) %>
 
-<%= link_to 'Edit Profile / Add Notifications', edit_person_path(@person), :class => 'btn btn-mini btn-warning' %> |
-<%= link_to 'Back', person_path(@person), :class => 'btn btn-mini btn-danger' %>
+        <h3>Notifications</h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Day</th>
+              <th>Type</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= f.fields_for(:notifications, @person.notifications) do |notification| %>
+              <%= render 'notification_fields', :f => notification %>
+            <% end %>
+            <tr>
+              <td><%= link_to_add_fields "add notification", f, :notifications %></td>
+            </tr>
+            <tr>
+              <td><%= f.submit 'update notifications',  :class => 'btn btn-success' %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+
+    <div class="tab-pane" id="profile">
+      <%= form_for(@person, :html => {:class => 'well span12'}) do |f| %>
+        <%= error_messages_for(@person) %>
+
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+
+        <%= f.label :state %>
+        <%= f.text_field :state %>
+
+        <%= f.label :zip %>
+        <%= f.number_field :zip %>
+
+        <%= f.label :phone %>
+        <%= f.text_field :phone %>
+
+        <%= f.label :mobile_phone %>
+        <%= f.text_field :mobile_phone %>
+
+
+        <div class="actions">
+          <%= f.submit :class => 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <%= link_to 'Back', person_path(@person), :class => 'btn btn-mini btn-danger' %>
