@@ -2,9 +2,9 @@
 
 <table class="table-striped">
   <tr>
+    <th>Person ID</th>
     <th>User ID</th>
     <th>User Email</th>
-    <th>Person ID</th>
 	  <th>First Name</th>
 		<th>Last Name</th>
     <th>Address</th>
@@ -20,12 +20,13 @@
 
 <% @people.each do |person| %>
   <tr>
+    <td><%= person.id %></td>
     <td><%= person.user_id %></td>
     <td>
-      <% if person.user_id %>
-        <%= User.find(person.user_id).email %></td>
+      <% unless person.user_id.nil? %>
+        <%= User.find(person.user_id).email %>
       <% end %>
-    <td><%= person.id %></td>
+    </td>
 	  <td><%= person.first_name %></td>
 		<td><%= person.last_name %></td>
     <td><%= person.address %></td>
