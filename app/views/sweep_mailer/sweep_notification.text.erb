@@ -3,5 +3,3 @@ Hello <%= @person.first_name %>,
 Time to move your car, street sweeping tomorrow!
 
 If you need to change this notification, please <a href="http://sweepercall.heroku.com/login">log in</a> to your account.
-
-<%= @agent.email_notifications.active.collect { |n| n.message }.to_sentence %>

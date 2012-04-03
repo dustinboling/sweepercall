@@ -11,8 +11,5 @@
 		<p>
 			If you need to change this notification, please <a href="http://sweepercall.heroku.com/login">log in</a> to your account.
 		</p>
-		<p>
-			<%= @agent.email_notifications.active.collect { |n| n.message }.to_sentence %>
-		</p>
 	</body>
 </html>
