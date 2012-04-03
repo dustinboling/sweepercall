@@ -45,6 +45,7 @@ test:
   pool: 5
   username: sweeper
   password: '123456'
+  min_messages: warning
 
 production:
   adapter: postgresql

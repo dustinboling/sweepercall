@@ -18,3 +18,5 @@ config/database.yml
 
 # Ignore vim stuff
 *.swp
+tags
+gems.tags
