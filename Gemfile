@@ -13,6 +13,7 @@ gem 'chronic'
 gem 'twilio-ruby'
 gem 'resque'
 gem 'aws-s3', :require => 'aws/s3'
+gem 'stripe'
 
 # Gems used only for assets and not required
 # in production environments by default.
