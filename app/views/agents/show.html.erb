@@ -12,139 +12,139 @@
 
   <div class="tab-content">
     <div class="tab-pane active" id="home">
-			<% if phone_not_verified? %>
-			 	<div class="alert alert-info span11">
-			 		<h3>Your phone number is not validated!</h3>
-			 		If you do not validate it, your number will not show up on the caller id.
-			 		<b><%= link_to "Validate it now", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %></b>
-			 	</div>
-			 <% end %>
+      <% if phone_not_verified? %>
+        <div class="alert alert-info span11">
+          <h3>Your phone number is not validated!</h3>
+          If you do not validate it, your number will not show up on the caller id.
+          <b><%= link_to "Validate it now", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %></b>
+        </div>
+      <% end %>
 
-			<div class="alert span11">
-				<h4>Signup URL</h4>
-					<p>Link to this to get people signed up for your notifications, or download one of our <%= link_to 'plugins' %> to integrate with your platform of choice.</p>
-					<b>http://sweepercall.heroku.com/users/new_person?uuid=<%= @agent.uuid %></b>
-			</div>
+      <div class="alert span11">
+        <h4>Signup URL</h4>
+        <p>Link to this to get people signed up for your notifications, or download one of our <%= link_to 'plugins' %> to integrate with your platform of choice.</p>
+        <b>http://sweepercall.heroku.com/users/new_person?uuid=<%= @agent.uuid %></b>
+      </div>
 
-			<div class="well span12">
-				<div class="row">
-					<h3 class="span3">Your Stats:</h3>
-				</div>
-				<br />
-				<div class="row">
-					<div class="span3 well" style="margin-left: 70px; margin-right: 20px">
-						<h1 class="bignum"><%= @agent.count_addresses %></h1><br />
-						<h4 class="pull-right">Total Addresses</h4>
-					</div>
-					<div class="span3 well" style="margin-right: 20px">
-						<h1 class="bignum"><%= @agent.count_neighborhoods %></h1><br />
-						<h4 class="pull-right">Total Neighborhoods</h4>
-					</div>
-					<div class="span3 well" style="margin-right: 20px">
-						<h1 class="bignum"><%= @agent.notifications_today %></h1><br />
-						<h4 class="pull-right">People Notified Today</h4>
-					</div>
-				</div>
-			</div>
-  	</div>
+      <div class="well span12">
+        <div class="row">
+          <h3 class="span3">Your Stats:</h3>
+        </div>
+        <br />
+        <div class="row">
+          <div class="span3 well" style="margin-left: 70px; margin-right: 20px">
+            <h1 class="bignum"><%= @agent.count_addresses %></h1><br />
+            <h4 class="pull-right">Total Addresses</h4>
+          </div>
+          <div class="span3 well" style="margin-right: 20px">
+            <h1 class="bignum"><%= @agent.count_neighborhoods %></h1><br />
+            <h4 class="pull-right">Total Neighborhoods</h4>
+          </div>
+          <div class="span3 well" style="margin-right: 20px">
+            <h1 class="bignum"><%= @agent.notifications_today %></h1><br />
+            <h4 class="pull-right">People Notified Today</h4>
+          </div>
+        </div>
+      </div>
+    </div>
 
-	  <div class="tab-pane" id="recordings">
-			<div class="well span12">
-				<%= form_for(@agent, :html => {:class => 'span12', :style => 'margin: 0;'}) do |f| %>
-					<%= error_messages_for(@agent) %>
-					<h4>Voice Notifications</h4>
-						<table class="table table-bordered table-striped span12">
-							<thead>
-								<tr>
-									<th>Active?</th>
-									<th>Recording</th>
-									<th>Created</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
-									<%= render 'recording_fields', :f => recording %>
-								<% end %>
-							</tbody>
-					</table>
-					<%= f.submit "Update Recordings", :class => 'btn btn-success pull-right' %>
-				<% end %>
-				<% if phone_not_verified? %>
-					<p style="color: red;">You are using the default message right now, please <%= link_to "verify", agents_verify_path, :phn => @agent.outgoing_phone, :uuid => @agent.uuid  %> to add your own.</p>
-				<% else %>
-					<%= link_to "Create a Recording", {:controller => 'recordings', :action => 'record_landing', :uuid => @agent.uuid}, :class => 'btn btn-warning pull-right' %>
-				<% end %>
-			</div>
-	 	</div>
-	 	
-		<div class="tab-pane" id="subscribers">
-				<div class="well span12">
-					<b>People</b>
-					<table class="table table-striped span12">
-						<tr>
-							<th></th>
-							<th>Name</th>
-							<th>Address</th>
-							<th>City</th>
-							<th>State</th>
-							<th>Phone</th>
-							<th>Mobile Phone</th>
-							<th>Added on</th>
-							<th></th>
-						</tr>
-						<% @agent.people.each_with_index do | person, i | %>
-						<tr>
-							<td><%= "#{i + 1}" %></td>
-							<td><%= person.first_name %> <%= person.last_name %></td>
-							<td><%= person.address %></td>
-							<td><%= person.city %></td>
-							<td><%= person.state %></td>
-							<td><%= person.phone %></td>
-							<td><%= person.mobile_phone %></td>
-							<td><%= person.created_at %></td>
-							<td><%= link_to 'remove', person, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %></td>
-						</tr>
-						<% end %>
-					</table>
-				</div>
-			</div>
+    <div class="tab-pane" id="recordings">
+      <div class="well span12">
+        <%= form_for(@agent, :html => {:class => 'span12', :style => 'margin: 0;'}) do |f| %>
+          <%= error_messages_for(@agent) %>
+          <h4>Voice Notifications</h4>
+          <table class="table table-bordered table-striped span12">
+            <thead>
+              <tr>
+                <th>Active?</th>
+                <th>Recording</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= f.fields_for(:recordings, @agent.recordings) do |recording| %>
+                <%= render 'recording_fields', :f => recording %>
+              <% end %>
+            </tbody>
+          </table>
+          <%= f.submit "Update Recordings", :class => 'btn btn-success pull-right' %>
+        <% end %>
+        <% if phone_not_verified? %>
+          <p style="color: red;">You are using the default message right now, please <%= link_to "verify", agents_verify_path, :phn => @agent.outgoing_phone, :uuid => @agent.uuid  %> to add your own.</p>
+        <% else %>
+          <%= link_to "Create a Recording", {:controller => 'recordings', :action => 'record_landing', :uuid => @agent.uuid}, :class => 'btn btn-warning pull-right' %>
+        <% end %>
+      </div>
+    </div>
 
-      <div class="tab-pane" id="profile"> 
-       <%= form_for(@agent, :html => {:class => 'span16'}) do |f| %>
-         <%= error_messages_for(@agent) %>
-          <fieldset class="well">
-          	<div class="row">                                                                                                                               
-          		<div class="well span5" style="margin: 15px">
-          			<h3>Basic Info:</h3>
-          			<%= f.label :first_name %>
-          			<%= f.text_field :first_name %>
-          
-          			<%= f.label :last_name %>
-          			<%= f.text_field :last_name %>
-          	
-          			<%= f.label :website_url %>
-          			<%= f.text_field :website_url %>
-          		</div>
-          	
-          		<div class="well span5" style="margin: 15px">
-          			<h3>Outgoing Message Info:</h3>
-          			<%= f.label :outgoing_phone %>
-          			<%= f.text_field :outgoing_phone %>
-          	
-          			<%= f.label :outgoing_email %>
-          			<%= f.text_field :outgoing_email %>
-          		
-          			<p>Phone verified?</p>
-          			<% if phone_not_verified? %>
-          				<b>No</b> <%= link_to "(verify now!)", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %>
-          			<% else %>
-          				<b>Yes</b>
-          			<% end %>
-          		</div>
-              <%= f.submit 'Update Profile', :class => 'btn btn-success pull-right' %>
-          	</div>
-            <% end %>
-          </fieldset>
-       </div>
-</div>
+    <div class="tab-pane" id="subscribers">
+      <div class="well span12">
+        <b>People</b>
+        <table class="table table-striped span12">
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Phone</th>
+            <th>Mobile Phone</th>
+            <th>Added on</th>
+            <th></th>
+          </tr>
+          <% @agent.people.each_with_index do | person, i | %>
+            <tr>
+              <td><%= "#{i + 1}" %></td>
+              <td><%= person.first_name %> <%= person.last_name %></td>
+              <td><%= person.address %></td>
+              <td><%= person.city %></td>
+              <td><%= person.state %></td>
+              <td><%= person.phone %></td>
+              <td><%= person.mobile_phone %></td>
+              <td><%= person.created_at %></td>
+              <td><%= link_to 'remove', person, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="profile"> 
+      <%= form_for(@agent, :html => {:class => 'span16'}) do |f| %>
+        <%= error_messages_for(@agent) %>
+        <fieldset class="well">
+          <div class="row">                                                                                                                               
+            <div class="well span5" style="margin: 15px">
+              <h3>Basic Info:</h3>
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name %>
+
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name %>
+
+              <%= f.label :website_url %>
+              <%= f.text_field :website_url %>
+            </div>
+
+            <div class="well span5" style="margin: 15px">
+              <h3>Outgoing Message Info:</h3>
+              <%= f.label :outgoing_phone %>
+              <%= f.text_field :outgoing_phone %>
+
+              <%= f.label :outgoing_email %>
+              <%= f.text_field :outgoing_email %>
+
+              <p>Phone verified?</p>
+              <% if phone_not_verified? %>
+                <b>No</b> <%= link_to "(verify now!)", :controller => 'agents', :action => 'verify', :phn => @agent.outgoing_phone, :uuid => @agent.uuid %>
+              <% else %>
+                <b>Yes</b>
+              <% end %>
+            </div>
+            <%= f.submit 'Update Profile', :class => 'btn btn-success pull-right' %>
+          </div>
+        <% end %>
+      </fieldset>
+    </div>
+  </div>

@@ -4,6 +4,7 @@ class Agent < ActiveRecord::Base
   
   before_validation :strip_outgoing_phone  
   before_create :set_uuid
+  before_create :set_outgoing_email
   
   belongs_to :user
   has_many :people
@@ -52,6 +53,11 @@ class Agent < ActiveRecord::Base
     self.uuid = Digest::MD5.hexdigest("#{self.user_id}" + "#{self.first_name}" + "#{self.last_name}")
   end
   
+  def set_outgoing_email
+    @user = User.find(self.user_id)
+    self.outgoing_email = @user.email
+  end
+
   def strip_outgoing_phone
     if self.outgoing_phone.match(/^1/)
       self.outgoing_phone = self.outgoing_phone.sub('1', '').gsub(/([-() ])/, '')

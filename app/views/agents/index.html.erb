@@ -8,6 +8,7 @@
     <th>First name</th>
     <th>Last name</th>
     <th>Outgoing Phone</th>
+    <th>User Email</th>
 		<th>Outgoing Email</th>
     <th>Website url</th>
     <th></th>
@@ -25,6 +26,11 @@
     <td><%= agent.first_name %></td>
     <td><%= agent.last_name %></td>
     <td><%= agent.outgoing_phone %></td>
+    <td>
+      <% unless agent.user_id.nil? %>
+        <%= User.find(agent.user_id).email %>
+      <% end %>
+    </td>
 		<td><%= agent.outgoing_email %></td>
     <td><%= agent.website_url %></td>
     <td><%= link_to 'Edit', edit_agent_path(agent), :class => 'btn btn-mini btn-warning' %></td>

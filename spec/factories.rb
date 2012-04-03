@@ -15,6 +15,7 @@ Factory.define :agent do |f|
   f.last_name "Agent"
   f.sequence(:outgoing_email) { |n| "test-456-987-#{n}@example.com" }
   f.outgoing_phone "7145122526"
+  f.user
 end
 
 Factory.define :notification do |f|

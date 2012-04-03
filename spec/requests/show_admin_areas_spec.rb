@@ -47,12 +47,14 @@ describe "GET admin areas, show them" do
     page.should have_content("#{@p1.zip}")
     page.should have_content("#{@p1.state}")
     page.should have_content("1001")
+
     page.should have_content("#{@p2.first_name}")
     page.should have_content("#{@p2.last_name}")
     page.should have_content("#{@p2.address}")
     page.should have_content("#{@p2.city}")
     page.should have_content("#{@p2.zip}")
     page.should have_content("#{@p2.state}")
+
     page.should have_content("2002")
     page.should have_link("Edit")
     page.should have_link("Destroy")
@@ -61,17 +63,28 @@ describe "GET admin areas, show them" do
   # agents#index
   it "should show a list of agents" do
     @a1 = Factory(:agent)
-    @a2 = Factory(:agent, :last_name => 'Agent2')
+    @a2 = Factory(:agent, :last_name => 'Agent2', :website_url => "something.com")
     
     click_link "Manage Agents"
+    page.should have_content(@a1.id)
+    page.should have_content(@a1.user_id)
     page.should have_content(@a1.first_name)
     page.should have_content(@a1.last_name)
     page.should have_content(@a1.outgoing_phone)
+    page.should have_content(@a1.user.email)
+    page.should have_content(@a1.outgoing_email)
+    page.should have_content(@a1.website_url)
+
+    page.should have_content(@a2.id)
+    page.should have_content(@a2.user_id)
     page.should have_content(@a2.first_name)
     page.should have_content(@a2.last_name)
     page.should have_content(@a2.outgoing_phone)
+    page.should have_content(@a2.user.email)
+    page.should have_content(@a2.outgoing_email)
+    page.should have_content(@a2.website_url)
+
     page.should have_link("Edit")
     page.should have_link("Destroy")
   end
-  
 end

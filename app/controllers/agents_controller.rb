@@ -47,12 +47,6 @@ class AgentsController < ApplicationController
   def show
     @agent = Agent.find(params[:id])
     
-    # set outgoing email
-    if @agent.outgoing_email.nil?
-      @agent.outgoing_email = User.find(@agent.user_id).email
-      @agent.save
-    end
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @agent }

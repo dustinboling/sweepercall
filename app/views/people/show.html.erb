@@ -56,24 +56,22 @@
     <div class="tab-pane" id="profile">
       <%= form_for(@person, :html => {:class => 'well span12'}) do |f| %>
         <%= error_messages_for(@person) %>
-
+        
+        <p>
+          Email
+        </p>
+        <p>
+          <%= @person.email  %> 
+        </p>
+        
         <%= f.label :first_name %>
         <%= f.text_field :first_name %>
 
         <%= f.label :last_name %>
         <%= f.text_field :last_name %>
 
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-
         <%= f.label :address %>
         <%= f.text_field :address %>
-
-        <%= f.label :city %>
-        <%= f.text_field :city %>
-
-        <%= f.label :state %>
-        <%= f.text_field :state %>
 
         <%= f.label :zip %>
         <%= f.number_field :zip %>
