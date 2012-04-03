@@ -13,4 +13,14 @@ module AgentsHelper
     end
   end
   
+  def subscription_inactive?
+    if @agent.active == false
+      true
+    elsif @agent.active == true
+      false
+    else
+      true
+    end
+  end
+
 end

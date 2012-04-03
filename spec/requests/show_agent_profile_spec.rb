@@ -23,6 +23,18 @@ describe "GET agent profile :as => agent" do
     page.should have_content("http://sweepercall.heroku.com/users/new_person?uuid=#{@agent.uuid}")
   end
   
+  it "should have a not subscribed notification if the agent is not subscribed" do
+    page.should have_content("You do not have an active subscription. Outgoing message functionality is currently disabled")
+  end
+
+  it "should not have a not subscribed notification if the agent is subscribed" do
+    @agent.active = true
+    @agent.save
+    
+    click_link "Account"
+    page.should_not have_content("You do not have an active subscription. Outgoing message functionality is currently disabled")
+  end
+
   it "should count the number of addresses an agent is notifying" do
     page.should have_content("1Total Addresses")
   end
@@ -59,7 +71,9 @@ describe "GET agent profile :as => agent" do
     click_link "Account"
     page.should have_content("#{Time.now.strftime('%d %b %Y')}")
   end
-  
+ 
+  # The following 2 tests are ok, but they connect to Twilio and make a recording,
+  # which we do not want.
   it "should allow an agent to connect to the ACTUAL recording page" do
     # click_link "Create a Recording"
     # click_link "Call me now!"

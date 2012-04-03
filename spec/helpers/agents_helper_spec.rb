@@ -8,5 +8,16 @@ describe AgentsHelper do
       phone_not_verified?.should == true
     end
   end
+
+  describe "subscription_inactive?" do
+    it "checks if the agent's subscription is inactive" do
+      @agent = Factory(:agent)
+      subscription_inactive?.should == true
+      
+      @agent.active = true
+      @agent.save
+      subscription_inactive?.should == false
+    end
+  end
   
 end

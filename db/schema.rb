@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402183833) do
+ActiveRecord::Schema.define(:version => 20120403224738) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -107,6 +107,15 @@ ActiveRecord::Schema.define(:version => 20120402183833) do
   end
 
   add_index "sms_notifications", ["agent_id"], :name => "index_sms_notifications_on_agent_id"
+
+  create_table "subscriptions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "plan_id"
+    t.string   "stripe_customer_token"
+    t.string   "stripe_card_token"
+    t.string   "email"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"

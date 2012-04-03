@@ -12,6 +12,14 @@
 
   <div class="tab-content">
     <div class="tab-pane active" id="home">
+      <% if subscription_inactive? %>
+        <div class="alert alert-info span11">
+          <h3>You do not have an active subscription.</h3>
+          Outgoing message functionality is currently disabled. 
+          To begin connecting to your subscribers, <%= link_to 'subscribe now' %>
+        </div>
+      <% end %>
+      
       <% if phone_not_verified? %>
         <div class="alert alert-info span11">
           <h3>Your phone number is not validated!</h3>

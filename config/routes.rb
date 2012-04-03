@@ -1,5 +1,8 @@
 Sweeper::Application.routes.draw do
   
+  get "subscriptions/new"
+  get "subscriptions/create"
+
   get "email_confirmations/confirm"
   get "email_confirmations/confirmation_failed"
 
@@ -35,8 +38,8 @@ Sweeper::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   get "forgot_password" => "sessions#forgot_password", :as => "forgot_password"
   
+  resources :subscriptions
   resources :recordings
-  
   resources :password_resets
   
   resources :users
