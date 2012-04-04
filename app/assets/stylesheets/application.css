@@ -18,3 +18,7 @@ body {
 	color: rgb(133, 53, 48);
 	font-size: 90px;
 }
+
+#stripe_error {
+  color: red;
+}
