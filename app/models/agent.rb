@@ -8,6 +8,7 @@ class Agent < ActiveRecord::Base
   
   belongs_to :user
   has_many :people
+  has_many :subscriptions
   
   has_many :recordings
   accepts_nested_attributes_for :recordings, :allow_destroy => true

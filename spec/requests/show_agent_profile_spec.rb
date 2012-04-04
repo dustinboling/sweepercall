@@ -27,12 +27,26 @@ describe "GET agent profile :as => agent" do
     page.should have_content("You do not have an active subscription. Outgoing message functionality is currently disabled")
   end
 
+  it "should link to the subscription page if an agent is not subscribed" do
+    page.should have_link("subscribe now")
+  end
+
   it "should not have a not subscribed notification if the agent is subscribed" do
     @agent.active = true
     @agent.save
     
     click_link "Account"
     page.should_not have_content("You do not have an active subscription. Outgoing message functionality is currently disabled")
+  end
+
+  it "should say an agent doesn't have an subscriptions if they do not" do
+    page.should have_content("You do not have any subscriptions")
+  end
+
+  it "should list a subscription if an agent is subscribed" do
+    subscription = Subscription.create(:plan_id => 1, :email => @user.email, :agent_id => @agent.id)
+    click_link "Account"
+    page.should have_content("#{@agent.subscriptions.first.plan_id}")
   end
 
   it "should count the number of addresses an agent is notifying" do

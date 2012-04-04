@@ -1,10 +1,11 @@
 class Subscription < ActiveRecord::Base
   belongs_to :plan
+  belongs_to :agent
 
   validates_presence_of :plan_id
   validates_presence_of :email
 
-  attr_accessible :stripe_card_token, :plan_id, :email
+  attr_accessible :stripe_card_token, :plan_id, :email, :agent_id
 
   def save_with_payment
     if valid?

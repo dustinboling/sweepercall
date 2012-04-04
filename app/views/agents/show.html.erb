@@ -5,9 +5,10 @@
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-    <li><a href="#recordings" data-toggle="tab">Your Recordings</a></li>
-    <li><a href="#subscribers" data-toggle="tab">Your Subscribers</a></li>
-    <li><a href="#profile" data-toggle="tab">Your Profile</a></li>
+    <li><a href="#recordings" data-toggle="tab">Recordings</a></li>
+    <li><a href="#subscribers" data-toggle="tab">Subscribers</a></li>
+    <li><a href="#profile" data-toggle="tab">Profile</a></li>
+    <li><a href="#subscriptions" data-toggle="tab">Subscriptions</a></li>
   </ul>
 
   <div class="tab-content">
@@ -16,10 +17,10 @@
         <div class="alert alert-info span11">
           <h3>You do not have an active subscription.</h3>
           Outgoing message functionality is currently disabled. 
-          To begin connecting to your subscribers, <%= link_to 'subscribe now' %>
+          To begin connecting to your subscribers, <%= link_to 'subscribe now', controller: 'subscriptions', action: 'new' %>
         </div>
       <% end %>
-      
+
       <% if phone_not_verified? %>
         <div class="alert alert-info span11">
           <h3>Your phone number is not validated!</h3>
@@ -152,7 +153,25 @@
             </div>
             <%= f.submit 'Update Profile', :class => 'btn btn-success pull-right' %>
           </div>
-        <% end %>
+       <% end %>
       </fieldset>
-    </div>
+      </div>
+
+      <div class="tab-pane" id="subscriptions">
+        <div class="well span12">
+      <h3>Your Subscriptions</h3>
+      <table class="table-striped">
+        <tr>
+          <th>Plan</th>
+          <th>Next Billing Date</th>
+        </tr>
+        <% @agent.subscriptions.collect do |s| %>
+        <tr>
+          <td><%= s.plan_id %></td>
+          <td><%= s.created_at %></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
+</div>
+    </div>
