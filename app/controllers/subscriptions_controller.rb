@@ -3,7 +3,4 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new
   end
 
-  def create
-  end
-
 end
