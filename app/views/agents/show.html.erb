@@ -63,7 +63,9 @@
           <%= error_messages_for(@agent) %>
           <h4>Voice Notifications</h4>
           <% if @agent.recordings.count == 0 %>
-            <h3>You don't have any recordings yet. Click 'Create a Recording'</h3>
+            <% unless phone_not_verified? %>
+              <h3>You don't have any recordings yet. Click 'Create a Recording' to make one now.</h3>
+            <% end %>
           <% else %>
             <table class="table table-bordered table-striped span12">
               <thead>
