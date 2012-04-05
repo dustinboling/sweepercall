@@ -22,4 +22,25 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def destroy
+    @subscription = Subscription.find(params[:id])
+    @agent = Agent.find(@subscription.agent_id)
+    @count = @agent.subscriptions.count
+
+    if @count == 1
+      # set agent's account to inactive
+      @agent.active = false
+      @agent.save
+
+      # destroy subscription
+      @subscription.destroy
+    else
+      @subscription.destroy
+    end
+      
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
+  end
 end

@@ -23,4 +23,14 @@ module AgentsHelper
     end
   end
 
+  def get_subscription(token)
+    customer = Stripe::Customer.retrieve("#{token}")
+    customer.subscription
+  end
+
+  def to_dollars(cents)
+    centf = cents.to_f
+    dollars = (centf / 100)
+    number_to_currency(dollars)
+  end
 end

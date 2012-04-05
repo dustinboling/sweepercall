@@ -153,25 +153,33 @@
             </div>
             <%= f.submit 'Update Profile', :class => 'btn btn-success pull-right' %>
           </div>
-       <% end %>
+        <% end %>
       </fieldset>
-      </div>
+    </div>
 
-      <div class="tab-pane" id="subscriptions">
-        <div class="well span12">
-      <h3>Your Subscriptions</h3>
-      <table class="table-striped">
-        <tr>
-          <th>Plan</th>
-          <th>Next Billing Date</th>
-        </tr>
-        <% @agent.subscriptions.collect do |s| %>
-        <tr>
-          <td><%= s.plan_id %></td>
-          <td><%= s.created_at %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
+    <div class="tab-pane" id="subscriptions">
+      <div class="well span12">
+        <h3>Your Subscriptions</h3>
+        <% if @agent.subscriptions.count == 0 %>
+          You do not have any subscriptions yet.
+        <% else %>
+          <table class="table-striped span9">
+            <tr>
+              <th>Status</th>
+              <th>Amount</th>
+              <th>Next Billing Date</th>
+              <th></th>
+            </tr>
+            <% @agent.subscriptions.collect do |s| %>
+              <tr>
+                <% subscription = get_subscription(s.stripe_customer_token) %>
+                <td><%= subscription.status %></td>
+                <td><%= to_dollars(subscription.plan.amount) %></td>
+                <td><%= Time.at(subscription.current_period_end) %></td>
+                <td><%= link_to 'Cancel Subscription', s, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger' %></td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
     </div>

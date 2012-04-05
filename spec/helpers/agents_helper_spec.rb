@@ -20,4 +20,13 @@ describe AgentsHelper do
     end
   end
   
+  describe "get_subscription" do
+
+  end
+
+  describe "to_dollars" do
+    it "converts pennies to dollars" do
+
+    end
+  end
 end
