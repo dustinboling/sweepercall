@@ -56,7 +56,7 @@ describe "GET admin areas, show them" do
     page.should have_content("#{@p2.state}")
 
     page.should have_content("2002")
-    page.should have_link("Edit")
+    page.should have_link("Show")
     page.should have_link("Destroy")
   end
   
@@ -84,7 +84,7 @@ describe "GET admin areas, show them" do
     page.should have_content(@a2.outgoing_email)
     page.should have_content(@a2.website_url)
 
-    page.should have_link("Edit")
+    page.should have_link("Show")
     page.should have_link("Destroy")
   end
 end

@@ -12,6 +12,8 @@ describe AgentsHelper do
   describe "subscription_inactive?" do
     it "checks if the agent's subscription is inactive" do
       @agent = Factory(:agent)
+      @agent.active = false
+      @agent.save
       subscription_inactive?.should == true
       
       @agent.active = true
