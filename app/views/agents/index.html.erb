@@ -33,7 +33,7 @@
     </td>
 		<td><%= agent.outgoing_email %></td>
     <td><%= agent.website_url %></td>
-    <td><%= link_to 'Edit', edit_agent_path(agent), :class => 'btn btn-mini btn-warning' %></td>
+    <td><%= link_to 'Show', agent_path(agent), :class => 'btn btn-mini btn-success' %></td>
     <td><%= link_to 'Destroy', agent, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %></td>
   </tr>
 <% end %>

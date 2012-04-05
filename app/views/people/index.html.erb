@@ -36,7 +36,7 @@
     <td><%= person.phone %></td>
     <td><%= person.mobile_phone %></td>
     <td><%= person.agent_id %></td>
-    <td><%= link_to 'Edit', edit_person_path(person), :class => 'btn btn-mini btn-warning' %></td>
+    <td><%= link_to 'Show', person, :class => 'btn btn-mini btn-success', :class => 'btn btn-mini btn-success' %></td>
     <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %></td>
   </tr>
 <% end %>
