@@ -83,7 +83,7 @@
             </table>
           <% end %>
           <% if phone_not_verified? %>
-            <p style="color: red;">You are using the default message right now, please <%= link_to "verify", agents_verify_path, :phn => @agent.outgoing_phone, :uuid => @agent.uuid  %> to add your own.</p>
+            <p style="color: red;">You are using the default message right now, please <%= link_to "verify your phone number", agents_verify_path, :phn => @agent.outgoing_phone, :uuid => @agent.uuid  %> to add your own.</p>
             <%= f.submit "Update Recordings", :class => 'btn btn-success pull-right' %>
           <% else %>
             <%= f.submit "Update Recordings", :class => 'btn btn-success pull-right' %>

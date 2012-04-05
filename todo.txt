@@ -9,10 +9,10 @@ SWEEPERCALL - ROADMAP
 #38 - put the margin back in on the well class
 #46 - logging
 #49 - implement soft-delete on agent recordings
-#50 - edit needs to go to show (agents/people) (for admins)
 #53 - there may be an issue with the subscription page if a user takes a very long time to enter their information
 #56 - voice recording confirm message
-#57 - 
+#57 - fix length of layouts/messages flash message so it lines up with the notifications in agent#show
+#58 -  
 
 CHANGES TO BE MADE BEFORE CHARGING PEOPLE (to make subscriptions work again)
 A - remove before_create callback: set_active_subscription
@@ -52,6 +52,7 @@ COMPLETED
 #17 - users#new_person uuid.nil? needs a master agent set up for when an agent cancels their account
 #54 - stripe - allow a user to cancel/suspend their account
 #51 - begins-on/ends-on date (subscriptions)
+#50 - edit needs to go to show (agents/people) (for admins)
 
 NEEDS TESTING
 #15 - set mailer up to use agents from:email
