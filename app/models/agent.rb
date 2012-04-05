@@ -5,6 +5,8 @@ class Agent < ActiveRecord::Base
   before_validation :strip_outgoing_phone  
   before_create :set_uuid
   before_create :set_outgoing_email
+  # this needs to be removed before we start charging people
+  before_create :set_active_subscription
   
   belongs_to :user
   has_many :people
@@ -57,6 +59,10 @@ class Agent < ActiveRecord::Base
   def set_outgoing_email
     @user = User.find(self.user_id)
     self.outgoing_email = @user.email
+  end
+
+  def set_active_subscription
+    self.active = true
   end
 
   def strip_outgoing_phone

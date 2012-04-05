@@ -143,4 +143,8 @@ describe Agent do
     @agent.full_name.should eq("concat test")
   end
   
+  it "should set the active field to active, until we start charging" do
+    @agent = Factory(:agent)
+    @agent.active.should eq(true)
+  end
 end
