@@ -1,0 +1,80 @@
+SWEEPERCALL - ROADMAP
+
+#6 - IMPLEMENT OMNIAUTH (should mixin well with sorcery - hopefully)
+#8 - pretty bootstrap form validations
+#13 - implement email notification cron in production
+#14 - test mailer cron with 1000+ users at once, possibly add in a sleep or whatever so it doesn't die
+#21 - move out confirmation job into a DJ queue, workers may not scale well without this.
+#22 - implement delayed_job_web admin ** use resque instead
+#38 - put the margin back in on the well class
+#46 - logging
+#49 - implement soft-delete on agent recordings
+#50 - edit needs to go to show (agents/people) (for admins)
+#53 - there may be an issue with the subscription page if a user takes a very long time to enter their information
+#56 - voice recording confirm message
+#57 - 
+
+CHANGES TO BE MADE BEFORE CHARGING PEOPLE (to make subscriptions work again)
+A - remove before_create callback: set_active_subscription
+B - update test for above (end of agent_spec)
+C - 
+
+COMPLETED
+#7 - remove ugly curves from navbar
+#27 - all phone numbers to string, then implement: @phone_number.gsub(/([-() ])/, '')
+#24 - phone number validation problem
+#19 - set up phone number validations. important to have the format twilio wants
+#26 - finish custom validations (now using custom methods)
+#29 - update phone verification to work with new outgoing_phone field
+#31 - REGEXP for email validation 
+#28 - implement an "outgoing email" field for agents which allows them to choose an outgoing email if they want (before_create callback for using their user email as default)
+#16 - don't allow agents to have multiple active messages of a certain type
+#30 - update phone/email to use outgoing_phone and outgoing_email on the agent model
+#4 - error on new_person signup where if a user clicks on an empty form it breaks due to uuid.nil
+#18 - set root to agent/person dashboard (on root: if current_user => #show)
+#3 - make a profile for agents with stats we can gather on/for them
+#9 - We have a choice on the current person model: kept as it is a person would be able to sign up but not make a notification until they enter their address. Or: force them to do it at signup
+#1 - Set up users#create to correctly refresh either the new_person or new template depending on referrer
+#40 - refector current_week method so we don't have to pass in current day and month
+#37 - ping site from an ec2 instance or whatever to prevent heroku from dumping app out of memory
+#20 - figure out task to change boolean for verified numbers
+#45 - validate email on signup
+#41 - database appears to be in a different timezone. after ~4pm starts saving at the wrong date
+#44 - Remove notifications from edit
+#47 - add tabs to agent#show
+#48 - add person_id/user_id to admin backend
+#35 - destroy recording from s3 when agent deletes it (or soft-delete)
+#36 - destroy recordings from s3 when agent account is deleted (or implement soft-delete of agent account)
+#23 - implement destroy recording after copy to amazon s3
+#39 - get set_outgoing_email out of controller and into a callback if possible
+#52 - implement stripe
+#55 - set trial token
+#17 - users#new_person uuid.nil? needs a master agent set up for when an agent cancels their account
+#54 - stripe - allow a user to cancel/suspend their account
+#51 - begins-on/ends-on date (subscriptions)
+
+NEEDS TESTING
+#15 - set mailer up to use agents from:email
+#5 - when an admin deletes a user, it should also delete them from their current agent
+#42 - Twilio client disables sound completely - SYSTEMWIDE - requires restart
+
+PROBABLY WONT DO / HOLD OFF
+#12 - make it so removing a person sets visible? = false, person retains their account
+  - not doing this one because it is unlikely that a person will want to reinstate their account
+#25 - move OutgoingCallerId list to a table so we don't have to query twilio api for this
+  - just pinging the api for now
+#10 - Add bottom bar (about 100px)
+  - may need this later, don't now.
+#2 - Test hidden/readonly fields w/ BURP suite
+  - do last
+#11 - set up checkboxes for notification weeks (see railscast on HABTM checkboxes)
+  - will not behave
+#33 - eventually we need to send out a verification message when a person changes their outgoing_email to verify that they are the owner of the email
+  - holding off as this will take a few hours and most people will not exploit this (verification is already set up when they sign up for the account). for now it is disabled.
+#34 - make sure we are using the correct email for Person (when customer changes email, they should still get email notifications)
+  - see above, no longer pertinent
+
+CANCELED
+#43 - check out using or equals in the controller to set defaults
+#32 - move twilio client into an initializer, dry up all instances of its use
+- bad idea (timeout)
