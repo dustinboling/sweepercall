@@ -27,6 +27,10 @@ class SubscriptionsController < ApplicationController
     @agent = Agent.find(@subscription.agent_id)
     @count = @agent.subscriptions.count
 
+    # get customer info from stripe, then remove subscription
+    @customer = Stripe::Customer.retrieve(@subscription.stripe_customer_token)
+    @customer.cancel_subscription
+
     if @count == 1
       # set agent's account to inactive
       @agent.active = false
