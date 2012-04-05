@@ -1,7 +1,5 @@
 <h1>Hello <%= @agent.first_name %> <%= @agent.last_name %>!</h1>
 
-<%= render 'layouts/messages' %>
-
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
@@ -13,6 +11,7 @@
 
   <div class="tab-content">
     <div class="tab-pane active" id="home">
+      <%= render 'layouts/messages' %>
       <% if subscription_inactive? %>
         <div class="alert alert-info span11">
           <h3>You do not have an active subscription.</h3>
