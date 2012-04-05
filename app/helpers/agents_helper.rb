@@ -1,4 +1,4 @@
-module AgentsHelper
+module AgentsHelper 
   def phone_not_verified?
     @account_sid = 'ACbc18a2ac1712bd298d743d0f395defc4'
     @auth_token = 'cccf865524c94ab9dff4de6cc98d70c3'
