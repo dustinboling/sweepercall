@@ -21,12 +21,19 @@ describe AgentsHelper do
   end
   
   describe "get_subscription" do
-
+    it "gets a subscription from twilio" do
+      # NOTEST: outside api calls
+    end
   end
 
   describe "to_dollars" do
     it "converts pennies to dollars" do
+      # this should be $10.99
+      pennies = 1099
+      pennies_neg = -1099
 
+      to_dollars(pennies).should eq("$10.99")
+      to_dollars(pennies_neg).should eq("-$10.99")
     end
   end
 end

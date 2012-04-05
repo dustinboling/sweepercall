@@ -37,3 +37,8 @@ Factory.define :recording do |f|
   f.active false
 end
 
+Factory.define :subscription do |f|
+  f.plan_id 1
+  f.email Faker::Internet.email
+end
+
