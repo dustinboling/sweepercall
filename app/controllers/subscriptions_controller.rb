@@ -25,13 +25,13 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription = Subscription.find(params[:id])
     @agent = Agent.find(@subscription.agent_id)
-    @count = @agent.subscriptions.count
+    count = @agent.subscriptions.count
 
     # get customer info from stripe, then remove subscription
     @customer = Stripe::Customer.retrieve(@subscription.stripe_customer_token)
     @customer.cancel_subscription
 
-    if @count == 1
+    if count == 1
       # set agent's account to inactive
       @agent.active = false
       @agent.save
@@ -41,7 +41,7 @@ class SubscriptionsController < ApplicationController
     else
       @subscription.destroy
     end
-      
+
 
     respond_to do |format|
       format.html { redirect_to :back }

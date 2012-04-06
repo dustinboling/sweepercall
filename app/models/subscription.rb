@@ -19,4 +19,10 @@ class Subscription < ActiveRecord::Base
     errors.add :base, "There was a problem with your credit card."
     false
   end
+
+  def set_trial_started_on
+    agent = @agent
+    subscription = @subscription
+      
+  end
 end

@@ -15,6 +15,7 @@ class EmailConfirmationsController < ApplicationController
   end
   
   def confirmation_failed
+
   end
   
 end

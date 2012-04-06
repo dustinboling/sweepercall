@@ -18,9 +18,10 @@ class RecordingsController < ApplicationController
   
   def record
     @agent = Agent.find_by_uuid(params[:uuid])
-    @account_sid = 'ACbc18a2ac1712bd298d743d0f395defc4'
-    @auth_token = 'cccf865524c94ab9dff4de6cc98d70c3'
-    @client = Twilio::REST::Client.new(@account_sid, @auth_token)
+
+    account_sid = 'ACbc18a2ac1712bd298d743d0f395defc4'
+    auth_token = 'cccf865524c94ab9dff4de6cc98d70c3'
+    @client = Twilio::REST::Client.new(account_sid, auth_token)
     
     @call = @client.account.calls.create(
       :from => '19496129779',

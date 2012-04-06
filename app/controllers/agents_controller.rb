@@ -104,7 +104,7 @@ class AgentsController < ApplicationController
   # DELETE /agents/1
   # DELETE /agents/1.json
   def destroy
-    # find the agent and associated user
+    # find the agent and the associated user account
     @agent = Agent.find(params[:id])
     @user = User.find(@agent.user_id)
     

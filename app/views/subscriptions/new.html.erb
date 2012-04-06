@@ -12,7 +12,12 @@
       </div>
     <% end %>
 
-    <%= f.hidden_field :plan_id, :value => 1 %>
+    <% if @agent.trial_started_on %>
+      <%= f.hidden_field :plan_id, :value => 2 %>
+    <% else %>
+      <%= f.hidden_field :plan_id, :value => 1 %>
+    <% end %>
+
     <%= f.hidden_field :agent_id, :value => @agent.id %>
     <%= f.hidden_field :stripe_card_token %>
 

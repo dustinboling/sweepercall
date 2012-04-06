@@ -33,6 +33,7 @@ group :test do
   gem 'turn', '~> 0.8.3', :require => false
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'selenium'
   gem 'guard-rspec'
   gem 'database_cleaner'
 end
