@@ -4,6 +4,6 @@ xml.Response do
     :method => "GET") do
     xml.Say "This is the message your recorded"
     xml.Play "#{params[:RecordingUrl]}"
-    xml.Say "If you would like to keep this message press 1. If you would like to re RECORD press 2."
+    xml.Say "If you would like to keep this message press 1. If you would like to re RECORD press 2"
   end
 end
