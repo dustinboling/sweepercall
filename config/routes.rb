@@ -20,6 +20,8 @@ Sweeper::Application.routes.draw do
   get "recordings/record_prompt"
   get "recordings/notification"
   get "recordings/record"
+  get "recordings/confirm"
+  get "recordings/confirm_branch"
   get "recordings/create"
   get "recordings/new"
   get "recordings/success"
