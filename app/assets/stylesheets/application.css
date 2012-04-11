@@ -22,3 +22,8 @@ body {
 #stripe_error {
   color: red;
 }
+
+#notice {
+  width: 910px;
+  margin-left: 20px;
+}
