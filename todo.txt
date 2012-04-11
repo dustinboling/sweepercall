@@ -6,8 +6,7 @@ SWEEPERCALL - ROADMAP
 #14 - test mailer cron with 1000+ users at once, possibly add in a sleep or whatever so it doesn't die
 #21 - move out confirmation job into a DJ queue, workers may not scale well without this.
 #22 - implement delayed_job_web admin ** use resque instead
-#38 - put the margin back in on the well class
-#46 - logging
+#46 - logging (for s3, client side javascript errors, etc.)
 #49 - implement soft-delete on agent recordings
 #53 - there may be an issue with the subscription page if a user takes a very long time to enter their information
 #58 -  
@@ -53,6 +52,7 @@ COMPLETED
 #50 - edit needs to go to show (agents/people) (for admins)
 #56 - voice recording confirm message
 #57 - fix length of layouts/messages flash message so it lines up with the notifications in agent#show
+#38 - put the margin back in on the well class (was fixed when we updated to new bootstrap-sass)
 
 NEEDS TESTING
 #15 - set mailer up to use agents from:email
