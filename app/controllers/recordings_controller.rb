@@ -39,11 +39,6 @@ class RecordingsController < ApplicationController
   end
 
   def confirm_branch
-    if params[:Digits] == 1
-      redirect_to :create, :uuid => params[:uuid], :RecordingUrl => params[:RecordingUrl]
-    elsif params[:Digits] == 0
-      redirect_to :record, :uuid => params[:uuid]
-    end
   end
 
   def create
