@@ -1,6 +1,6 @@
 xml.Response do
   xml.Gather(
-    :action => "http://sweepercall.heroku.com/recordings/confirm_branch.xml?uuid=#{params[:uuid]}",
+    :action => "http://sweepercall.heroku.com/recordings/confirm_branch.xml?uuid=#{params[:uuid]}&RecordingUrl=#{params[:RecordingUrl]}",
     :method => "GET") do
     xml.Say "This is the message your recorded"
     xml.Play "#{params[:RecordingUrl]}"
